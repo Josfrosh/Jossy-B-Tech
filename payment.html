@@ -1,448 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payment & Pricing – JossyB Technical Resources</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a2e; background: #fff; }
-:root {
-  --primary: #0a2463;
-  --accent: #e63946;
-  --gold: #c9922a;
-  --light: #f8f9fa;
-  --text: #2d2d2d;
-  --muted: #6c757d;
-}
-nav {
-  background: var(--primary);
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 75px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.nav-logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-.nav-logo img { height: 50px; width: 50px; object-fit: contain; border-radius: 6px; background: #fff; padding: 3px; }
-.nav-logo-text .company { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 18px; line-height: 1.1; }
-.nav-logo-text .company .blue { color: #4a90d9; }
-.nav-logo-text .company .gold { color: #c9922a; }
-.nav-logo-text .tagline { font-size: 9px; color: var(--gold); letter-spacing: 0.5px; }
-.nav-links { display: flex; gap: 2rem; }
-.nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
-.nav-links a:hover, .nav-links a.active { color: var(--gold); }
-.nav-cta { background: var(--accent); color: #fff; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
-.nav-cta:hover { opacity: 0.85; }
-footer { background: #050e1f; padding: 2rem; text-align: center; }
-.footer-logo-wrap { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 0.6rem; }
-.footer-logo-wrap img { height: 40px; width: 40px; object-fit: contain; background: #fff; border-radius: 5px; padding: 2px; }
-.footer-brand .fn { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 16px; }
-.footer-brand .fn .blue { color: #4a90d9; }
-.footer-brand .fn .gold { color: #c9922a; }
-.footer-brand .ft { font-size: 9px; color: var(--gold); letter-spacing: 0.5px; }
-.footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 0.5rem; }
-@media (max-width: 640px) { .nav-links { display: none; } }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - JossyB Technical Resources Nigeria Limited</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.page-hero {
-  background: linear-gradient(135deg, #0a2463 0%, #1b4f72 100%);
-  padding: 60px 2rem;
-  text-align: center;
-  color: #fff;
-}
-.page-hero h1 { font-size: clamp(28px,5vw,52px); font-weight: 700; margin-bottom: 0.8rem; }
-.page-hero h1 span { color: #c9922a; }
-.page-hero p { font-size: 16px; color: rgba(255,255,255,0.78); max-width: 520px; margin: 0 auto; line-height: 1.7; }
-.pricing-section { padding: 70px 2rem; background: #f8f9fa; }
-.pricing-header { text-align: center; margin-bottom: 3rem; }
-.pricing-header h2 { font-size: clamp(22px,3vw,36px); font-weight: 700; color: #0a2463; margin-bottom: 0.5rem; }
-.pricing-header p { color: #6c757d; font-size: 16px; }
-.plans-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 1.5rem;
-  max-width: 1050px;
-  margin: 0 auto;
-}
-.plan-card {
-  background: #fff;
-  border: 1.5px solid #e0e4ea;
-  border-radius: 16px;
-  padding: 2rem 1.8rem;
-  position: relative;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.plan-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
-.plan-card.featured {
-  border-color: #0a2463;
-  border-width: 2px;
-}
-.featured-badge {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #c9922a;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 14px;
-  border-radius: 20px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.plan-name { font-size: 13px; font-weight: 700; color: #6c757d; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
-.plan-price { display: flex; align-items: baseline; gap: 4px; margin-bottom: 0.3rem; }
-.plan-price .currency { font-size: 18px; font-weight: 600; color: #0a2463; }
-.plan-price .amount { font-size: 42px; font-weight: 800; color: #0a2463; line-height: 1; }
-.plan-price .period { font-size: 14px; color: #6c757d; }
-.plan-desc { font-size: 13px; color: #6c757d; margin-bottom: 1.5rem; line-height: 1.5; }
-.plan-features { list-style: none; margin-bottom: 2rem; }
-.plan-features li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 0.65rem; font-size: 14px; color: #2d2d2d; }
-.plan-features li .tick { color: #c9922a; font-weight: 700; flex-shrink: 0; }
-.plan-features li .cross { color: #ccc; flex-shrink: 0; }
-.btn-plan {
-  width: 100%;
-  padding: 13px;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: opacity 0.2s, transform 0.2s;
-}
-.btn-plan:hover { opacity: 0.88; transform: translateY(-1px); }
-.btn-plan.outline { background: transparent; border: 2px solid #0a2463; color: #0a2463; }
-.btn-plan.outline:hover { background: #0a2463; color: #fff; }
-.btn-plan.filled { background: #0a2463; color: #fff; }
-.btn-plan.gold { background: #c9922a; color: #fff; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
 
-.payment-form-section {
-  padding: 70px 2rem;
-  background: #fff;
-}
-.payment-form-section h2 { text-align: center; font-size: clamp(22px,3vw,34px); font-weight: 700; color: #0a2463; margin-bottom: 0.5rem; }
-.payment-form-section .sub { text-align: center; color: #6c757d; font-size: 15px; margin-bottom: 3rem; }
-.payment-container {
-  max-width: 560px;
-  margin: 0 auto;
-  background: #f8f9fa;
-  border: 1.5px solid #e0e4ea;
-  border-radius: 18px;
-  padding: 2.5rem;
-}
-.selected-plan-display {
-  background: #0a2463;
-  color: #fff;
-  border-radius: 10px;
-  padding: 1rem 1.5rem;
-  margin-bottom: 1.8rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.selected-plan-display .plan-lbl { font-size: 13px; color: rgba(255,255,255,0.65); }
-.selected-plan-display .plan-val { font-size: 16px; font-weight: 700; }
-.selected-plan-display .plan-amt { font-size: 20px; font-weight: 800; color: #c9922a; }
-.pform-group { margin-bottom: 1.1rem; }
-.pform-group label { display: block; font-size: 13px; font-weight: 600; color: #0a2463; margin-bottom: 5px; }
-.pform-group input, .pform-group select {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1.5px solid #e0e4ea;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #2d2d2d;
-  outline: none;
-  background: #fff;
-  transition: border-color 0.2s;
-}
-.pform-group input:focus, .pform-group select:focus { border-color: #0a2463; }
-.pform-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.card-icons { display: flex; gap: 8px; margin-bottom: 1.5rem; }
-.card-icon {
-  background: #fff;
-  border: 1px solid #e0e4ea;
-  border-radius: 6px;
-  padding: 5px 10px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #6c757d;
-  letter-spacing: 0.5px;
-}
-.security-note {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: #6c757d;
-  margin-bottom: 1.2rem;
-  background: #fff;
-  border: 1px solid #e0e4ea;
-  border-radius: 8px;
-  padding: 10px 14px;
-}
-.btn-pay {
-  width: 100%;
-  background: #e63946;
-  color: #fff;
-  border: none;
-  padding: 15px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-.btn-pay:hover { opacity: 0.88; }
-.payment-success {
-  display: none;
-  text-align: center;
-  padding: 1rem;
-}
-.payment-success .big { font-size: 60px; margin-bottom: 1rem; }
-.payment-success h3 { font-size: 22px; font-weight: 700; color: #0a2463; margin-bottom: 0.5rem; }
-.payment-success p { font-size: 14px; color: #6c757d; margin-bottom: 1.5rem; }
-.btn-back { background: #0a2463; color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; }
-.faq-section { background: #f8f9fa; padding: 70px 2rem; }
-.faq-section h2 { text-align: center; font-size: clamp(22px,3vw,32px); font-weight: 700; color: #0a2463; margin-bottom: 2.5rem; }
-.faq-grid { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
-.faq-item { background: #fff; border: 1.5px solid #e0e4ea; border-radius: 12px; padding: 1.3rem 1.5rem; cursor: pointer; }
-.faq-q { font-size: 15px; font-weight: 600; color: #0a2463; display: flex; justify-content: space-between; align-items: center; }
-.faq-a { font-size: 14px; color: #6c757d; line-height: 1.7; margin-top: 0.8rem; display: none; }
-.faq-item.open .faq-a { display: block; }
-.faq-item.open .faq-chevron { transform: rotate(180deg); }
-.faq-chevron { transition: transform 0.2s; font-style: normal; }
-@media (max-width: 640px) {
-  .plans-grid { grid-template-columns: 1fr; }
-  .pform-row { grid-template-columns: 1fr; }
-}
-</style>
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #333;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #667eea;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .payment-section {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .payment-section h2 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+
+        .payment-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .plan {
+            background: #f9f9f9;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .plan:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 12px rgba(102, 126, 234, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .plan-price {
+            font-size: 2.5em;
+            color: #667eea;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .plan-name {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+
+        .plan-features li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .plan-button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .plan-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .faq {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq h3 {
+            color: #667eea;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .faq p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .payment-plans {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
 </head>
 <body>
-<nav>
-  <div class="nav-logo" onclick="window.location.href='index.html'">
-    <img src="data:image/jpeg;base64,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" alt="JossyB Logo">
-    <div class="nav-logo-text">
-      <div class="company"><span class="blue">JOSS</span><span class="gold">Y</span><span class="blue">B</span></div>
-      <div class="tagline">Technical Resources Nigeria Limited</div>
-    </div>
-  </div>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="services.html">Services</a>
-    <a href="signup.html">Sign Up</a>
-    <a href="payment.html" class="active">Payment</a>
-  </div>
-  <button class="nav-cta" onclick="window.location.href='signup.html'">Get Started</button>
-</nav>
+    <header>
+        <h1>JOSSYB</h1>
+        <p>Technical Resources Nigeria Limited</p>
+    </header>
 
-<div class="page-hero">
-  <h1>Simple, <span>Affordable</span> Pricing</h1>
-  <p>Choose the plan that fits your goals. Start free, upgrade anytime. No hidden fees.</p>
-</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="signup.html">Sign Up</a>
+        <a href="payment.html">Payment</a>
+    </nav>
 
-<div class="pricing-section">
-  <div class="pricing-header">
-    <h2>Choose Your Plan</h2>
-    <p>All plans include access to our support team and global community.</p>
-  </div>
-  <div class="plans-grid">
+    <div class="container">
+        <div class="payment-section">
+            <h2>Choose Your Plan</h2>
 
-    <div class="plan-card">
-      <div class="plan-name">Starter</div>
-      <div class="plan-price"><span class="currency">₦</span><span class="amount">0</span><span class="period">/month</span></div>
-      <div class="plan-desc">Perfect for exploring what JossyB has to offer.</div>
-      <ul class="plan-features">
-        <li><span class="tick">✓</span> Access to 2 introductory courses</li>
-        <li><span class="tick">✓</span> Community forum access</li>
-        <li><span class="tick">✓</span> Monthly newsletter with deals</li>
-        <li><span class="cross">✗</span> 1-on-1 coaching sessions</li>
-        <li><span class="cross">✗</span> Premium side hustle listings</li>
-        <li><span class="cross">✗</span> Social media marketing tools</li>
-      </ul>
-      <button class="btn-plan outline" onclick="selectPlan('Starter Free Plan', '₦0')">Get Started Free</button>
-    </div>
+            <div class="info-box">
+                <h3>💳 Secure Payment</h3>
+                <p>All payments are processed securely through Paystack. Your financial information is protected with industry-standard encryption.</p>
+            </div>
 
-    <div class="plan-card featured">
-      <div class="featured-badge">Most Popular</div>
-      <div class="plan-name">Growth</div>
-      <div class="plan-price"><span class="currency">₦</span><span class="amount">5,000</span><span class="period">/month</span></div>
-      <div class="plan-desc">Everything you need to start earning and growing online.</div>
-      <ul class="plan-features">
-        <li><span class="tick">✓</span> Full access to all skill programs</li>
-        <li><span class="tick">✓</span> 2 coaching sessions per month</li>
-        <li><span class="tick">✓</span> Premium side hustle listings</li>
-        <li><span class="tick">✓</span> Social media marketing toolkit</li>
-        <li><span class="tick">✓</span> Business strategy templates</li>
-        <li><span class="cross">✗</span> Dedicated account manager</li>
-      </ul>
-      <button class="btn-plan filled" onclick="selectPlan('Growth Plan', '₦5,000/mo')">Choose Growth</button>
-    </div>
+            <div class="payment-plans">
+                <!-- ₦5,000 Plan -->
+                <div class="plan">
+                    <div class="plan-name">Starter Plan</div>
+                    <div class="plan-price">₦5,000</div>
+                    <ul class="plan-features">
+                        <li>Access to basic courses</li>
+                        <li>Email support</li>
+                        <li>1 month access</li>
+                        <li>Digital resources</li>
+                        <li>Community access</li>
+                    </ul>
+                    <a href="https://paystack.shop/pay/-tgekh37p0" class="plan-button" target="_blank">Pay Now - ₦5,000</a>
+                </div>
 
-    <div class="plan-card">
-      <div class="plan-name">Pro</div>
-      <div class="plan-price"><span class="currency">₦</span><span class="amount">12,000</span><span class="period">/month</span></div>
-      <div class="plan-desc">For serious entrepreneurs ready to scale fast.</div>
-      <ul class="plan-features">
-        <li><span class="tick">✓</span> Everything in Growth</li>
-        <li><span class="tick">✓</span> Unlimited coaching sessions</li>
-        <li><span class="tick">✓</span> Dedicated account manager</li>
-        <li><span class="tick">✓</span> Custom business strategy plan</li>
-        <li><span class="tick">✓</span> Exclusive promo deals first access</li>
-        <li><span class="tick">✓</span> Priority 24/7 WhatsApp support</li>
-      </ul>
-      <button class="btn-plan gold" onclick="selectPlan('Pro Plan', '₦12,000/mo')">Choose Pro</button>
-    </div>
-
-  </div>
-</div>
-
-<div class="payment-form-section">
-  <h2>Complete Your Payment</h2>
-  <div class="sub">Secure checkout — your information is fully protected</div>
-
-  <div class="payment-container">
-    <div id="payment-form-wrap">
-      <div class="selected-plan-display">
-        <div>
-          <div class="plan-lbl">Selected Plan</div>
-          <div class="plan-val" id="disp-plan">Growth Plan</div>
+                <!-- ₦12,000 Plan -->
+                <div class="plan">
+                    <div class="plan-name">Premium Plan</div>
+                    <div class="plan-price">₦12,000</div>
+                    <ul class="plan-features">
+                        <li>Access to all courses</li>
+                        <li>Priority support</li>
+                        <li>3 months access</li>
+                        <li>Digital & video resources</li>
+                        <li>Community access</li>
+                        <li>Certificate of completion</li>
+                        <li>One-on-one consultation</li>
+                    </ul>
+                    <a href="https://paystack.shop/pay/tt05g0d5-f" class="plan-button" target="_blank">Pay Now - ₦12,000</a>
+                </div>
+            </div>
         </div>
-        <div class="plan-amt" id="disp-amt">₦5,000/mo</div>
-      </div>
 
-      <div class="card-icons">
-        <div class="card-icon">VISA</div>
-        <div class="card-icon">MC</div>
-        <div class="card-icon">VERVE</div>
-        <div class="card-icon">PAYSTACK</div>
-        <div class="card-icon">FLUTTERWAVE</div>
-      </div>
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
 
-      <form onsubmit="handlePayment(event)">
-        <div class="pform-group">
-          <label>Full Name (as on card)</label>
-          <input type="text" placeholder="e.g. Emeka Eze" required>
+            <h3>❓ What payment methods do you accept?</h3>
+            <p>We accept all Paystack payment methods including debit cards, credit cards, bank transfers, and mobile money.</p>
+
+            <h3>❓ Is the payment secure?</h3>
+            <p>Yes! Paystack is PCI DSS compliant and uses industry-standard encryption to protect your payment information. You'll be redirected to a secure Paystack page to complete your transaction.</p>
+
+            <h3>❓ What happens after I make a payment?</h3>
+            <p>After successful payment, you'll receive a confirmation email with your access credentials and login details. You can then access all the resources in your chosen plan.</p>
+
+            <h3>❓ Can I upgrade my plan later?</h3>
+            <p>Yes! You can upgrade from the Starter Plan to the Premium Plan anytime. Contact us at josfrosh43@gmail.com for upgrade assistance.</p>
+
+            <h3>❓ What if the payment fails?</h3>
+            <p>If your payment fails, please try again or contact our support team. We're here to help! Email: josfrosh43@gmail.com or call: 09061935343</p>
+
+            <h3>❓ Is there a refund policy?</h3>
+            <p>Yes, we offer a 7-day money-back guarantee if you're not satisfied with your purchase. Contact our support team to request a refund.</p>
+
+            <h3>❓ Do you offer payment plans?</h3>
+            <p>For larger packages or custom solutions, please contact us directly at josfrosh43@gmail.com to discuss flexible payment options.</p>
         </div>
-        <div class="pform-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="you@example.com" required>
-        </div>
-        <div class="pform-group">
-          <label>Card Number</label>
-          <input type="text" placeholder="0000 0000 0000 0000" maxlength="19" id="card-num" oninput="formatCard(this)">
-        </div>
-        <div class="pform-row">
-          <div class="pform-group">
-            <label>Expiry Date</label>
-            <input type="text" placeholder="MM / YY" maxlength="7" oninput="formatExpiry(this)">
-          </div>
-          <div class="pform-group">
-            <label>CVV</label>
-            <input type="text" placeholder="•••" maxlength="3">
-          </div>
-        </div>
-        <div class="pform-group">
-          <label>Select Plan</label>
-          <select id="plan-select" onchange="updatePlanDisplay(this)">
-            <option value="Starter Free Plan|₦0">Starter — ₦0/month (Free)</option>
-            <a href="https://paystack.shop/pay/tt05g0d5-f" target="_blank" style="display:inline-block; background:#00b14f; color:#fff; padding:14px 32px; border-radius:8px; text-decoration:none; font-weight:bold; font-size:16px; width:100%; text-align:center; box-sizing:border-box;">Choose Growth — ₦5,000</a>
-            <option value="Pro Plan|₦12,000/mo">Pro — ₦12,000/month</option>
-          </select>
-        </div>
-        <div class="security-note">🔒 Your payment is secured with 256-bit SSL encryption</div>
-        <button type="submit" class="btn-pay">Pay Now &amp; Activate Plan</button>
-      </form>
     </div>
 
-    <div class="payment-success" id="payment-success">
-      <div class="big">🎊</div>
-      <h3>Payment Successful!</h3>
-      <p>Welcome aboard! Your plan has been activated. Check your email for your account details and next steps.</p>
-      <button class="btn-back" onclick="window.location.href='services.html'">Explore Your Services →</button>
-    </div>
-  </div>
-</div>
-
-<div class="faq-section">
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-grid">
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">Can I cancel my subscription anytime? <em class="faq-chevron">▾</em></div>
-      <div class="faq-a">Yes, absolutely. You can cancel your plan at any time with no penalty. Your access continues until the end of your current billing period.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">What payment methods do you accept? <em class="faq-chevron">▾</em></div>
-      <div class="faq-a">We accept all major debit and credit cards (Visa, Mastercard, Verve), as well as payments via Paystack and Flutterwave for Nigerian and African customers.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">Is there a free trial available? <em class="faq-chevron">▾</em></div>
-      <div class="faq-a">Yes! Our Starter plan is completely free and gives you access to introductory content. You can upgrade to a paid plan whenever you're ready.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">Can I switch plans later? <em class="faq-chevron">▾</em></div>
-      <div class="faq-a">Of course. You can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">Do you offer discounts for annual payment? <em class="faq-chevron">▾</em></div>
-      <div class="faq-a">Yes — pay annually and save up to 20%. Contact us at josfrosh43@gmail.com or WhatsApp 09061935343 to activate annual billing.</div>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <div class="footer-logo-wrap">
-    <img src="data:image/jpeg;base64,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" alt="JossyB Logo">
-    <div class="footer-brand">
-      <div class="fn"><span class="blue">JOSS</span><span class="gold">Y</span><span class="blue">B</span></div>
-      <div class="ft">Technical Resources Nigeria Limited</div>
-    </div>
-  </div>
-  <div class="footer-links" style="display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap;">
-    <a href="index.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Home</a>
-    <a href="services.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Services</a>
-    <a href="signup.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Sign Up</a>
-    <a href="payment.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Payment</a>
-  </div>
-  <div class="footer-copy">© 2025 JossyB Technical Resources Nigeria Limited. All rights reserved.</div>
-</footer>
-<script>
-function selectPlan(name, amt) {
-  document.getElementById('disp-plan').textContent = name;
-  document.getElementById('disp-amt').textContent = amt;
-  document.querySelector('.payment-form-section').scrollIntoView({behavior:'smooth'});
-  const sel = document.getElementById('plan-select');
-  for (let i = 0; i < sel.options.length; i++) {
-    if (sel.options[i].value.startsWith(name)) { sel.selectedIndex = i; break; }
-  }
-}
-function updatePlanDisplay(sel) {
-  const parts = sel.value.split('|');
-  document.getElementById('disp-plan').textContent = parts[0];
-  document.getElementById('disp-amt').textContent = parts[1];
-}
-function formatCard(input) {
-  let v = input.value.replace(/\D/g,'').substring(0,16);
-  input.value = v.replace(/(\d{4})/g,'$1 ').trim();
-}
-function formatExpiry(input) {
-  let v = input.value.replace(/\D/g,'').substring(0,4);
-  if (v.length >= 2) v = v.substring(0,2) + ' / ' + v.substring(2);
-  input.value = v;
-}
-function handlePayment(e) {
-  e.preventDefault();
-  document.getElementById('payment-form-wrap').style.display = 'none';
-  document.getElementById('payment-success').style.display = 'block';
-}
-function toggleFaq(el) {
-  el.classList.toggle('open');
-}
-</script>
+    <footer>
+        <p>&copy; 2025 JossyB Technical Resources Nigeria Limited. All rights reserved.</p>
+        <p>Empowering Growth Across the Globe.</p>
+        <p>📧 josfrosh43@gmail.com | 📞 09061935343 | 🌍 Worldwide (Fully Remote)</p>
+    </footer>
 </body>
 </html>

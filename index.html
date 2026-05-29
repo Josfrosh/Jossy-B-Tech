@@ -27,7 +27,6 @@ nav {
   z-index: 100;
 }
 .nav-logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-.nav-logo img { height: 50px; width: 50px; object-fit: contain; border-radius: 6px; background: #fff; padding: 3px; }
 .nav-logo-text .company { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 18px; line-height: 1.1; }
 .nav-logo-text .company .blue { color: #4a90d9; }
 .nav-logo-text .company .gold { color: #c9922a; }
@@ -38,8 +37,6 @@ nav {
 .nav-cta { background: var(--accent); color: #fff; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
 .nav-cta:hover { opacity: 0.85; }
 footer { background: #050e1f; padding: 2rem; text-align: center; }
-.footer-logo-wrap { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 0.6rem; }
-.footer-logo-wrap img { height: 40px; width: 40px; object-fit: contain; background: #fff; border-radius: 5px; padding: 2px; }
 .footer-brand .fn { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 16px; }
 .footer-brand .fn .blue { color: #4a90d9; }
 .footer-brand .fn .gold { color: #c9922a; }
@@ -195,7 +192,6 @@ section { padding: 70px 2rem; }
 
 <nav>
   <div class="nav-logo" onclick="window.location.href='index.html'">
-    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh[...]" alt="Logo">
     <div class="nav-logo-text">
       <div class="company"><span class="blue">JOSS</span><span class="gold">Y</span><span class="blue">B</span></div>
       <div class="tagline">Technical Resources Nigeria Limited</div>
@@ -213,7 +209,6 @@ section { padding: 70px 2rem; }
 <section class="hero">
   <div class="hero-brand">
     <div class="hero-logo-wrap">
-      <img class="hero-logo-bg" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4[...]" alt="Logo Background">
       <div class="hero-logo-text">
         <div class="hero-name"><span class="blue">JOSS</span><span class="gold">Y</span><span class="blue">B</span></div>
         <div class="hero-tagline-text">Technical Resources Nigeria Limited</div>
@@ -362,12 +357,9 @@ section { padding: 70px 2rem; }
 </section>
 
 <footer>
-  <div class="footer-logo-wrap">
-    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh[...]" alt="Logo">
-    <div class="footer-brand">
-      <div class="fn"><span class="blue">JOSS</span><span class="gold">Y</span><span class="blue">B</span></div>
-      <div class="ft">Technical Resources Nigeria Limited</div>
-    </div>
+  <div class="footer-brand">
+    <div class="fn"><span class="blue">JOSS</span><span class="gold">Y</span><span class="blue">B</span></div>
+    <div class="ft">Technical Resources Nigeria Limited</div>
   </div>
   <div class="footer-links" style="display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap;">
     <a href="index.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Home</a>

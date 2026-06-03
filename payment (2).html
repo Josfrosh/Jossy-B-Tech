@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - JossyB Technical Resources Nigeria Limited</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #333;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #667eea;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .payment-section {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .payment-section h2 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+
+        .payment-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .plan {
+            background: #f9f9f9;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .plan:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 12px rgba(102, 126, 234, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .plan-price {
+            font-size: 2.5em;
+            color: #667eea;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .plan-name {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+
+        .plan-features li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .plan-button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .plan-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .faq {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq h3 {
+            color: #667eea;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .faq p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .payment-plans {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JOSSYB</h1>
+        <p>Technical Resources Nigeria Limited</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="signup.html">Sign Up</a>
+        <a href="payment.html">Payment</a>
+    </nav>
+
+    <div class="container">
+        <div class="payment-section">
+            <h2>Choose Your Plan</h2>
+
+            <div class="info-box">
+                <h3>💳 Secure Payment</h3>
+                <p>All payments are processed securely through Paystack. Your financial information is protected with industry-standard encryption.</p>
+            </div>
+
+            <div class="payment-plans">
+                <!-- ₦5,000 Plan -->
+                <div class="plan">
+                    <div class="plan-name">Starter Plan</div>
+                    <div class="plan-price">₦5,000</div>
+                    <ul class="plan-features">
+                        <li>Access to basic courses</li>
+                        <li>Email support</li>
+                        <li>1 month access</li>
+                        <li>Digital resources</li>
+                        <li>Community access</li>
+                    </ul>
+                    <a href="https://paystack.shop/pay/-tgekh37p0" class="plan-button" target="_blank">Pay Now - ₦5,000</a>
+                </div>
+
+                <!-- ₦12,000 Plan -->
+                <div class="plan">
+                    <div class="plan-name">Premium Plan</div>
+                    <div class="plan-price">₦12,000</div>
+                    <ul class="plan-features">
+                        <li>Access to all courses</li>
+                        <li>Priority support</li>
+                        <li>3 months access</li>
+                        <li>Digital & video resources</li>
+                        <li>Community access</li>
+                        <li>Certificate of completion</li>
+                        <li>One-on-one consultation</li>
+                    </ul>
+                    <a href="https://paystack.shop/pay/tt05g0d5-f" class="plan-button" target="_blank">Pay Now - ₦12,000</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
+
+            <h3>❓ What payment methods do you accept?</h3>
+            <p>We accept all Paystack payment methods including debit cards, credit cards, bank transfers, and mobile money.</p>
+
+            <h3>❓ Is the payment secure?</h3>
+            <p>Yes! Paystack is PCI DSS compliant and uses industry-standard encryption to protect your payment information. You'll be redirected to a secure Paystack page to complete your transaction.</p>
+
+            <h3>❓ What happens after I make a payment?</h3>
+            <p>After successful payment, you'll receive a confirmation email with your access credentials and login details. You can then access all the resources in your chosen plan.</p>
+
+            <h3>❓ Can I upgrade my plan later?</h3>
+            <p>Yes! You can upgrade from the Starter Plan to the Premium Plan anytime. Contact us at josfrosh43@gmail.com for upgrade assistance.</p>
+
+            <h3>❓ What if the payment fails?</h3>
+            <p>If your payment fails, please try again or contact our support team. We're here to help! Email: josfrosh43@gmail.com or call: 09061935343</p>
+
+            <h3>❓ Is there a refund policy?</h3>
+            <p>Yes, we offer a 7-day money-back guarantee if you're not satisfied with your purchase. Contact our support team to request a refund.</p>
+
+            <h3>❓ Do you offer payment plans?</h3>
+            <p>For larger packages or custom solutions, please contact us directly at josfrosh43@gmail.com to discuss flexible payment options.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 JossyB Technical Resources Nigeria Limited. All rights reserved.</p>
+        <p>Empowering Growth Across the Globe.</p>
+        <p>📧 josfrosh43@gmail.com | 📞 09061935343 | 🌍 Worldwide (Fully Remote)</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,11 @@
+name: Manual Config Workflow
+
+on:
+  workflow_dispatch:  # This lets you run it manually
+
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run custom script
+        run: echo "This is where your config steps will go"

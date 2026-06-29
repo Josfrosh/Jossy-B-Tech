@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Resources - Jossy B Technical Resources</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: #fff;
+            padding: 40px 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .category-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .category-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .icon {
+            font-size: 1.8em;
+        }
+        
+        .resources-list {
+            padding: 20px;
+        }
+        
+        .resource-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .resource-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .resource-name {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .resource-desc {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .resource-link {
+            display: inline-block;
+            margin-top: 8px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+        
+        .cta-section {
+            background: #fff;
+            padding: 40px 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+        
+        .cta-text {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            margin-left: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Free Resources Hub</h1>
+            <p class="subtitle">Access curated learning & opportunity resources to jumpstart your journey</p>
+        </header>
+        
+        <div class="resources-grid">
+            
+            <!-- SKILL TRAINING -->
+            <div class="category-card">
+                <div class="category-header">
+                    <span class="icon">🎓</span>
+                    <span>Skill Training & Certificates</span>
+                </div>
+                <div class="resources-list">
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Coursera Free Courses <span class="badge">FREE</span></div>
+                        <div class="resource-desc">600+ free courses with certificates in AI, Data Science, Cloud, Web Development, and more. Learn from top universities.</div>
+                        <a href="https://www.coursera.org/courses?query=free" class="resource-link">→ Explore Coursera</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Google Digital Garage <span class="badge">FREE</span></div>
+                        <div class="resource-desc">26 modules on Digital Marketing fundamentals with certification exam. Self-paced learning with practical exercises.</div>
+                        <a href="https://learndigital.withgoogle.com" class="resource-link">→ Start Google Learning</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">freeCodeCamp <span class="badge">FREE</span></div>
+                        <div class="resource-desc">Free certifications in Python, JavaScript, Web Development, and coding. Perfect for tech careers.</div>
+                        <a href="https://www.freecodecamp.org" class="resource-link">→ Learn Coding</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Alison <span class="badge">FREE</span></div>
+                        <div class="resource-desc">50+ million learners. Free certified courses in business, tech, healthcare, and professional development.</div>
+                        <a href="https://alison.com" class="resource-link">→ Browse Alison</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">IBM SkillsBuild <span class="badge">FREE</span></div>
+                        <div class="resource-desc">Free courses in AI fundamentals, Data Science, Cybersecurity backed by industry experts.</div>
+                        <a href="https://skillsbuild.org/learners" class="resource-link">→ Access IBM Skills</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">HP LIFE <span class="badge">FREE</span></div>
+                        <div class="resource-desc">30+ free business & entrepreneurship courses in 8 languages. Perfect for SMEs and startups.</div>
+                        <a href="https://www.life-global.org" class="resource-link">→ Start HP LIFE</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Great Learning Academy <span class="badge">FREE</span></div>
+                        <div class="resource-desc">500+ free courses in AI, Data Science, Business Analytics with optional certificates.</div>
+                        <a href="https://www.mygreatlearning.com/academy" class="resource-link">→ Explore Great Learning</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- JOB OPPORTUNITIES -->
+            <div class="category-card">
+                <div class="category-header">
+                    <span class="icon">💼</span>
+                    <span>Job Opportunities (Nigeria)</span>
+                </div>
+                <div class="resources-list">
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Jobberman <span class="badge">TOP RATED</span></div>
+                        <div class="resource-desc">Nigeria's #1 job platform. 3M+ profiles, remote jobs, graduate opportunities, all sectors.</div>
+                        <a href="https://www.jobberman.com" class="resource-link">→ Visit Jobberman</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Hot Nigerian Jobs</div>
+                        <div class="resource-desc">6,500+ Lagos listings, daily updates, strong in tech, finance, oil & gas sectors. Free postings.</div>
+                        <a href="https://www.hotnigerianjobs.com" class="resource-link">→ Browse HNJ</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">MyJobMag</div>
+                        <div class="resource-desc">No registration needed to browse. Email alerts for personalized opportunities. Quality-vetted jobs.</div>
+                        <a href="https://www.myjobmag.com" class="resource-link">→ Search MyJobMag</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">DelonJobs</div>
+                        <div class="resource-desc">Updated daily with graduate internships, remote jobs across Lagos, Abuja, all 36 states. Free webinars.</div>
+                        <a href="https://jobs.delon.ng" class="resource-link">→ Explore DelonJobs</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">JobGurus</div>
+                        <div class="resource-desc">Strong regional reach, admin & logistics roles, fresh graduate programs. User-friendly platform.</div>
+                        <a href="https://jobgurus.com.ng" class="resource-link">→ Check JobGurus</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">GrabJobs</div>
+                        <div class="resource-desc">5,000+ companies hiring. Free job alerts, career resources, online courses, one-minute applications.</div>
+                        <a href="https://grabjobs.co" class="resource-link">→ Visit GrabJobs</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">LinkedIn Nigeria</div>
+                        <div class="resource-desc">Global reach. Post 1 free job, white-collar roles, professional network. 40% growth in Nigerian members.</div>
+                        <a href="https://www.linkedin.com" class="resource-link">→ Use LinkedIn</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- BUSINESS MANAGEMENT -->
+            <div class="category-card">
+                <div class="category-header">
+                    <span class="icon">📊</span>
+                    <span>Business Management Resources</span>
+                </div>
+                <div class="resources-list">
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">HP LIFE Business Courses <span class="badge">FREE</span></div>
+                        <div class="resource-desc">Entrepreneurship, finance, marketing, communication. 30+ practical courses in 8 languages. Global program.</div>
+                        <a href="https://www.life-global.org" class="resource-link">→ Access HP LIFE</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">UniAthena Business Admin <span class="badge">FREE</span></div>
+                        <div class="resource-desc">Diploma in Business Administration (2 weeks). Marketing, HR, Finance, Operations. Blockchain certificate.</div>
+                        <a href="https://uniathena.com/short-courses/diploma-in-business-administration" class="resource-link">→ Start Diploma</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Thinkubate Academy (Standard Bank) <span class="badge">FREE</span></div>
+                        <div class="resource-desc">For SMEs. Business skills development, masterclasses on management at every business stage.</div>
+                        <a href="https://standardbank.thinkubate.co" class="resource-link">→ Explore Thinkubate</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">MANCOSA skillME <span class="badge">AFFORDABLE</span></div>
+                        <div class="resource-desc">Project management, digital marketing, leadership, supply chain. South Africa but accessible globally.</div>
+                        <a href="https://skillme.mancosa.co.za" class="resource-link">→ Browse MANCOSA</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">iQ Academy Business Courses <span class="badge">SHORT COURSES</span></div>
+                        <div class="resource-desc">Entrepreneurship, risk management, operational management, project management. Practical focus.</div>
+                        <a href="https://www.iqacademy.ac.za" class="resource-link">→ Visit iQ Academy</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Coursera Business Management <span class="badge">FREE + PAID</span></div>
+                        <div class="resource-desc">Specializations in business analytics, finance, digital marketing, operations. From entry-level to advanced.</div>
+                        <a href="https://www.coursera.org" class="resource-link">→ Explore Coursera</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- INVESTMENT OPPORTUNITIES -->
+            <div class="category-card">
+                <div class="category-header">
+                    <span class="icon">💰</span>
+                    <span>Investment Opportunities</span>
+                </div>
+                <div class="resources-list">
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">PiggyVest</div>
+                        <div class="resource-desc">6M+ users. Mutual funds, real estate, agriculture opportunities. SafeLock savings, 35% returns. Zero minimum.</div>
+                        <a href="https://piggyvest.com" class="resource-link">→ Start Saving</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Bamboo</div>
+                        <div class="resource-desc">3,500+ stocks (Nigerian & US). AI-driven insights, 500K+ users. Zero paperwork, 20% annual returns (Naira savings).</div>
+                        <a href="https://bamboo.money" class="resource-link">→ Invest with Bamboo</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Cowrywise <span class="badge">SEC LICENSED</span></div>
+                        <div class="resource-desc">Automated savings, mutual funds, investment circles. Low/medium/high risk options. ₦100 minimum.</div>
+                        <a href="https://cowrywise.com" class="resource-link">→ Open Account</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Trove</div>
+                        <div class="resource-desc">Mutual funds, stocks, bonds. Fractional investing ($1 minimum). Social investing, education resources.</div>
+                        <a href="https://investwithtrove.com" class="resource-link">→ Explore Trove</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Afrinvest / PlutusNeo</div>
+                        <div class="resource-desc">Stocks, mutual funds, treasury bills. Naira & Dollar options. ₦5,000 minimum. Licensed by SEC.</div>
+                        <a href="https://afrinvest.com" class="resource-link">→ Visit Afrinvest</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">GetEquity</div>
+                        <div class="resource-desc">Invest in African startups, commercial papers, real estate. From early stage to IPO. Higher risk, higher reward.</div>
+                        <a href="https://getequity.io" class="resource-link">→ Browse Startups</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Crowdyvest</div>
+                        <div class="resource-desc">Impact-driven projects in agriculture, real estate, transportation. Support development + earn returns.</div>
+                        <a href="https://www.crowdyvest.com" class="resource-link">→ Start Investing</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Money Market Funds (ARM, Stanbic IBTC)</div>
+                        <div class="resource-desc">22-26% returns (2026). High liquidity, capital-safe. Gold standard for conservative investors.</div>
+                        <a href="https://www.arm.com.ng" class="resource-link">→ Learn More</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- STARTUP FUNDING -->
+            <div class="category-card">
+                <div class="category-header">
+                    <span class="icon">🚀</span>
+                    <span>Startup Funding & Support</span>
+                </div>
+                <div class="resources-list">
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Bank of Industry (BOI) Youth Program</div>
+                        <div class="resource-desc">Ages 18-35: Up to ₦5M loans. Equity-free. 1-5 year repayment. 8-week online + 5-day in-person training.</div>
+                        <a href="https://www.boi.ng" class="resource-link">→ Apply at BOI</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Shell Livewire (Niger Delta)</div>
+                        <div class="resource-desc">For Niger Delta youth 18-35. Funding, mentoring, training, support. Exclusive regional program.</div>
+                        <a href="https://www.shell.com.ng" class="resource-link">→ Check Shell Livewire</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Ford Foundation Grants</div>
+                        <div class="resource-desc">Civic engagement, tech, social justice. Nigerian enterprises like CcHub & BudgIT have received grants.</div>
+                        <a href="https://www.fordfoundation.org" class="resource-link">→ Explore Grants</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Co-Creation Hub (CcHub)</div>
+                        <div class="resource-desc">Lagos-based accelerator. Funding, mentorship, resources for Nigerian startups. Tech-focused.</div>
+                        <a href="https://cchubafrica.com" class="resource-link">→ Visit CcHub</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Lagos Innovates</div>
+                        <div class="resource-desc">Startup accelerator providing funding, mentorship, and strategic support to early-stage companies.</div>
+                        <a href="https://lagosinnov.com" class="resource-link">→ Apply Now</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <!-- GOVERNMENT & INVESTMENT GUIDELINES -->
+            <div class="category-card">
+                <div class="category-header">
+                    <span class="icon">🏛️</span>
+                    <span>Government & Regulatory Resources</span>
+                </div>
+                <div class="resources-list">
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Nigerian Investment Promotion Commission (NIPC)</div>
+                        <div class="resource-desc">Official guide for foreign & diaspora investors. Legal protection, capital repatriation, compliance info.</div>
+                        <a href="https://www.nipc.gov.ng" class="resource-link">→ Visit NIPC</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Securities & Exchange Commission (SEC) Nigeria</div>
+                        <div class="resource-desc">Verify licensed investment platforms here. Investor protection, regulated brokers, mutual funds.</div>
+                        <a href="https://www.sec.gov.ng" class="resource-link">→ Check SEC Registry</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Nigeria High Commission - Investment Opportunities</div>
+                        <div class="resource-desc">Sectors: Telecom, agro-allied, manufacturing, energy. Foreign exchange options, regulations.</div>
+                        <a href="https://www.nigeriahc.org.uk/investment-opportunities/" class="resource-link">→ Explore Sectors</a>
+                    </div>
+                    
+                    <div class="resource-item">
+                        <div class="resource-name">Free Zone Opportunities (NEPZA)</div>
+                        <div class="resource-desc">Export processing zones. Tax incentives, duty-free imports. Perfect for manufacturing/export businesses.</div>
+                        <a href="https://www.nepza.gov.ng" class="resource-link">→ Apply at NEPZA</a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- CALL TO ACTION -->
+        <div class="cta-section">
+            <div class="cta-text">
+                Ready to accelerate your growth? Combine these FREE resources with personalized guidance from Jossy B.
+            </div>
+            <a href="#pricing" class="cta-button">Upgrade to a Plan & Get Direct Support</a>
+        </div>
+        
+    </div>
+</body>
+</html>

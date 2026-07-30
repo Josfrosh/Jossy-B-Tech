@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard – JossyB Technical Resources</title>
+  <style>
+    :root{--primary:#0a2463;--accent:#e63946;--gold:#c9a84c;--bg:#f6f7fb;--card:#ffffff;--text:#1a1a2e}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+    .wrap{max-width:960px;margin:36px auto;padding:20px}
+    .card{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 6px 20px rgba(10,36,99,0.06)}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{height:44px;width:44px;border-radius:8px;background:linear-gradient(135deg,var(--primary),#19406a);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
+    .brand h1{font-size:18px}
+    nav a{margin-left:14px;color:var(--primary);text-decoration:none;font-weight:600}
+    .profile{display:flex;gap:18px;align-items:center}
+    .avatar{height:72px;width:72px;border-radius:12px;background:#eee;display:flex;align-items:center;justify-content:center;font-size:28px;color:#666}
+    .meta h2{font-size:20px;margin-bottom:4px}
+    .meta p{color:#666;font-size:14px}
+    .actions{margin-top:16px;display:flex;gap:12px}
+    .btn{padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+    .btn-primary{background:var(--primary);color:#fff}
+    .btn-ghost{background:transparent;border:1px solid #dfe6f3;color:var(--primary)}
+    .section{margin-top:18px}
+    .small{font-size:13px;color:#666}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div class="brand">
+          <div class="logo">JB</div>
+          <div>
+            <h1>JossyB Dashboard</h1>
+            <div class="small">Technical Resources Nigeria Limited</div>
+          </div>
+        </div>
+        <div>
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="payment.html">Payment</a>
+        </div>
+      </header>
+
+      <div id="content">
+        <div class="profile">
+          <div class="avatar" id="avatar">?</div>
+          <div class="meta">
+            <h2 id="displayName">Welcome</h2>
+            <p id="email" class="small"></p>
+            <div class="actions">
+              <button class="btn btn-primary" id="logoutBtn">Sign Out</button>
+              <button class="btn btn-ghost" id="manageBtn">Manage Profile</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Your account</h3>
+          <p class="small">Below is a summary of your saved profile information (if available).</p>
+          <div id="profileData" style="margin-top:12px"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+    const supabase = createClient(
+      'https://ghsnlxqaztuovxlairvn.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7XxizWsus3R0ChuAceqBpw'
+    );
+
+    const content = document.getElementById('content')
+    const avatarEl = document.getElementById('avatar')
+    const nameEl = document.getElementById('displayName')
+    const emailEl = document.getElementById('email')
+    const profileDataEl = document.getElementById('profileData')
+    const logoutBtn = document.getElementById('logoutBtn')
+    const manageBtn = document.getElementById('manageBtn')
+
+    async function init() {
+      // Get session and user
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session || !session.user) {
+        // Not signed in -> redirect to login
+        window.location.href = 'login.html'
+        return
+      }
+
+      const user = session.user
+      nameEl.textContent = user.user_metadata?.full_name || user.email || 'User'
+      emailEl.textContent = user.email || ''
+      avatarEl.textContent = (user.user_metadata?.full_name || user.email || 'U').slice(0,1).toUpperCase()
+
+      // Try to load profile row from 'profiles' table
+      try {
+        const { data: profile, error } = await supabase.from('profiles').select('full_name,phone,country,service_interest,referral_code').eq('id', user.id).single()
+        if (error && error.code !== 'PGRST116') {
+          // ignore not found, but log others
+          console.warn('profiles lookup error', error)
+        }
+        if (profile) {
+          renderProfile(profile)
+        } else {
+          profileDataEl.innerHTML = '<div class="small">No additional profile data found.</div>'
+        }
+      } catch (e) {
+        profileDataEl.innerHTML = '<div class="small">Error loading profile data.</div>'
+        console.error(e)
+      }
+
+      // handle logout
+      logoutBtn.addEventListener('click', async () => {
+        await supabase.auth.signOut()
+        window.location.href = 'login.html'
+      })
+
+      manageBtn.addEventListener('click', () => {
+        window.location.href = 'signup.html'
+      })
+
+      // Redirect to login if session changes
+      supabase.auth.onAuthStateChange((event) => {
+        if (event === 'SIGNED_OUT') window.location.href = 'login.html'
+      })
+    }
+
+    function renderProfile(p) {
+      profileDataEl.innerHTML = `
+        <div class="small"><strong>Full name:</strong> ${p.full_name || '—'}</div>
+        <div class="small"><strong>Phone:</strong> ${p.phone || '—'}</div>
+        <div class="small"><strong>Country:</strong> ${p.country || '—'}</div>
+        <div class="small"><strong>Service interest:</strong> ${p.service_interest || '—'}</div>
+        <div class="small"><strong>Referral code:</strong> ${p.referral_code || '—'}</div>
+      `
+    }
+
+    init()
+  </script>
+</body>
+</html>

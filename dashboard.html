@@ -4,143 +4,636 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard – JossyB Technical Resources</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{--primary:#0a2463;--accent:#e63946;--gold:#c9a84c;--bg:#f6f7fb;--card:#ffffff;--text:#1a1a2e}
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-    .wrap{max-width:960px;margin:36px auto;padding:20px}
-    .card{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 6px 20px rgba(10,36,99,0.06)}
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand .logo{height:44px;width:44px;border-radius:8px;background:linear-gradient(135deg,var(--primary),#19406a);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
-    .brand h1{font-size:18px}
-    nav a{margin-left:14px;color:var(--primary);text-decoration:none;font-weight:600}
-    .profile{display:flex;gap:18px;align-items:center}
-    .avatar{height:72px;width:72px;border-radius:12px;background:#eee;display:flex;align-items:center;justify-content:center;font-size:28px;color:#666}
-    .meta h2{font-size:20px;margin-bottom:4px}
-    .meta p{color:#666;font-size:14px}
-    .actions{margin-top:16px;display:flex;gap:12px}
-    .btn{padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
-    .btn-primary{background:var(--primary);color:#fff}
-    .btn-ghost{background:transparent;border:1px solid #dfe6f3;color:var(--primary)}
-    .section{margin-top:18px}
-    .small{font-size:13px;color:#666}
+    :root {
+      --navy-950: #070f22;
+      --navy-900: #0b1c3a;
+      --navy-800: #122747;
+      --navy-700: #1a3459;
+      --gold: #c9a227;
+      --gold-bright: #e9c765;
+      --cream: #f4efe2;
+      --muted: #93a0bd;
+      --success: #10b981;
+      --line: rgba(201, 162, 39, 0.22);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy-950);
+      color: var(--cream);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ---- Header ---- */
+    header.top {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(7, 15, 34, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--navy-950);
+      font-size: 16px;
+    }
+
+    .brand-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.15rem;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-name b {
+      color: var(--gold-bright);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-bright);
+    }
+
+    .logout-btn {
+      background: var(--gold);
+      color: var(--navy-950);
+      border: none;
+      padding: 10px 18px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .logout-btn:hover {
+      background: var(--gold-bright);
+    }
+
+    /* ---- Main Content ---- */
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    .welcome-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+      align-items: start;
+    }
+
+    .profile-card {
+      background: linear-gradient(165deg, var(--navy-800), var(--navy-900));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .avatar-section {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: var(--navy-950);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .user-meta h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .user-meta p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .profile-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy-950);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-bright);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--navy-700);
+      color: var(--cream);
+      border: 1px solid var(--line);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      background: rgba(26, 52, 89, 0.8);
+    }
+
+    /* ---- Quick Stats ---- */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: linear-gradient(165deg, var(--navy-800), var(--navy-900));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-value {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--gold-bright);
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ---- Sections ---- */
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    /* ---- Profile Info Grid ---- */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .info-card {
+      background: linear-gradient(165deg, var(--navy-800), var(--navy-900));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .info-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .info-value {
+      font-size: 1rem;
+      color: var(--cream);
+      word-break: break-word;
+    }
+
+    .info-value.empty {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ---- Resources Links ---- */
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .resource-link {
+      background: linear-gradient(165deg, var(--navy-800), var(--navy-900));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-decoration: none;
+      color: var(--cream);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.2s;
+    }
+
+    .resource-link:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    .resource-icon {
+      font-size: 28px;
+    }
+
+    .resource-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .resource-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ---- Footer ---- */
+    footer {
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    footer a {
+      color: var(--gold-bright);
+      text-decoration: none;
+    }
+
+    /* ---- Loading & Error States ---- */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--muted);
+    }
+
+    .error-box {
+      background: rgba(220, 38, 38, 0.1);
+      border: 1px solid rgba(220, 38, 38, 0.3);
+      border-radius: var(--radius);
+      padding: 20px;
+      color: #fca5a5;
+      margin-bottom: 20px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-wrap: wrap;
+        padding: 14px 20px;
+      }
+
+      .nav-links {
+        width: 100%;
+        order: 3;
+        margin-left: 0;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .nav-links a {
+        width: 100%;
+        text-align: center;
+      }
+
+      .welcome-section {
+        grid-template-columns: 1fr;
+      }
+
+      .wrap {
+        padding: 20px;
+      }
+
+      .avatar-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .info-grid,
+      .resources-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <header>
-        <div class="brand">
-          <div class="logo">JB</div>
-          <div>
-            <h1>JossyB Dashboard</h1>
-            <div class="small">Technical Resources Nigeria Limited</div>
-          </div>
-        </div>
-        <div>
-          <a href="index.html">Home</a>
-          <a href="services.html">Services</a>
-          <a href="payment.html">Payment</a>
-        </div>
-      </header>
 
-      <div id="content">
-        <div class="profile">
-          <div class="avatar" id="avatar">?</div>
-          <div class="meta">
-            <h2 id="displayName">Welcome</h2>
-            <p id="email" class="small"></p>
-            <div class="actions">
-              <button class="btn btn-primary" id="logoutBtn">Sign Out</button>
-              <button class="btn btn-ghost" id="manageBtn">Manage Profile</button>
-            </div>
-          </div>
-        </div>
+<header class="top">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-logo">JB</div>
+      <div class="brand-name">Jossy<b>B</b></div>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="resources-free.html">Resources</a>
+      <button class="logout-btn" id="logoutBtn">Sign Out</button>
+    </nav>
+  </div>
+</header>
 
-        <div class="section">
-          <h3>Your account</h3>
-          <p class="small">Below is a summary of your saved profile information (if available).</p>
-          <div id="profileData" style="margin-top:12px"></div>
+<div class="wrap">
+  <!-- Welcome Section -->
+  <div class="welcome-section">
+    <div class="profile-card">
+      <div class="avatar-section">
+        <div class="avatar" id="avatar">?</div>
+        <div class="user-meta">
+          <h2 id="displayName">Welcome</h2>
+          <p id="email"></p>
+          <div class="profile-actions">
+            <a href="signup.html" class="btn btn-primary">Edit Profile</a>
+            <a href="index.html" class="btn btn-secondary">Back Home</a>
+          </div>
         </div>
       </div>
+    </div>
 
+    <!-- Quick Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="memberStatus">—</div>
+        <div class="stat-label">Plan Status</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">✓</div>
+        <div class="stat-label">Account Active</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="joinDate">—</div>
+        <div class="stat-label">Joined</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">24/7</div>
+        <div class="stat-label">Support</div>
+      </div>
     </div>
   </div>
 
-  <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-    const supabase = createClient(
-      'https://ghsnlxqaztuovxlairvn.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7XxizWsus3R0ChuAceqBpw'
-    );
+  <!-- Profile Information -->
+  <div class="section">
+    <h3 class="section-title">Account Information</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <span class="info-label">Full Name</span>
+        <span class="info-value" id="fullName"><span class="empty">Not provided</span></span>
+      </div>
+      <div class="info-card">
+        <span class="info-label">Email Address</span>
+        <span class="info-value" id="emailInfo"><span class="empty">—</span></span>
+      </div>
+      <div class="info-card">
+        <span class="info-label">Phone Number</span>
+        <span class="info-value" id="phone"><span class="empty">Not provided</span></span>
+      </div>
+      <div class="info-card">
+        <span class="info-label">Country</span>
+        <span class="info-value" id="country"><span class="empty">Not provided</span></span>
+      </div>
+      <div class="info-card">
+        <span class="info-label">Service Interest</span>
+        <span class="info-value" id="serviceInterest"><span class="empty">Not provided</span></span>
+      </div>
+      <div class="info-card">
+        <span class="info-label">Referral Code</span>
+        <span class="info-value" id="referralCode"><span class="empty">Not generated</span></span>
+      </div>
+    </div>
+  </div>
 
-    const content = document.getElementById('content')
-    const avatarEl = document.getElementById('avatar')
-    const nameEl = document.getElementById('displayName')
-    const emailEl = document.getElementById('email')
-    const profileDataEl = document.getElementById('profileData')
-    const logoutBtn = document.getElementById('logoutBtn')
-    const manageBtn = document.getElementById('manageBtn')
+  <!-- Resources Section -->
+  <div class="section">
+    <h3 class="section-title">Your Resources</h3>
+    <div class="resources-grid">
+      <a href="resources-free.html" class="resource-link">
+        <div class="resource-icon">📚</div>
+        <div class="resource-name">Free Resources</div>
+        <div class="resource-desc">Access basic courses and resources</div>
+      </a>
+      <a href="resources-premium.html" class="resource-link">
+        <div class="resource-icon">⭐</div>
+        <div class="resource-name">Premium Vault</div>
+        <div class="resource-desc">Full access to 28 curated resources</div>
+      </a>
+      <a href="services.html" class="resource-link">
+        <div class="resource-icon">💼</div>
+        <div class="resource-name">Services</div>
+        <div class="resource-desc">Explore all JossyB services</div>
+      </a>
+      <a href="payment.html" class="resource-link">
+        <div class="resource-icon">💳</div>
+        <div class="resource-name">Upgrade Plan</div>
+        <div class="resource-desc">View pricing and upgrade options</div>
+      </a>
+    </div>
+  </div>
 
-    async function init() {
-      // Get session and user
-      const { data: { session } } = await supabase.auth.getSession()
-      if (!session || !session.user) {
-        // Not signed in -> redirect to login
-        window.location.href = 'login.html'
-        return
-      }
+  <!-- Footer -->
+  <footer>
+    <div>JossyB Technical Resources Nigeria Limited</div>
+    <div style="margin-top: 8px;">
+      Questions? Email: <a href="mailto:josfrosh43@gmail.com">josfrosh43@gmail.com</a> | Phone: 09061935343
+    </div>
+  </footer>
+</div>
 
-      const user = session.user
-      nameEl.textContent = user.user_metadata?.full_name || user.email || 'User'
-      emailEl.textContent = user.email || ''
-      avatarEl.textContent = (user.user_metadata?.full_name || user.email || 'U').slice(0,1).toUpperCase()
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-      // Try to load profile row from 'profiles' table
-      try {
-        const { data: profile, error } = await supabase.from('profiles').select('full_name,phone,country,service_interest,referral_code').eq('id', user.id).single()
-        if (error && error.code !== 'PGRST116') {
-          // ignore not found, but log others
-          console.warn('profiles lookup error', error)
-        }
-        if (profile) {
-          renderProfile(profile)
-        } else {
-          profileDataEl.innerHTML = '<div class="small">No additional profile data found.</div>'
-        }
-      } catch (e) {
-        profileDataEl.innerHTML = '<div class="small">Error loading profile data.</div>'
-        console.error(e)
-      }
+  const supabase = createClient(
+    'https://ghsnlxqaztuovxlairvn.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7XxizWsus3R0ChuAceqBpw'
+  );
 
-      // handle logout
-      logoutBtn.addEventListener('click', async () => {
-        await supabase.auth.signOut()
-        window.location.href = 'login.html'
-      })
+  // DOM Elements
+  const avatarEl = document.getElementById('avatar');
+  const displayNameEl = document.getElementById('displayName');
+  const emailEl = document.getElementById('email');
+  const fullNameEl = document.getElementById('fullName');
+  const emailInfoEl = document.getElementById('emailInfo');
+  const phoneEl = document.getElementById('phone');
+  const countryEl = document.getElementById('country');
+  const serviceInterestEl = document.getElementById('serviceInterest');
+  const referralCodeEl = document.getElementById('referralCode');
+  const memberStatusEl = document.getElementById('memberStatus');
+  const joinDateEl = document.getElementById('joinDate');
+  const logoutBtn = document.getElementById('logoutBtn');
 
-      manageBtn.addEventListener('click', () => {
-        window.location.href = 'signup.html'
-      })
+  async function init() {
+    // Get current session
+    const { data: { session } } = await supabase.auth.getSession();
 
-      // Redirect to login if session changes
-      supabase.auth.onAuthStateChange((event) => {
-        if (event === 'SIGNED_OUT') window.location.href = 'login.html'
-      })
+    if (!session || !session.user) {
+      window.location.href = 'login.html';
+      return;
     }
 
-    function renderProfile(p) {
-      profileDataEl.innerHTML = `
-        <div class="small"><strong>Full name:</strong> ${p.full_name || '—'}</div>
-        <div class="small"><strong>Phone:</strong> ${p.phone || '—'}</div>
-        <div class="small"><strong>Country:</strong> ${p.country || '—'}</div>
-        <div class="small"><strong>Service interest:</strong> ${p.service_interest || '—'}</div>
-        <div class="small"><strong>Referral code:</strong> ${p.referral_code || '—'}</div>
-      `
+    const user = session.user;
+    const fullName = user.user_metadata?.full_name || user.email || 'User';
+    const initials = fullName.slice(0, 1).toUpperCase();
+
+    // Set header info
+    avatarEl.textContent = initials;
+    displayNameEl.textContent = fullName;
+    emailEl.textContent = user.email || '';
+    emailInfoEl.textContent = user.email || '—';
+
+    // Format join date
+    const joinDate = new Date(user.created_at);
+    joinDateEl.textContent = joinDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+
+    // Load profile data
+    try {
+      const { data: profile, error } = await supabase
+        .from('profiles')
+        .select('full_name, phone, country, service_interest, referral_code')
+        .eq('id', user.id)
+        .single();
+
+      if (profile) {
+        fullNameEl.textContent = profile.full_name || 'Not provided';
+        phoneEl.textContent = profile.phone || 'Not provided';
+        countryEl.textContent = profile.country || 'Not provided';
+        serviceInterestEl.textContent = profile.service_interest || 'Not provided';
+        referralCodeEl.textContent = profile.referral_code || 'Not generated';
+        memberStatusEl.textContent = profile.referral_code ? 'Premium' : 'Free';
+      } else {
+        fullNameEl.innerHTML = '<span class="empty">Not provided</span>';
+        phoneEl.innerHTML = '<span class="empty">Not provided</span>';
+        countryEl.innerHTML = '<span class="empty">Not provided</span>';
+        serviceInterestEl.innerHTML = '<span class="empty">Not provided</span>';
+        referralCodeEl.innerHTML = '<span class="empty">Not generated</span>';
+        memberStatusEl.textContent = 'Free';
+      }
+    } catch (e) {
+      console.error('Error loading profile:', e);
+      memberStatusEl.textContent = 'Free';
     }
 
-    init()
-  </script>
+    // Logout handler
+    logoutBtn.addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      window.location.href = 'login.html';
+    });
+
+    // Listen for auth changes
+    supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_OUT') {
+        window.location.href = 'login.html';
+      }
+    });
+  }
+
+  init();
+</script>
+
 </body>
 </html>

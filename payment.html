@@ -75,6 +75,19 @@
             font-size: 1.8em;
         }
 
+        .service-notice {
+            background: #e3f2fd;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        .service-notice p {
+            color: #1976d2;
+            font-weight: 500;
+        }
+
         .payment-plans {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -230,6 +243,8 @@
         <div class="payment-section">
             <h2>Choose Your Plan</h2>
 
+            <div id="serviceNotice"></div>
+
             <div class="info-box">
                 <h3>💳 Secure Payment</h3>
                 <p>All payments are processed securely through Paystack. Your financial information is protected with industry-standard encryption.</p>
@@ -247,7 +262,7 @@
                         <li>Digital resources</li>
                         <li>Community access</li>
                     </ul>
-                    <a href="https://paystack.shop/pay/bimmg7om4u?callback=resources-free.html" class="plan-button" target="_blank">Pay Now - ₦5,000</a>
+                    <button class="plan-button" onclick="processPayment('starter', 'bimmg7om4u', 'resources-free.html')">Pay Now - ₦5,000</button>
                 </div>
 
                 <!-- ₦12,000 Plan -->
@@ -263,7 +278,7 @@
                         <li>Certificate of completion</li>
                         <li>One-on-one consultation</li>
                     </ul>
-                    <a href="https://paystack.shop/pay/7jsodh2jvy?callback=resources-premium.html" class="plan-button" target="_blank">Pay Now - ₦12,000</a>
+                    <button class="plan-button" onclick="processPayment('premium', '7jsodh2jvy', 'resources-premium.html')">Pay Now - ₦12,000</button>
                 </div>
             </div>
         </div>
@@ -299,5 +314,44 @@
         <p>Empowering Growth Across the Globe.</p>
         <p>📧 josfrosh43@gmail.com | 📞 09061935343 | 🌍 Worldwide (Fully Remote)</p>
     </footer>
+
+    <script>
+        // Display service selected from services page
+        window.addEventListener('load', function() {
+            const params = new URLSearchParams(window.location.search);
+            const service = params.get('service');
+            const selectedService = sessionStorage.getItem('selectedService');
+            
+            const serviceNoticeEl = document.getElementById('serviceNotice');
+            
+            if (service || selectedService) {
+                const serviceName = service || selectedService;
+                const serviceMap = {
+                    'business': 'Business Development',
+                    'social': 'Social Media Marketing',
+                    'hustle': 'Side Hustle & Promo Deals',
+                    'skills': 'Skill Acquisition'
+                };
+                
+                serviceNoticeEl.innerHTML = `
+                    <div class="service-notice">
+                        <p>✓ You selected: <strong>${serviceMap[serviceName] || serviceName}</strong></p>
+                        <p style="font-size: 0.9em; margin-top: 6px;">Choose a plan below to unlock full access to this service and all our resources.</p>
+                    </div>
+                `;
+                
+                sessionStorage.removeItem('selectedService');
+            }
+        });
+
+        function processPayment(plan, paystackCode, redirectPage) {
+            // Store payment info for post-payment redirect
+            sessionStorage.setItem('paymentPlan', plan);
+            sessionStorage.setItem('redirectPage', redirectPage);
+            
+            // Redirect to Paystack payment page with callback
+            window.location.href = `https://paystack.shop/pay/${paystackCode}?callback=${redirectPage}`;
+        }
+    </script>
 </body>
 </html>

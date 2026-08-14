@@ -128,7 +128,7 @@
       <p class="card-sub">Join JossyB — it's free to get started</p>
       <div id="alert" class="alert"></div>
       <button class="google-btn" id="googleBtn" onclick="signUpWithGoogle()">
-        <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c[...]"></svg>
         Sign up with Google
       </button>
       <div class="divider">or sign up with email</div>
@@ -199,7 +199,7 @@
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
     const supabase = createClient(
       'https://ghsnlxqaztuovxlairvn.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7XxizWsus3R0ChuAceqBpw'
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7X[...]'
     );
 
     // Pre-fill referral code from URL ?ref=XXXXXX
@@ -266,7 +266,8 @@
       }
 
       showAlert('Account created! Please check your email to verify.', 'success');
-      setTimeout(() => window.location.href = 'dashboard.html', 2000);
+      // Redirect new users to the login page so they can sign in
+      setTimeout(() => window.location.href = 'login.html', 2000);
     };
 
     window.signUpWithGoogle = async function() {
@@ -276,7 +277,8 @@
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: window.location.origin + '/Jossy-B-Tech/dashboard.html' + (ref ? '?ref=' + ref : '')
+          // send users back to the login page after OAuth; the login page will then redirect to dashboard if a session exists
+          redirectTo: window.location.origin + '/Jossy-B-Tech/login.html' + (ref ? '?ref=' + ref : '')
         }
       });
       if (error) { showAlert(error.message, 'error'); btn.disabled = false; }

@@ -217,12 +217,23 @@
 
     const supabase = createClient(
       'https://ghsnlxqaztuovxlairvn.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7XxizWsus3R0ChuAceqBpw'
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7X[...]'
     );
 
-    // Redirect if already logged in
+    // compute base path (so redirects work whether site is hosted at / or /repo/)
+    const pathParts = window.location.pathname.split('/');
+    pathParts.pop(); // remove current filename
+    const basePath = pathParts.join('/') + (pathParts.length ? '/' : '/');
+
+    // determine where to send users after successful login
+    const urlParams = new URLSearchParams(window.location.search);
+    let next = urlParams.get('next') || '/dashboard.html';
+    // sanitize: allow only relative paths starting with '/'
+    if (!next.startsWith('/')) next = '/dashboard.html';
+
+    // Redirect if already logged in (send to next)
     const { data: { session } } = await supabase.auth.getSession();
-    if (session) window.location.href = 'dashboard.html';
+    if (session) window.location.href = basePath + (next.startsWith('/') ? next.substring(1) : next);
 
     function showAlert(msg, type) {
       const el = document.getElementById('alert');
@@ -247,7 +258,7 @@
         btn.innerHTML = 'Sign In';
       } else {
         showAlert('Success! Redirecting...', 'success');
-        setTimeout(() => window.location.href = 'dashboard.html', 1000);
+        setTimeout(() => window.location.href = basePath + (next.startsWith('/') ? next.substring(1) : next), 800);
       }
     };
 
@@ -255,9 +266,10 @@
       const btn = document.getElementById('googleBtn');
       btn.disabled = true;
       btn.innerHTML = '<span class="spinner" style="border-top-color:var(--gold)"></span>Connecting...';
+      const redirectTo = window.location.origin + basePath + 'login.html?next=' + encodeURIComponent(next);
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
-        options: { redirectTo: window.location.origin + '/Jossy-B-Tech/dashboard.html' }
+        options: { redirectTo }
       });
       if (error) {
         showAlert(error.message, 'error');
@@ -271,7 +283,7 @@
       const email = document.getElementById('email').value;
       if (!email) { showAlert('Enter your email address first.', 'error'); return; }
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.origin + '/Jossy-B-Tech/reset-password.html'
+        redirectTo: window.location.origin + basePath + 'reset-password.html'
       });
       if (error) showAlert(error.message, 'error');
       else showAlert('Password reset email sent! Check your inbox.', 'success');

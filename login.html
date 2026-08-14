@@ -217,7 +217,7 @@
 
     const supabase = createClient(
       'https://ghsnlxqaztuovxlairvn.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7X[...]'
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7X[...]
     );
 
     // compute base path (so redirects work whether site is hosted at / or /repo/)
@@ -227,13 +227,16 @@
 
     // determine where to send users after successful login
     const urlParams = new URLSearchParams(window.location.search);
-    let next = urlParams.get('next') || '/dashboard.html';
+    let next = urlParams.get('next') || 'dashboard.html';
     // sanitize: allow only relative paths starting with '/'
-    if (!next.startsWith('/')) next = '/dashboard.html';
+    if (!next.startsWith('/')) next = 'dashboard.html';
 
-    // Redirect if already logged in (send to next)
+    // Redirect if already logged in (send to dashboard)
     const { data: { session } } = await supabase.auth.getSession();
-    if (session) window.location.href = basePath + (next.startsWith('/') ? next.substring(1) : next);
+    if (session) {
+      const redirectPath = next.startsWith('/') ? next.substring(1) : next;
+      window.location.href = basePath + redirectPath;
+    }
 
     function showAlert(msg, type) {
       const el = document.getElementById('alert');
@@ -258,7 +261,10 @@
         btn.innerHTML = 'Sign In';
       } else {
         showAlert('Success! Redirecting...', 'success');
-        setTimeout(() => window.location.href = basePath + (next.startsWith('/') ? next.substring(1) : next), 800);
+        setTimeout(() => {
+          const redirectPath = next.startsWith('/') ? next.substring(1) : next;
+          window.location.href = basePath + redirectPath;
+        }, 800);
       }
     };
 

@@ -568,10 +568,25 @@
   const logoutBtn = document.getElementById('logoutBtn');
 
   async function init() {
+    try {
+      // If the OAuth provider redirected directly to dashboard.html with tokens in the URL,
+      // parse them so supabase-js stores the session before we check getSession().
+      const { data: redirectData, error: redirectErr } = await supabase.auth.getSessionFromUrl();
+      if (redirectErr) {
+        console.warn('getSessionFromUrl error:', redirectErr);
+      } else if (redirectData?.session) {
+        // Clean up the URL and continue with the restored session
+        history.replaceState({}, document.title, window.location.pathname);
+      }
+    } catch (e) {
+      console.warn('Error parsing redirect URL:', e);
+    }
+
     // Get current session
     const { data: { session } } = await supabase.auth.getSession();
 
     if (!session || !session.user) {
+      // Not signed in — send to login
       window.location.href = 'login.html';
       return;
     }

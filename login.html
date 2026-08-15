@@ -217,7 +217,7 @@
 
     const supabase = createClient(
       'https://ghsnlxqaztuovxlairvn.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7X[...]
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7XxizWsus3R0ChuAceqBpw'
     );
 
     // compute base path (so redirects work whether site is hosted at / or /repo/)
@@ -228,21 +228,51 @@
     // determine where to send users after successful login
     const urlParams = new URLSearchParams(window.location.search);
     let next = urlParams.get('next') || 'dashboard.html';
-    // sanitize: allow only relative paths starting with '/'
-    if (!next.startsWith('/')) next = 'dashboard.html';
+    // normalize: remove any leading slashes so we can concat with basePath
+    next = next.replace(/^\/+/, '');
 
-    // Redirect if already logged in (send to dashboard)
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session) {
-      const redirectPath = next.startsWith('/') ? next.substring(1) : next;
-      window.location.href = basePath + redirectPath;
-    }
-
+    // helper to show messages
     function showAlert(msg, type) {
       const el = document.getElementById('alert');
       el.textContent = msg;
       el.className = 'alert ' + type;
     }
+
+    // Init auth: parse OAuth redirect (if present), persist session, and redirect appropriately.
+    async function initAuth() {
+      try {
+        // IMPORTANT: call getSessionFromUrl first so tokens in the URL get parsed and stored
+        const { data: redirectData, error: redirectErr } = await supabase.auth.getSessionFromUrl();
+        if (redirectErr) {
+          // Sometimes there's nothing to parse — don't treat this as fatal
+          console.warn('getSessionFromUrl error:', redirectErr);
+        } else if (redirectData?.session) {
+          console.log('OAuth session restored:', redirectData.session);
+          // Clean up URL (remove hash with tokens) and navigate to destination
+          const redirectPath = basePath + next;
+          history.replaceState({}, document.title, redirectPath);
+          window.location.replace(redirectPath);
+          return; // navigation will occur
+        }
+
+        // If no redirect tokens, check for an already-stored session
+        const { data: { session }, error } = await supabase.auth.getSession();
+        if (error) console.warn('getSession error:', error);
+        if (session) {
+          const redirectPath = basePath + next;
+          window.location.replace(redirectPath);
+          return;
+        }
+
+        // No session — stay on login page and allow user interaction
+        console.log('No active session found; showing login UI.');
+      } catch (err) {
+        console.error('Auth init error:', err);
+      }
+    }
+
+    // call initAuth on load (this prevents redirect loop when OAuth returns with tokens)
+    initAuth();
 
     window.handleLogin = async function(e) {
       e.preventDefault();
@@ -262,25 +292,30 @@
       } else {
         showAlert('Success! Redirecting...', 'success');
         setTimeout(() => {
-          const redirectPath = next.startsWith('/') ? next.substring(1) : next;
-          window.location.href = basePath + redirectPath;
+          const redirectPath = basePath + next;
+          window.location.href = redirectPath;
         }, 800);
       }
     };
 
     window.signInWithGoogle = async function() {
-      const btn = document.getElementById('googleBtn');
-      btn.disabled = true;
-      btn.innerHTML = '<span class="spinner" style="border-top-color:var(--gold)"></span>Connecting...';
-      const redirectTo = window.location.origin + basePath + 'login.html?next=' + encodeURIComponent(next);
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: { redirectTo }
-      });
-      if (error) {
-        showAlert(error.message, 'error');
-        btn.disabled = false;
-        btn.innerHTML = 'Continue with Google';
+      try {
+        const btn = document.getElementById('googleBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner" style="border-top-color:var(--gold)"></span>Connecting...';
+        const redirectTo = window.location.origin + basePath + 'login.html?next=' + encodeURIComponent(next);
+        const { error } = await supabase.auth.signInWithOAuth({
+          provider: 'google',
+          options: { redirectTo }
+        });
+        if (error) {
+          showAlert(error.message, 'error');
+          btn.disabled = false;
+          btn.innerHTML = 'Continue with Google';
+        }
+      } catch (err) {
+        console.error('Google sign-in error:', err);
+        showAlert(err.message ?? String(err), 'error');
       }
     };
 

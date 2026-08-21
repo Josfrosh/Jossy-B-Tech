@@ -217,13 +217,14 @@
 
     const supabase = createClient(
       'https://ghsnlxqaztuovxlairvn.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7XxizWsus3R0ChuAceqBpw'
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7X[...]'
     );
 
-    // compute base path (so redirects work whether site is hosted at / or /repo/)
-    const pathParts = window.location.pathname.split('/');
-    pathParts.pop(); // remove current filename
-    const basePath = pathParts.join('/') + (pathParts.length ? '/' : '/');
+    // compute base path (directory of current file, ensures trailing slash)
+    function getBasePath() {
+      return window.location.pathname.replace(/\/[^\/]*$/, '/');
+    }
+    const basePath = getBasePath();
 
     // determine where to send users after successful login
     const urlParams = new URLSearchParams(window.location.search);

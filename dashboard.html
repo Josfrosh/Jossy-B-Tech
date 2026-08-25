@@ -1,653 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard – JossyB Technical Resources</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --navy-950: #070f22;
-      --navy-900: #0b1c3a;
-      --navy-800: #122747;
-      --navy-700: #1a3459;
-      --gold: #c9a227;
-      --gold-bright: #e9c765;
-      --cream: #f4efe2;
-      --muted: #93a0bd;
-      --success: #10b981;
-      --line: rgba(201, 162, 39, 0.22);
-      --radius: 14px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard – JossyB Technical Resources</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#070f22;
+    --navy-900:#0b1e3d;
+    --navy-800:#142850;
+    --navy-700:#1d3868;
+    --navy-600:#2a4a86;
+    --gold-500:#c9a227;
+    --gold-400:#e0c15a;
+    --cream-100:#f5f1e8;
+    --ink-300:rgba(245,241,232,0.66);
+    --ink-500:rgba(245,241,232,0.42);
+    --success:#3e9b6f;
+    --line: rgba(245,241,232,0.12);
+    --radius:14px;
+    --font-display:'Fraunces', serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 500px at 85% -10%, rgba(201,162,39,0.14), transparent 60%),
+      var(--navy-950);
+    color:var(--cream-100);
+    font-family:var(--font-body);
+    line-height:1.5;
+  }
+  a{color:inherit;}
+  h1,h2{font-family:var(--font-display); font-weight:600; margin:0;}
+  .topnav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; border-bottom:1px solid var(--line);
+    position:sticky; top:0; background:rgba(7,15,34,0.85); backdrop-filter:blur(8px); z-index:10;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:1.15rem; letter-spacing:0.02em;}
+  .brand-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(145deg,var(--gold-400),var(--gold-500)); display:flex;align-items:center;justify-content:center;color:var(--navy-950);font-weight:700;font-size:0.85rem;}
+  .nav-links{display:flex; gap:26px; font-size:0.92rem; color:var(--ink-300);}
+  .nav-links a{text-decoration:none; transition:color .15s;}
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--gold-400);}
+  .nav-right{display:flex; align-items:center; gap:16px;}
+  #userChip{font-size:0.85rem; color:var(--ink-300);}
+  #signOutBtn{
+    background:transparent; border:1px solid var(--line); color:var(--cream-100);
+    padding:8px 16px; border-radius:999px; font-size:0.85rem; cursor:pointer; transition:.15s;
+  }
+  #signOutBtn:hover, #signOutBtn:focus-visible{border-color:var(--gold-400); color:var(--gold-400);}
+  main{max-width:1080px; margin:0 auto; padding:44px 32px 80px;}
+  section{margin-bottom:56px;}
+  .eyebrow{font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-400); margin:0 0 10px;}
+  .welcome{display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between; align-items:flex-end;}
+  .welcome h1{font-size:2.1rem;}
+  .welcome .sub{color:var(--ink-300); margin-top:8px; font-size:0.98rem;}
+  .stat-cards{display:flex; gap:14px; flex-wrap:wrap;}
+  .stat-card{
+    background:var(--navy-900); border:1px solid var(--line); border-radius:var(--radius);
+    padding:16px 20px; min-width:130px;
+  }
+  .stat-label{display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-500); margin-bottom:6px;}
+  .stat-value{display:block; font-family:var(--font-mono); font-size:1.15rem; color:var(--gold-400); font-weight:600;}
+  .stat-value.premium{color:#10b981;}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  .card-panel{
+    background:var(--navy-900); border:1px solid var(--line); border-radius:20px; padding:32px;
+  }
+  .card-panel h2{font-size:1.35rem; margin-bottom:6px;}
+  .card-panel > p.hint{color:var(--ink-300); font-size:0.92rem; margin:0 0 26px;}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--navy-950);
-      color: var(--cream);
-      min-height: 100vh;
-      line-height: 1.6;
-    }
+  /* Growth path — signature element */
+  .path-track{position:relative; height:110px; margin:14px 0 8px;}
+  .path-line-bg{position:absolute; top:38px; left:6%; right:6%; height:3px; background:var(--line); border-radius:2px;}
+  .path-line-fill{position:absolute; top:38px; left:6%; height:3px; background:linear-gradient(90deg,var(--gold-500),var(--gold-400)); border-radius:2px; width:6%; transition:width .5s ease;}
+  .path-stop{position:absolute; top:20px; transform:translateX(-50%); text-align:center; width:120px;}
+  .path-stop .dot{width:36px; height:36px; border-radius:50%; margin:0 auto 10px; display:flex; align-items:center; justify-content:center; font-size:0.95rem; border:2px solid var(--line); background:var(--navy-800); transition:.3s;}
+  .path-stop .label{font-size:0.82rem; color:var(--ink-500); font-weight:600;}
+  .path-stop.achieved .dot{border-color:var(--gold-500); background:var(--gold-500); color:var(--navy-950);}
+  .path-stop.achieved .label{color:var(--cream-100);}
+  .path-stop.current .dot{border-color:var(--gold-400); background:var(--navy-950); color:var(--gold-400); box-shadow:0 0 0 5px rgba(201,162,39,0.16);}
+  .path-stop.current .label{color:var(--gold-400);}
+  .upgrade-btn{
+    display:inline-block; margin-top:22px; background:linear-gradient(145deg,var(--gold-400),var(--gold-500));
+    color:var(--navy-950); text-decoration:none; font-weight:600; padding:12px 22px; border-radius:999px; font-size:0.94rem;
+    transition:transform .15s;
+  }
+  .upgrade-btn:hover{transform:translateY(-1px);}
+  .upgrade-btn.disabled{opacity:0.5; cursor:not-allowed; pointer-events:none;}
 
-    /* ---- Header ---- */
-    header.top {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(7, 15, 34, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
-    }
+  .referral-box{
+    display:flex; align-items:center; gap:12px; background:var(--navy-950); border:1px solid var(--line);
+    border-radius:12px; padding:14px 18px; flex-wrap:wrap;
+  }
+  .referral-box code{font-family:var(--font-mono); font-size:0.92rem; color:var(--gold-400); flex:1; word-break:break-all;}
+  .referral-box button{
+    background:var(--navy-700); border:1px solid var(--line); color:var(--cream-100); padding:9px 16px;
+    border-radius:8px; cursor:pointer; font-size:0.85rem; font-family:var(--font-body); transition:.15s;
+  }
+  .referral-box button:hover{border-color:var(--gold-400); color:var(--gold-400);}
+  .referral-stats{display:flex; gap:28px; margin-top:20px;}
+  .referral-stats div span{display:block;}
+  .referral-stats .num{font-family:var(--font-mono); font-size:1.3rem; color:var(--gold-400); font-weight:600;}
+  .referral-stats .lbl{font-size:0.8rem; color:var(--ink-500); margin-top:2px;}
 
-    .header-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 18px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
+  .services-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;}
+  .service-card{
+    background:var(--navy-900); border:1px solid var(--line); border-radius:16px; padding:22px;
+    text-decoration:none; color:var(--cream-100); transition:.18s;
+  }
+  .service-card:hover{border-color:var(--gold-400); transform:translateY(-2px);}
+  .service-card .ic{font-size:1.5rem; margin-bottom:10px; display:block;}
+  .service-card h3{font-family:var(--font-body); font-size:1rem; font-weight:600; margin:0 0 6px;}
+  .service-card p{font-size:0.85rem; color:var(--ink-300); margin:0;}
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
+  .resource-list{display:flex; flex-direction:column; gap:1px; background:var(--line); border-radius:14px; overflow:hidden; border:1px solid var(--line);}
+  .resource-row{background:var(--navy-900); padding:16px 20px; display:flex; justify-content:space-between; align-items:center; text-decoration:none; color:var(--cream-100); transition:.15s;}
+  .resource-row:hover{background:var(--navy-800);}
+  .resource-row .rtitle{font-weight:500; font-size:0.95rem;}
+  .resource-row .rtag{font-family:var(--font-mono); font-size:0.7rem; color:var(--success); border:1px solid rgba(62,155,111,0.4); padding:3px 9px; border-radius:999px;}
 
-    .brand-logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-bright));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      color: var(--navy-950);
-      font-size: 16px;
-    }
+  .badge{display:inline-block; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:600; letter-spacing:0.05em;}
+  .badge-premium{background:rgba(16,185,129,0.2); color:#10b981; border:1px solid rgba(16,185,129,0.4);}
+  .badge-free{background:rgba(201,162,39,0.2); color:var(--gold-400); border:1px solid rgba(201,162,39,0.4);}
 
-    .brand-name {
-      font-family: 'Fraunces', serif;
-      font-weight: 600;
-      font-size: 1.15rem;
-      letter-spacing: 0.01em;
-    }
-
-    .brand-name b {
-      color: var(--gold-bright);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      margin-left: auto;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--gold-bright);
-    }
-
-    .logout-btn {
-      background: var(--gold);
-      color: var(--navy-950);
-      border: none;
-      padding: 10px 18px;
-      border-radius: 100px;
-      font-weight: 700;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .logout-btn:hover {
-      background: var(--gold-bright);
-    }
-
-    /* ---- Main Content ---- */
-    .wrap {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 32px;
-    }
-
-    .welcome-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-bottom: 48px;
-      align-items: start;
-    }
-
-    .profile-card {
-      background: linear-gradient(165deg, var(--navy-800), var(--navy-900));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .avatar-section {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-    }
-
-    .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-bright));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      color: var(--navy-950);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .user-meta h2 {
-      font-family: 'Fraunces', serif;
-      font-size: 1.6rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .user-meta p {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .profile-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-
-    .btn {
-      padding: 12px 20px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.2s;
-    }
-
-    .btn-primary {
-      background: var(--gold);
-      color: var(--navy-950);
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-bright);
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background: var(--navy-700);
-      color: var(--cream);
-      border: 1px solid var(--line);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--gold);
-      background: rgba(26, 52, 89, 0.8);
-    }
-
-    /* ---- Quick Stats ---- */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    .stat-card {
-      background: linear-gradient(165deg, var(--navy-800), var(--navy-900));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 20px;
-      text-align: center;
-    }
-
-    .stat-value {
-      font-family: 'Fraunces', serif;
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--gold-bright);
-      margin-bottom: 6px;
-    }
-
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    /* ---- Sections ---- */
-    .section {
-      margin-bottom: 40px;
-    }
-
-    .section-title {
-      font-family: 'Fraunces', serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .section-title::before {
-      content: '';
-      width: 4px;
-      height: 24px;
-      background: var(--gold);
-      border-radius: 2px;
-    }
-
-    /* ---- Profile Info Grid ---- */
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-    }
-
-    .info-card {
-      background: linear-gradient(165deg, var(--navy-800), var(--navy-900));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 18px;
-    }
-
-    .info-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-      display: block;
-    }
-
-    .info-value {
-      font-size: 1rem;
-      color: var(--cream);
-      word-break: break-word;
-    }
-
-    .info-value.empty {
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    /* ---- Resources Links ---- */
-    .resources-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
-
-    .resource-link {
-      background: linear-gradient(165deg, var(--navy-800), var(--navy-900));
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 20px;
-      text-decoration: none;
-      color: var(--cream);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transition: all 0.2s;
-    }
-
-    .resource-link:hover {
-      border-color: var(--gold);
-      transform: translateY(-4px);
-    }
-
-    .resource-icon {
-      font-size: 28px;
-    }
-
-    .resource-name {
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .resource-desc {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* ---- Footer ---- */
-    footer {
-      margin-top: 56px;
-      padding-top: 32px;
-      border-top: 1px solid var(--line);
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
-
-    footer a {
-      color: var(--gold-bright);
-      text-decoration: none;
-    }
-
-    /* ---- Loading & Error States ---- */
-    .loading {
-      text-align: center;
-      padding: 40px;
-      color: var(--muted);
-    }
-
-    .error-box {
-      background: rgba(220, 38, 38, 0.1);
-      border: 1px solid rgba(220, 38, 38, 0.3);
-      border-radius: var(--radius);
-      padding: 20px;
-      color: #fca5a5;
-      margin-bottom: 20px;
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 40px 20px;
-      color: var(--muted);
-    }
-
-    /* ---- Responsive ---- */
-    @media (max-width: 768px) {
-      .header-inner {
-        flex-wrap: wrap;
-        padding: 14px 20px;
-      }
-
-      .nav-links {
-        width: 100%;
-        order: 3;
-        margin-left: 0;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .nav-links a {
-        width: 100%;
-        text-align: center;
-      }
-
-      .welcome-section {
-        grid-template-columns: 1fr;
-      }
-
-      .wrap {
-        padding: 20px;
-      }
-
-      .avatar-section {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .info-grid,
-      .resources-grid,
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  footer{text-align:center; padding:30px; color:var(--ink-500); font-size:0.82rem; border-top:1px solid var(--line);}
+  @media (max-width:640px){
+    .topnav{padding:14px 18px;} .nav-links{display:none;}
+    main{padding:32px 18px 60px;}
+    .path-stop{width:80px; font-size:0.8rem;}
+  }
+</style>
 </head>
 <body>
 
-<header class="top">
-  <div class="header-inner">
-    <div class="brand">
-      <div class="brand-logo">JB</div>
-      <div class="brand-name">Jossy<b>B</b></div>
-    </div>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="resources-free.html">Resources</a>
-      <button class="logout-btn" id="logoutBtn">Sign Out</button>
-    </nav>
+<nav class="topnav">
+  <a href="index.html" class="brand"><span class="brand-mark">JB</span> JOSSYB</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="payment.html">Payment</a>
   </div>
-</header>
-
-<div class="wrap">
-  <!-- Welcome Section -->
-  <div class="welcome-section">
-    <div class="profile-card">
-      <div class="avatar-section">
-        <div class="avatar" id="avatar">?</div>
-        <div class="user-meta">
-          <h2 id="displayName">Welcome</h2>
-          <p id="email"></p>
-          <div class="profile-actions">
-            <a href="signup.html" class="btn btn-primary">Edit Profile</a>
-            <a href="index.html" class="btn btn-secondary">Back Home</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Quick Stats -->
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-value" id="memberStatus">—</div>
-        <div class="stat-label">Plan Status</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">✓</div>
-        <div class="stat-label">Account Active</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value" id="joinDate">—</div>
-        <div class="stat-label">Joined</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">24/7</div>
-        <div class="stat-label">Support</div>
-      </div>
-    </div>
+  <div class="nav-right">
+    <span id="userChip">Loading…</span>
+    <button id="signOutBtn">Sign out</button>
   </div>
+</nav>
 
-  <!-- Profile Information -->
-  <div class="section">
-    <h3 class="section-title">Account Information</h3>
-    <div class="info-grid">
-      <div class="info-card">
-        <span class="info-label">Full Name</span>
-        <span class="info-value" id="fullName"><span class="empty">Not provided</span></span>
+<main>
+
+  <section class="welcome">
+    <div>
+      <p class="eyebrow">Dashboard</p>
+      <h1>Welcome back, <span id="userFirstName">there</span></h1>
+      <p class="sub">Here's where your growth with JossyB stands today.</p>
+    </div>
+    <div class="stat-cards">
+      <div class="stat-card">
+        <span class="stat-label">Membership</span>
+        <span class="stat-value" id="statTier">Free</span>
+        <span class="badge" id="tierBadge" style="margin-top:8px;">Free Plan</span>
       </div>
-      <div class="info-card">
-        <span class="info-label">Email Address</span>
-        <span class="info-value" id="emailInfo"><span class="empty">—</span></span>
+      <div class="stat-card"><span class="stat-label">Referrals</span><span class="stat-value" id="statReferrals">0</span></div>
+      <div class="stat-card"><span class="stat-label">Member since</span><span class="stat-value" id="statSince">—</span></div>
+    </div>
+  </section>
+
+  <section class="card-panel">
+    <h2>Your Growth Path</h2>
+    <p class="hint">Every member starts free. Upgrade to unlock more of what JossyB offers.</p>
+    <div class="path-track">
+      <div class="path-line-bg"></div>
+      <div class="path-line-fill" id="pathFill"></div>
+      <div class="path-stop" data-tier="free" style="left:10%">
+        <div class="dot">🌱</div><div class="label">Free</div>
       </div>
-      <div class="info-card">
-        <span class="info-label">Phone Number</span>
-        <span class="info-value" id="phone"><span class="empty">Not provided</span></span>
+      <div class="path-stop" data-tier="growth" style="left:50%">
+        <div class="dot">📈</div><div class="label">Growth</div>
       </div>
-      <div class="info-card">
-        <span class="info-label">Country</span>
-        <span class="info-value" id="country"><span class="empty">Not provided</span></span>
-      </div>
-      <div class="info-card">
-        <span class="info-label">Service Interest</span>
-        <span class="info-value" id="serviceInterest"><span class="empty">Not provided</span></span>
-      </div>
-      <div class="info-card">
-        <span class="info-label">Referral Code</span>
-        <span class="info-value" id="referralCode"><span class="empty">Not generated</span></span>
+      <div class="path-stop" data-tier="premium" style="left:90%">
+        <div class="dot">🏆</div><div class="label">Premium</div>
       </div>
     </div>
-  </div>
+    <a href="payment.html" class="upgrade-btn" id="upgradeBtn">Upgrade to Growth →</a>
+  </section>
 
-  <!-- Resources Section -->
-  <div class="section">
-    <h3 class="section-title">Your Resources</h3>
-    <div class="resources-grid">
-      <a href="resources-free.html" class="resource-link">
-        <div class="resource-icon">📚</div>
-        <div class="resource-name">Free Resources</div>
-        <div class="resource-desc">Access basic courses and resources</div>
+  <section class="card-panel">
+    <h2>Your Referral Link</h2>
+    <p class="hint">Share this link — new members who join through it are tracked to your account.</p>
+    <div class="referral-box">
+      <code id="referralLink">Loading your link…</code>
+      <button id="copyReferralBtn">Copy</button>
+    </div>
+    <div class="referral-stats">
+      <div><span class="num" id="refSignups">0</span><span class="lbl">Signups</span></div>
+      <div><span class="num" id="refCode">—</span><span class="lbl">Your code</span></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Grow with us</p>
+    <h2 style="margin-bottom:18px;">Explore Services</h2>
+    <div class="services-grid">
+      <a class="service-card" href="services.html#business"><span class="ic">📈</span><h3>Business Development</h3><p>Strategies to scale locally and internationally.</p></a>
+      <a class="service-card" href="services.html#social"><span class="ic">📱</span><h3>Social Media Marketing</h3><p>Campaigns and content that grow your brand.</p></a>
+      <a class="service-card" href="services.html#hustle"><span class="ic">💼</span><h3>Side Hustle & Promo Deals</h3><p>Verified opportunities to boost your income.</p></a>
+      <a class="service-card" href="services.html#skills"><span class="ic">🎓</span><h3>Skill Acquisition</h3><p>Learn income-generating skills at your pace.</p></a>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Keep learning</p>
+    <h2 style="margin-bottom:18px;">Guides & Skills Training</h2>
+    <div class="resource-list">
+      <a class="resource-row" href="resources.html#getting-started">
+        <span class="rtitle">Getting Started with JossyB</span>
+        <span class="rtag">Guide</span>
       </a>
-      <a href="resources-premium.html" class="resource-link">
-        <div class="resource-icon">⭐</div>
-        <div class="resource-name">Premium Vault</div>
-        <div class="resource-desc">Full access to 28 curated resources</div>
+      <a class="resource-row" href="resources.html#skills-training">
+        <span class="rtitle">Skills Training — Certificate Track</span>
+        <span class="rtag">Certificate</span>
       </a>
-      <a href="services.html" class="resource-link">
-        <div class="resource-icon">💼</div>
-        <div class="resource-name">Services</div>
-        <div class="resource-desc">Explore all JossyB services</div>
-      </a>
-      <a href="payment.html" class="resource-link">
-        <div class="resource-icon">💳</div>
-        <div class="resource-name">Upgrade Plan</div>
-        <div class="resource-desc">View pricing and upgrade options</div>
+      <a class="resource-row" href="resources.html#referral-guide">
+        <span class="rtitle">How the Referral Program Works</span>
+        <span class="rtag">Guide</span>
       </a>
     </div>
-  </div>
+  </section>
 
-  <!-- Footer -->
-  <footer>
-    <div>JossyB Technical Resources Nigeria Limited</div>
-    <div style="margin-top: 8px;">
-      Questions? Email: <a href="mailto:josfrosh43@gmail.com">josfrosh43@gmail.com</a> | Phone: 09061935343
-    </div>
-  </footer>
-</div>
+</main>
 
-<script type="module">
-  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+<footer>© 2025 JossyB Technical Resources Nigeria Limited. Empowering Growth Across the Globe.</footer>
 
-  const supabase = createClient(
-    'https://ghsnlxqaztuovxlairvn.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7XxizWsus3R0ChuAceqBpw'
-  );
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = 'https://ghsnlxqaztuovxlairvn.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7Xxi42r7XDzUEQqDgKKpqg';
 
-  // DOM Elements
-  const avatarEl = document.getElementById('avatar');
-  const displayNameEl = document.getElementById('displayName');
-  const emailEl = document.getElementById('email');
-  const fullNameEl = document.getElementById('fullName');
-  const emailInfoEl = document.getElementById('emailInfo');
-  const phoneEl = document.getElementById('phone');
-  const countryEl = document.getElementById('country');
-  const serviceInterestEl = document.getElementById('serviceInterest');
-  const referralCodeEl = document.getElementById('referralCode');
-  const memberStatusEl = document.getElementById('memberStatus');
-  const joinDateEl = document.getElementById('joinDate');
-  const logoutBtn = document.getElementById('logoutBtn');
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  async function init() {
+  const TIER_ORDER = ['free', 'growth', 'premium'];
+
+  async function initAuth() {
     try {
-      // If the OAuth provider redirected directly to dashboard.html with tokens in the URL,
-      // parse them so supabase-js stores the session before we check getSession().
+      // Parse OAuth redirect if present
       const { data: redirectData, error: redirectErr } = await supabase.auth.getSessionFromUrl();
-      if (redirectErr) {
-        console.warn('getSessionFromUrl error:', redirectErr);
-      } else if (redirectData?.session) {
-        // Clean up the URL and continue with the restored session
+      if (redirectErr) console.warn('OAuth parse error:', redirectErr);
+      if (redirectData?.session) {
         history.replaceState({}, document.title, window.location.pathname);
       }
     } catch (e) {
-      console.warn('Error parsing redirect URL:', e);
+      console.warn('Error parsing redirect:', e);
     }
 
-    // Get current session
-    const { data: { session } } = await supabase.auth.getSession();
-
+    // Check if user is logged in
+    const { data: { session }, error } = await supabase.auth.getSession();
+    
+    if (error) console.warn('Session error:', error);
+    
     if (!session || !session.user) {
-      // Not signed in — send to login
+      // Not logged in — redirect to login
       window.location.href = 'login.html';
       return;
     }
 
-    const user = session.user;
-    const fullName = user.user_metadata?.full_name || user.email || 'User';
-    const initials = fullName.slice(0, 1).toUpperCase();
-
-    // Set header info
-    avatarEl.textContent = initials;
-    displayNameEl.textContent = fullName;
-    emailEl.textContent = user.email || '';
-    emailInfoEl.textContent = user.email || '—';
-
-    // Format join date
-    const joinDate = new Date(user.created_at);
-    joinDateEl.textContent = joinDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
-
-    // Load profile data
-    try {
-      const { data: profile, error } = await supabase
-        .from('profiles')
-        .select('full_name, phone, country, service_interest, referral_code')
-        .eq('id', user.id)
-        .single();
-
-      if (profile) {
-        fullNameEl.textContent = profile.full_name || 'Not provided';
-        phoneEl.textContent = profile.phone || 'Not provided';
-        countryEl.textContent = profile.country || 'Not provided';
-        serviceInterestEl.textContent = profile.service_interest || 'Not provided';
-        referralCodeEl.textContent = profile.referral_code || 'Not generated';
-        memberStatusEl.textContent = profile.referral_code ? 'Premium' : 'Free';
-      } else {
-        fullNameEl.innerHTML = '<span class="empty">Not provided</span>';
-        phoneEl.innerHTML = '<span class="empty">Not provided</span>';
-        countryEl.innerHTML = '<span class="empty">Not provided</span>';
-        serviceInterestEl.innerHTML = '<span class="empty">Not provided</span>';
-        referralCodeEl.innerHTML = '<span class="empty">Not generated</span>';
-        memberStatusEl.textContent = 'Free';
-      }
-    } catch (e) {
-      console.error('Error loading profile:', e);
-      memberStatusEl.textContent = 'Free';
-    }
-
-    // Logout handler
-    logoutBtn.addEventListener('click', async () => {
-      await supabase.auth.signOut();
-      window.location.href = 'login.html';
-    });
-
-    // Listen for auth changes
-    supabase.auth.onAuthStateChange((event) => {
-      if (event === 'SIGNED_OUT') {
-        window.location.href = 'login.html';
-      }
-    });
+    // User is logged in — proceed to load dashboard
+    loadDashboard();
   }
 
-  init();
+  function setPathState(tier) {
+    const idx = Math.max(0, TIER_ORDER.indexOf(tier));
+    const fillPct = [6, 50, 90][idx];
+    document.getElementById('pathFill').style.width = fillPct + '%';
+    document.querySelectorAll('.path-stop').forEach((el, i) => {
+      el.classList.remove('achieved', 'current');
+      if (i < idx) el.classList.add('achieved');
+      if (i === idx) el.classList.add('current');
+    });
+    const upgradeBtn = document.getElementById('upgradeBtn');
+    if (idx === 0) {
+      upgradeBtn.textContent = 'Upgrade to Growth →';
+      upgradeBtn.classList.remove('disabled');
+    } else if (idx === 1) {
+      upgradeBtn.textContent = 'Upgrade to Premium →';
+      upgradeBtn.classList.remove('disabled');
+    } else {
+      upgradeBtn.textContent = 'You\'re on Premium 🏆';
+      upgradeBtn.classList.add('disabled');
+    }
+  }
+
+  function setTierBadge(tier) {
+    const badge = document.getElementById('tierBadge');
+    if (tier === 'premium' || tier === 'growth') {
+      badge.className = 'badge badge-premium';
+      badge.textContent = tier.charAt(0).toUpperCase() + tier.slice(1) + ' Plan ✓';
+    } else {
+      badge.className = 'badge badge-free';
+      badge.textContent = 'Free Plan';
+    }
+  }
+
+  function fallbackReferralCode(userId) {
+    return userId ? userId.replace(/-/g, '').slice(0, 8).toUpperCase() : null;
+  }
+
+  async function loadDashboard() {
+    const { data: { user }, error: userErr } = await supabase.auth.getUser();
+
+    if (userErr || !user) {
+      window.location.href = 'login.html';
+      return;
+    }
+
+    const email = user.email || '';
+    const meta = user.user_metadata || {};
+    let firstName = meta.first_name || meta.full_name?.split(' ')[0] || email.split('@')[0];
+
+    document.getElementById('userFirstName').textContent = firstName;
+    document.getElementById('userChip').textContent = email;
+
+    const joined = user.created_at ? new Date(user.created_at) : null;
+    document.getElementById('statSince').textContent = joined
+      ? joined.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })
+      : '—';
+
+    // Load profile with membership tier and payment status
+    let profile = null;
+    let tier = 'free';
+    let isActivePaid = false;
+    
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('membership_tier, referral_code, referral_count, first_name, subscription_status, subscription_end_date')
+        .eq('id', user.id)
+        .single();
+      
+      if (!error && data) {
+        profile = data;
+        tier = (data.membership_tier || 'free').toLowerCase();
+        
+        // Check if user has an active paid subscription
+        if (data.subscription_status === 'active') {
+          isActivePaid = true;
+        }
+        
+        // Also check if subscription_end_date is in the future
+        if (data.subscription_end_date) {
+          const endDate = new Date(data.subscription_end_date);
+          if (endDate > new Date()) {
+            isActivePaid = true;
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('No profiles row found or error occurred:', e);
+      tier = 'free';
+    }
+
+    if (profile?.first_name) document.getElementById('userFirstName').textContent = profile.first_name;
+
+    // Update tier display
+    const tierDisplay = tier.charAt(0).toUpperCase() + tier.slice(1);
+    document.getElementById('statTier').textContent = tierDisplay;
+    setPathState(TIER_ORDER.includes(tier) ? tier : 'free');
+    setTierBadge(tier);
+
+    // If user has active paid plan, update status
+    if (isActivePaid) {
+      const statTierEl = document.getElementById('statTier');
+      statTierEl.classList.add('premium');
+      statTierEl.textContent = '🏆 ' + tierDisplay;
+    }
+
+    const referralCode = profile?.referral_code || fallbackReferralCode(user.id);
+    const referralLink = `https://compay.pro/signup.html?ref=${referralCode}`;
+    document.getElementById('referralLink').textContent = referralLink;
+    document.getElementById('refCode').textContent = referralCode || '—';
+
+    const referralCount = profile?.referral_count ?? 0;
+    document.getElementById('statReferrals').textContent = referralCount;
+  }
+
+  document.getElementById('copyReferralBtn').addEventListener('click', () => {
+    const link = document.getElementById('referralLink').textContent;
+    navigator.clipboard.writeText(link).then(() => {
+      const btn = document.getElementById('copyReferralBtn');
+      const original = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => (btn.textContent = original), 1600);
+    });
+  });
+
+  document.getElementById('signOutBtn').addEventListener('click', async () => {
+    await supabase.auth.signOut();
+    window.location.href = 'index.html';
+  });
+
+  // Initialize on page load
+  initAuth();
 </script>
 
 </body>

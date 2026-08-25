@@ -217,7 +217,11 @@
 
     const supabase = createClient(
       'https://ghsnlxqaztuovxlairvn.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7X[...]'
+ <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+    const supabase = createClient(
+      'https://ghsnlxqaztuovxlairvn.supabase.co',
+'sb_publishable_4hkjbAEhrx9kApuq7GWKPw_a5kh3RZp'    );
     );
 
     // compute base path (directory of current file, ensures trailing slash)

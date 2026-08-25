@@ -69,6 +69,9 @@
   .stat-label{display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-500); margin-bottom:6px;}
   .stat-value{display:block; font-family:var(--font-mono); font-size:1.15rem; color:var(--gold-400); font-weight:600;}
   .stat-value.premium{color:#10b981;}
+  .badge{display:inline-block; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:600; letter-spacing:0.05em; margin-top:8px;}
+  .badge-premium{background:rgba(16,185,129,0.2); color:#10b981; border:1px solid rgba(16,185,129,0.4);}
+  .badge-free{background:rgba(201,162,39,0.2); color:var(--gold-400); border:1px solid rgba(201,162,39,0.4);}
 
   .card-panel{
     background:var(--navy-900); border:1px solid var(--line); border-radius:20px; padding:32px;
@@ -90,7 +93,7 @@
   .upgrade-btn{
     display:inline-block; margin-top:22px; background:linear-gradient(145deg,var(--gold-400),var(--gold-500));
     color:var(--navy-950); text-decoration:none; font-weight:600; padding:12px 22px; border-radius:999px; font-size:0.94rem;
-    transition:transform .15s;
+    transition:transform .15s; border:none; cursor:pointer;
   }
   .upgrade-btn:hover{transform:translateY(-1px);}
   .upgrade-btn.disabled{opacity:0.5; cursor:not-allowed; pointer-events:none;}
@@ -125,10 +128,6 @@
   .resource-row:hover{background:var(--navy-800);}
   .resource-row .rtitle{font-weight:500; font-size:0.95rem;}
   .resource-row .rtag{font-family:var(--font-mono); font-size:0.7rem; color:var(--success); border:1px solid rgba(62,155,111,0.4); padding:3px 9px; border-radius:999px;}
-
-  .badge{display:inline-block; padding:4px 10px; border-radius:6px; font-size:0.75rem; font-weight:600; letter-spacing:0.05em;}
-  .badge-premium{background:rgba(16,185,129,0.2); color:#10b981; border:1px solid rgba(16,185,129,0.4);}
-  .badge-free{background:rgba(201,162,39,0.2); color:var(--gold-400); border:1px solid rgba(201,162,39,0.4);}
 
   footer{text-align:center; padding:30px; color:var(--ink-500); font-size:0.82rem; border-top:1px solid var(--line);}
   @media (max-width:640px){
@@ -166,7 +165,7 @@
       <div class="stat-card">
         <span class="stat-label">Membership</span>
         <span class="stat-value" id="statTier">Free</span>
-        <span class="badge" id="tierBadge" style="margin-top:8px;">Free Plan</span>
+        <span class="badge badge-free" id="tierBadge">Free Plan</span>
       </div>
       <div class="stat-card"><span class="stat-label">Referrals</span><span class="stat-value" id="statReferrals">0</span></div>
       <div class="stat-card"><span class="stat-label">Member since</span><span class="stat-value" id="statSince">—</span></div>
@@ -242,7 +241,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   const SUPABASE_URL = 'https://ghsnlxqaztuovxlairvn.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdoc25seHFhenR1b3Z4bGFpcnZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0Nzg1ODEsImV4cCI6MjA5NjA1NDU4MX0.exDAYCyq3_iZj7YPWeqSR7Xxi42r7XDzUEQqDgKKpqg';
+  const SUPABASE_ANON_KEY = 'sb_publishable_4hkjbAEhrx9kApuq7GWKPw_a5kh3RZp';
 
   const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -250,7 +249,6 @@
 
   async function initAuth() {
     try {
-      // Parse OAuth redirect if present
       const { data: redirectData, error: redirectErr } = await supabase.auth.getSessionFromUrl();
       if (redirectErr) console.warn('OAuth parse error:', redirectErr);
       if (redirectData?.session) {
@@ -260,18 +258,15 @@
       console.warn('Error parsing redirect:', e);
     }
 
-    // Check if user is logged in
     const { data: { session }, error } = await supabase.auth.getSession();
     
     if (error) console.warn('Session error:', error);
     
     if (!session || !session.user) {
-      // Not logged in — redirect to login
       window.location.href = 'login.html';
       return;
     }
 
-    // User is logged in — proceed to load dashboard
     loadDashboard();
   }
 
@@ -332,7 +327,6 @@
       ? joined.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })
       : '—';
 
-    // Load profile with membership tier and payment status
     let profile = null;
     let tier = 'free';
     let isActivePaid = false;
@@ -348,12 +342,10 @@
         profile = data;
         tier = (data.membership_tier || 'free').toLowerCase();
         
-        // Check if user has an active paid subscription
         if (data.subscription_status === 'active') {
           isActivePaid = true;
         }
         
-        // Also check if subscription_end_date is in the future
         if (data.subscription_end_date) {
           const endDate = new Date(data.subscription_end_date);
           if (endDate > new Date()) {
@@ -368,13 +360,11 @@
 
     if (profile?.first_name) document.getElementById('userFirstName').textContent = profile.first_name;
 
-    // Update tier display
     const tierDisplay = tier.charAt(0).toUpperCase() + tier.slice(1);
     document.getElementById('statTier').textContent = tierDisplay;
     setPathState(TIER_ORDER.includes(tier) ? tier : 'free');
     setTierBadge(tier);
 
-    // If user has active paid plan, update status
     if (isActivePaid) {
       const statTierEl = document.getElementById('statTier');
       statTierEl.classList.add('premium');
@@ -388,6 +378,7 @@
 
     const referralCount = profile?.referral_count ?? 0;
     document.getElementById('statReferrals').textContent = referralCount;
+    document.getElementById('refSignups').textContent = referralCount;
   }
 
   document.getElementById('copyReferralBtn').addEventListener('click', () => {
@@ -405,7 +396,6 @@
     window.location.href = 'index.html';
   });
 
-  // Initialize on page load
   initAuth();
 </script>
 

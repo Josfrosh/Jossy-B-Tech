@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JossyB Resource Vault — Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#070f22;
+    --navy-900:#0b1c3a;
+    --navy-800:#122747;
+    --navy-700:#1a3459;
+    --gold:#c9a227;
+    --gold-bright:#e9c765;
+    --cream:#f4efe2;
+    --muted:#93a0bd;
+    --line: rgba(201,162,39,0.22);
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--navy-950);
+    color: var(--cream);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---- Header ---- */
+  header.top{
+    position:sticky; top:0; z-index:20;
+    background: rgba(7,15,34,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-name{font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; letter-spacing:0.01em;}
+  .brand-name b{color:var(--gold-bright); font-weight:700;}
+  .tier-tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--navy-950); background:var(--gold-bright);
+    padding:4px 10px; border-radius:100px; font-weight:500;
+  }
+  nav.top-links{display:flex; gap:26px; font-size:0.88rem; color:var(--muted);}
+  nav.top-links a{text-decoration:none;}
+  nav.top-links a:hover{color:var(--gold-bright);}
+
+  /* ---- Four-node mark ---- */
+  .node-mark{display:inline-flex; align-items:center; gap:5px;}
+  .node-mark span{width:7px; height:7px; border-radius:50%; background:var(--gold);}
+  .node-mark span:nth-child(2){background:var(--gold-bright);}
+  .node-mark span:nth-child(3){background:var(--gold);}
+  .node-mark span:nth-child(4){background:var(--gold-bright);}
+
+  /* ---- Hero ---- */
+  .hero{padding:88px 0 64px; position:relative; overflow:hidden;}
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(600px 300px at 85% -10%, rgba(201,162,39,0.14), transparent 70%),
+      radial-gradient(500px 260px at -5% 20%, rgba(201,162,39,0.08), transparent 70%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:0.74rem; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--gold-bright); margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  h1{
+    font-family:'Fraunces', serif; font-weight:600; font-size:clamp(2.2rem, 4.4vw, 3.6rem);
+    line-height:1.08; margin:0 0 20px; max-width:14ch;
+  }
+  h1 em{font-style:italic; color:var(--gold-bright); font-weight:400;}
+  .hero-sub{font-size:1.08rem; color:var(--muted); max-width:56ch; margin:0 0 36px;}
+  .hero-stats{display:flex; gap:40px; flex-wrap:wrap;}
+  .stat b{display:block; font-family:'Fraunces', serif; font-size:1.9rem; color:var(--gold-bright); font-weight:600;}
+  .stat span{font-size:0.8rem; color:var(--muted); letter-spacing:0.02em;}
+
+  /* ---- Pillar nav rail ---- */
+  .rail{
+    display:flex; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    margin-top:56px; overflow-x:auto;
+  }
+  .rail a{
+    flex:1; min-width:180px; text-align:center; padding:16px 10px; text-decoration:none;
+    font-size:0.82rem; letter-spacing:0.03em; color:var(--muted); border-right:1px solid var(--line);
+    transition: color 0.2s, background 0.2s;
+  }
+  .rail a:last-child{border-right:none;}
+  .rail a:hover{color:var(--gold-bright); background:rgba(201,162,39,0.06);}
+  .rail .num{font-family:'JetBrains Mono', monospace; color:var(--gold); margin-right:6px;}
+
+  /* ---- Pillar sections ---- */
+  .pillar{padding:76px 0; border-bottom:1px solid var(--line);}
+  .pillar:last-of-type{border-bottom:none;}
+  .pillar-head{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:24px;
+    margin-bottom:42px; flex-wrap:wrap;
+  }
+  .pillar-label{
+    font-family:'JetBrains Mono', monospace; color:var(--gold); font-size:0.78rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px; display:block;
+  }
+  .pillar h2{font-family:'Fraunces', serif; font-weight:600; font-size:2rem; margin:0;}
+  .pillar-desc{color:var(--muted); font-size:0.95rem; max-width:42ch; text-align:right;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:18px;}
+  .card{
+    background: linear-gradient(165deg, var(--navy-800), var(--navy-900));
+    border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px; display:flex; flex-direction:column; gap:14px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover{transform:translateY(-3px); border-color:var(--gold);}
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .card h3{font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; margin:0;}
+  .card p{font-size:0.88rem; color:var(--muted); margin:0; flex-grow:1;}
+  .tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.64rem; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--navy-950); background:var(--gold); padding:3px 8px;
+    border-radius:100px; white-space:nowrap;
+  }
+  .card-link{
+    display:inline-flex; align-items:center; gap:6px; text-decoration:none;
+    font-size:0.84rem; font-weight:600; color:var(--gold-bright); margin-top:auto; padding-top:6px;
+    border-top:1px dashed var(--line);
+  }
+  .card-link:hover{color:var(--cream);}
+  .card-link .arrow{transition:transform 0.2s;}
+  .card-link:hover .arrow{transform:translateX(3px);}
+
+  /* ---- CTA strip ---- */
+  .cta-strip{
+    margin:70px 0 0; padding:44px; border-radius:20px;
+    background: linear-gradient(120deg, var(--navy-800), var(--navy-700));
+    border:1px solid var(--gold); display:flex; align-items:center; justify-content:space-between;
+    gap:24px; flex-wrap:wrap;
+  }
+  .cta-strip h3{font-family:'Fraunces', serif; margin:0 0 6px; font-size:1.4rem;}
+  .cta-strip p{margin:0; color:var(--muted); font-size:0.92rem;}
+  .btn{
+    display:inline-block; background:var(--gold); color:var(--navy-950); text-decoration:none;
+    font-weight:700; font-size:0.9rem; padding:14px 26px; border-radius:100px;
+    white-space:nowrap; transition: background 0.2s;
+  }
+  .btn:hover{background:var(--gold-bright);}
+
+  footer{padding:56px 0 40px; text-align:center; color:var(--muted); font-size:0.82rem;}
+  footer .node-mark{justify-content:center; margin-bottom:14px;}
+  footer a{color:var(--gold-bright); text-decoration:none;}
+
+  @media (max-width:640px){
+    .top-inner{padding:14px 20px;}
+    nav.top-links{display:none;}
+    .wrap{padding:0 20px;}
+    .pillar-desc{text-align:left;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <span class="node-mark"><span></span><span></span><span></span><span></span></span>
+      <span class="brand-name">Jossy<b>B</b> Resource Vault</span>
+      <span class="tier-tag">Premium</span>
+    </div>
+    <nav class="top-links">
+      <a href="#business">Business Dev</a>
+      <a href="#social">Social Media</a>
+      <a href="#skills">Skill Acquisition</a>
+      <a href="#sidehustle">Side Hustle</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="node-mark"><span></span><span></span><span></span><span></span></span> Premium Member Access</div>
+    <h1>Every resource across your <em>four pillars</em>, in one vault.</h1>
+    <p class="hero-sub">Curated tools, courses, and platforms for Business Development, Social Media Marketing, Home-Based Skill Acquisition, and Side Hustle &amp; Promotional Deals — hand-picked to match how JossyB Technical Resources actually works.</p>
+    <div class="hero-stats">
+      <div class="stat"><b>28</b><span>Resources unlocked</span></div>
+      <div class="stat"><b>4</b><span>Service pillars covered</span></div>
+      <div class="stat"><b>100%</b><span>Direct external access</span></div>
+    </div>
+  </div>
+  <div class="rail wrap" style="padding:0;">
+    <a href="#business"><span class="num">01</span>Business Dev</a>
+    <a href="#social"><span class="num">02</span>Social Media</a>
+    <a href="#skills"><span class="num">03</span>Skill Acquisition</a>
+    <a href="#sidehustle"><span class="num">04</span>Side Hustle</a>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <!-- 01 BUSINESS DEVELOPMENT -->
+  <section class="pillar" id="business">
+    <div class="pillar-head">
+      <div>
+        <span class="pillar-label">01 · Business Development</span>
+        <h2>Lead generation, trust &amp; growth</h2>
+      </div>
+      <p class="pillar-desc">Tools for outreach, enrichment, credibility-building, and client acquisition.</p>
+    </div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><h3>Clay</h3><span class="tag">Lead Gen</span></div>
+        <p>AI-powered prospect enrichment and Claygent workflows — scrape and qualify leads at scale, the same engine behind modern outreach pipelines.</p>
+        <a class="card-link" href="https://www.clay.com" target="_blank" rel="noopener">Visit Clay <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Clutch</h3><span class="tag">Trust</span></div>
+        <p>Third-party verified reviews that build buyer trust with high-intent business leads — directly strengthens JossyB's freelance and platform credibility.</p>
+        <a class="card-link" href="https://clutch.co" target="_blank" rel="noopener">Visit Clutch <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>HubSpot Academy</h3><span class="tag">Free Course</span></div>
+        <p>Free certifications in inbound sales, CRM, and business growth strategy — aligns with your existing HubSpot stack.</p>
+        <a class="card-link" href="https://academy.hubspot.com" target="_blank" rel="noopener">Start learning <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>respond.io</h3><span class="tag">CRM / Chat</span></div>
+        <p>Unified messaging and automation across WhatsApp, Instagram &amp; more — complements your existing WhatsApp Business API workflow.</p>
+        <a class="card-link" href="https://respond.io" target="_blank" rel="noopener">Visit respond.io <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Thinkific Community</h3><span class="tag">Leadership</span></div>
+        <p>Weekly playbooks on delegation, hiring, and scaling founder-led businesses — useful now that JossyB has a growing team.</p>
+        <a class="card-link" href="https://www.thinkific.com" target="_blank" rel="noopener">Explore <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Zapier Prompt Library</h3><span class="tag">AI Agents</span></div>
+        <p>Reliable prompt templates for agentic workflows — directly usable in your AI Agent Development client work.</p>
+        <a class="card-link" href="https://zapier.com/blog" target="_blank" rel="noopener">Browse templates <span class="arrow">→</span></a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 02 SOCIAL MEDIA MARKETING -->
+  <section class="pillar" id="social">
+    <div class="pillar-head">
+      <div>
+        <span class="pillar-label">02 · Social Media Marketing</span>
+        <h2>Content, design &amp; automation</h2>
+      </div>
+      <p class="pillar-desc">Free and AI-powered tools for producing on-brand content at scale.</p>
+    </div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><h3>Canva Magic Studio</h3><span class="tag">Design</span></div>
+        <p>The most beginner-friendly AI design suite in 2026 — carousels, thumbnails, and branded templates without design skills.</p>
+        <a class="card-link" href="https://www.canva.com" target="_blank" rel="noopener">Open Canva <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Buffer</h3><span class="tag">Scheduling</span></div>
+        <p>Free tier covers 10 scheduled posts per channel plus an AI assistant — ideal for consistent client posting cadence.</p>
+        <a class="card-link" href="https://buffer.com" target="_blank" rel="noopener">Open Buffer <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>CapCut</h3><span class="tag">Video</span></div>
+        <p>Free short-form video editing with AI captions and templates — pairs well with Reels and TikTok content for clients.</p>
+        <a class="card-link" href="https://www.capcut.com" target="_blank" rel="noopener">Open CapCut <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Pictory AI</h3><span class="tag">Avatars</span></div>
+        <p>Avatar and voice-clone video generation with presenter layouts — scale talking-head content without filming.</p>
+        <a class="card-link" href="https://pictory.ai" target="_blank" rel="noopener">Visit Pictory <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Creative Fabrica Studio</h3><span class="tag">Free / Local</span></div>
+        <p>Free local desktop AI tools for background removal and image generation — no credits, no upload limits.</p>
+        <a class="card-link" href="https://www.creativefabrica.com" target="_blank" rel="noopener">Download <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Meta Blueprint</h3><span class="tag">Free Course</span></div>
+        <p>Meta's own certification track for Instagram &amp; Facebook ad strategy — strengthens paid social service offerings.</p>
+        <a class="card-link" href="https://www.facebook.com/business/learn" target="_blank" rel="noopener">Start course <span class="arrow">→</span></a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 03 SKILL ACQUISITION -->
+  <section class="pillar" id="skills">
+    <div class="pillar-head">
+      <div>
+        <span class="pillar-label">03 · Home-Based Skill Acquisition</span>
+        <h2>Certifications &amp; training</h2>
+      </div>
+      <p class="pillar-desc">Source material and credentials to build out JossyB's own skills-hub tracks.</p>
+    </div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><h3>Lean Six Sigma (Free)</h3><span class="tag">Certification</span></div>
+        <p>Free process-improvement registration — a ready template for how JossyB can structure its own certificate-backed courses.</p>
+        <a class="card-link" href="https://www.coursera.org/specializations/lean-six-sigma-green-belt" target="_blank" rel="noopener">Register <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>LinkedIn Learning</h3><span class="tag">Skills</span></div>
+        <p>"Influence with Impact" and hundreds of persuasion, sales, and remote-work courses — strong source material for your Business Development track.</p>
+        <a class="card-link" href="https://www.linkedin.com/learning/" target="_blank" rel="noopener">Browse courses <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Skillshare</h3><span class="tag">Creative</span></div>
+        <p>Project-based classes across design, video, and freelancing — good benchmark for structuring your own skill tracks.</p>
+        <a class="card-link" href="https://www.skillshare.com" target="_blank" rel="noopener">Explore <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Google Career Certificates</h3><span class="tag">Free / Paid</span></div>
+        <p>Digital marketing, data, and IT support certificates recognized globally — strong add-on for the Growth &amp; Premium tiers.</p>
+        <a class="card-link" href="https://grow.google/certificates/" target="_blank" rel="noopener">View certificates <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Coursera for Business</h3><span class="tag">Bulk Learning</span></div>
+        <p>Structured learning paths across every skill category JossyB touches — useful for sourcing curriculum ideas.</p>
+        <a class="card-link" href="https://www.coursera.org" target="_blank" rel="noopener">Visit Coursera <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Udemy</h3><span class="tag">Affordable</span></div>
+        <p>Low-cost, practical courses across freelancing, automation, and no-code tools — matches your side-hustle audience's budget.</p>
+        <a class="card-link" href="https://www.udemy.com" target="_blank" rel="noopener">Browse Udemy <span class="arrow">→</span></a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 04 SIDE HUSTLE & PROMO -->
+  <section class="pillar" id="sidehustle">
+    <div class="pillar-head">
+      <div>
+        <span class="pillar-label">04 · Side Hustle &amp; Promotional Deals</span>
+        <h2>Extra income &amp; low-cost tools</h2>
+      </div>
+      <p class="pillar-desc">Monetization platforms and discounted tools for your side-hustle audience.</p>
+    </div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><h3>Selar</h3><span class="tag">Nigerian</span></div>
+        <p>Digital product sales and affiliate commissions built for the Nigerian creator economy — closely matches your platform's audience.</p>
+        <a class="card-link" href="https://selar.co" target="_blank" rel="noopener">Visit Selar <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Shopify</h3><span class="tag">$1 Trial</span></div>
+        <p>Low-cost entry point for side-hustle e-commerce, currently running a 3-months-for-$1 promotional offer.</p>
+        <a class="card-link" href="https://www.shopify.com" target="_blank" rel="noopener">Claim offer <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Fiverr</h3><span class="tag">Marketplace</span></div>
+        <p>Sell packaged skills directly — a proven side-income channel for graphic design, writing, and virtual assistance.</p>
+        <a class="card-link" href="https://www.fiverr.com" target="_blank" rel="noopener">Visit Fiverr <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Upwork</h3><span class="tag">Marketplace</span></div>
+        <p>Freelance client acquisition at scale — pairs with the keyword-optimized profile format already built for JossyB.</p>
+        <a class="card-link" href="https://www.upwork.com" target="_blank" rel="noopener">Visit Upwork <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>Paystack</h3><span class="tag">Payments</span></div>
+        <p>Your active payment processor — set up promotional pricing pages and one-off side-hustle offer links directly.</p>
+        <a class="card-link" href="https://paystack.com" target="_blank" rel="noopener">Visit Paystack <span class="arrow">→</span></a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><h3>VirtualVocations</h3><span class="tag">Remote Jobs</span></div>
+        <p>Curated remote job and gig alerts — a steady content source for your side-hustle guide page.</p>
+        <a class="card-link" href="https://www.virtualvocations.com" target="_blank" rel="noopener">Visit site <span class="arrow">→</span></a>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="cta-strip">
+    <div>
+      <h3>You're on Premium — everything above is fully unlocked.</h3>
+      <p>Bookmark this page and share it with your team. New resources get added as they come in.</p>
+    </div>
+    <a class="btn" href="https://josfrosh.github.io/Jossy-B-Tech" target="_blank" rel="noopener">Back to Platform</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="node-mark"><span></span><span></span><span></span><span></span></div>
+  <div>JossyB Technical Resources Nigeria Limited — Premium Resource Vault</div>
+  <div style="margin-top:6px;">Questions? <a href="mailto:jossyb136@gmail.com">jossyb136@gmail.com</a></div>
+</footer>
+
+</body>
+</html>

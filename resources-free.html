@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JossyB Resource Vault — Free Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#070f22;
+    --navy-900:#0b1c3a;
+    --navy-800:#122747;
+    --navy-700:#1a3459;
+    --gold:#c9a227;
+    --gold-bright:#e9c765;
+    --cream:#f4efe2;
+    --muted:#93a0bd;
+    --line: rgba(201,162,39,0.22);
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--navy-950);
+    color: var(--cream);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  header.top{
+    position:sticky; top:0; z-index:20;
+    background: rgba(7,15,34,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-name{font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;}
+  .brand-name b{color:var(--gold-bright); font-weight:700;}
+  .tier-tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--cream); background:var(--navy-700); border:1px solid var(--line);
+    padding:4px 10px; border-radius:100px; font-weight:500;
+  }
+  .top-btn{
+    background:var(--gold); color:var(--navy-950); text-decoration:none; font-weight:700;
+    font-size:0.82rem; padding:10px 20px; border-radius:100px; white-space:nowrap;
+  }
+  .top-btn:hover{background:var(--gold-bright);}
+
+  .node-mark{display:inline-flex; align-items:center; gap:5px;}
+  .node-mark span{width:7px; height:7px; border-radius:50%; background:var(--gold);}
+  .node-mark span:nth-child(2){background:var(--gold-bright);}
+  .node-mark span:nth-child(3){background:var(--gold);}
+  .node-mark span:nth-child(4){background:var(--gold-bright);}
+
+  .hero{padding:88px 0 56px; position:relative; overflow:hidden;}
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(600px 300px at 85% -10%, rgba(201,162,39,0.14), transparent 70%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:0.74rem; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--gold-bright); margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  h1{
+    font-family:'Fraunces', serif; font-weight:600; font-size:clamp(2.1rem, 4.2vw, 3.4rem);
+    line-height:1.1; margin:0 0 20px; max-width:15ch;
+  }
+  h1 em{font-style:italic; color:var(--gold-bright); font-weight:400;}
+  .hero-sub{font-size:1.05rem; color:var(--muted); max-width:56ch; margin:0 0 30px;}
+  .hero-stats{display:flex; gap:40px; flex-wrap:wrap;}
+  .stat b{display:block; font-family:'Fraunces', serif; font-size:1.9rem; color:var(--gold-bright); font-weight:600;}
+  .stat span{font-size:0.8rem; color:var(--muted);}
+
+  .pillar{padding:64px 0; border-bottom:1px solid var(--line);}
+  .pillar-head{margin-bottom:34px;}
+  .pillar-label{
+    font-family:'JetBrains Mono', monospace; color:var(--gold); font-size:0.78rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px; display:block;
+  }
+  .pillar h2{font-family:'Fraunces', serif; font-weight:600; font-size:1.8rem; margin:0 0 8px;}
+  .pillar p.desc{color:var(--muted); font-size:0.92rem; margin:0; max-width:52ch;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:18px;}
+  .card{
+    background: linear-gradient(165deg, var(--navy-800), var(--navy-900));
+    border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px; display:flex; flex-direction:column; gap:14px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover{transform:translateY(-3px); border-color:var(--gold);}
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .card h3{font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; margin:0;}
+  .card p{font-size:0.88rem; color:var(--muted); margin:0; flex-grow:1;}
+  .tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.64rem; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--navy-950); background:var(--gold); padding:3px 8px;
+    border-radius:100px; white-space:nowrap;
+  }
+  .card-link{
+    display:inline-flex; align-items:center; gap:6px; text-decoration:none;
+    font-size:0.84rem; font-weight:600; color:var(--gold-bright); margin-top:auto; padding-top:6px;
+    border-top:1px dashed var(--line);
+  }
+  .card-link:hover{color:var(--cream);}
+  .card-link .arrow{transition:transform 0.2s;}
+  .card-link:hover .arrow{transform:translateX(3px);}
+
+  /* ---- Locked cards ---- */
+  .card.locked{
+    position:relative; filter:blur(3.5px) grayscale(0.4); opacity:0.55; pointer-events:none;
+    user-select:none;
+  }
+  .lock-overlay{
+    grid-column:1/-1; margin-top:-4px;
+    border:1px dashed var(--gold); border-radius:var(--radius);
+    background: rgba(201,162,39,0.06);
+    padding:22px 26px; display:flex; align-items:center; justify-content:space-between;
+    gap:18px; flex-wrap:wrap;
+  }
+  .lock-overlay .lock-text{display:flex; align-items:center; gap:12px; font-size:0.9rem; color:var(--cream);}
+  .lock-icon{
+    width:34px; height:34px; border-radius:50%; background:var(--gold); color:var(--navy-950);
+    display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;
+  }
+  .lock-overlay strong{color:var(--gold-bright);}
+
+  .btn{
+    display:inline-block; background:var(--gold); color:var(--navy-950); text-decoration:none;
+    font-weight:700; font-size:0.86rem; padding:12px 22px; border-radius:100px;
+    white-space:nowrap; transition: background 0.2s;
+  }
+  .btn:hover{background:var(--gold-bright);}
+  .btn.large{padding:16px 30px; font-size:0.95rem;}
+
+  /* ---- Big upgrade CTA ---- */
+  .upgrade-block{
+    margin:70px 0 0; padding:56px 44px; border-radius:22px; text-align:center;
+    background: radial-gradient(700px 300px at 50% -20%, rgba(201,162,39,0.22), transparent 70%), linear-gradient(150deg, var(--navy-800), var(--navy-700));
+    border:1px solid var(--gold);
+  }
+  .upgrade-block .node-mark{justify-content:center; margin-bottom:18px;}
+  .upgrade-block h3{font-family:'Fraunces', serif; font-size:2rem; margin:0 0 14px; font-weight:600;}
+  .upgrade-block p{color:var(--muted); max-width:52ch; margin:0 auto 30px; font-size:0.98rem;}
+  .plan-compare{
+    display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-bottom:34px;
+  }
+  .plan{
+    background:var(--navy-900); border:1px solid var(--line); border-radius:14px;
+    padding:22px 26px; width:230px; text-align:left;
+  }
+  .plan.highlight{border-color:var(--gold); background:linear-gradient(160deg, var(--navy-800), var(--navy-900));}
+  .plan .plan-name{font-family:'JetBrains Mono', monospace; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-bright);}
+  .plan .plan-price{font-family:'Fraunces', serif; font-size:1.6rem; font-weight:600; margin:8px 0 12px;}
+  .plan ul{margin:0; padding:0 0 0 18px; font-size:0.82rem; color:var(--muted);}
+  .plan li{margin-bottom:6px;}
+
+  footer{padding:56px 0 40px; text-align:center; color:var(--muted); font-size:0.82rem;}
+  footer .node-mark{justify-content:center; margin-bottom:14px;}
+  footer a{color:var(--gold-bright); text-decoration:none;}
+
+  @media (max-width:640px){
+    .top-inner{padding:14px 20px;}
+    .wrap{padding:0 20px;}
+    .upgrade-block{padding:40px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <span class="node-mark"><span></span><span></span><span></span><span></span></span>
+      <span class="brand-name">Jossy<b>B</b> Resource Vault</span>
+      <span class="tier-tag">Free Preview</span>
+    </div>
+    <a class="top-btn" href="https://paystack.shop/pay/bimmg7om4u" target="_blank" rel="noopener">Upgrade to Premium</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="node-mark"><span></span><span></span><span></span><span></span></span> Free Member Preview</div>
+    <h1>A taste of the vault — <em>the full set is one upgrade away.</em></h1>
+    <p class="hero-sub">You're seeing a sample of the resources available across JossyB's four pillars. Premium members unlock every tool, course, and platform curated for Business Development, Social Media Marketing, Skill Acquisition, and Side Hustle income.</p>
+    <div class="hero-stats">
+      <div class="stat"><b>8</b><span>Resources unlocked here</span></div>
+      <div class="stat"><b>28</b><span>Total in Premium</span></div>
+      <div class="stat"><b>4</b><span>Pillars covered</span></div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <!-- 01 BUSINESS DEVELOPMENT -->
+  <section class="pillar">
+    <div class="pillar-head">
+      <span class="pillar-label">01 · Business Development</span>
+      <h2>Lead generation, trust &amp; growth</h2>
+      <p class="desc">2 of 6 resources unlocked.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-top"><h3>Clay</h3><span class="tag">Lead Gen</span></div>
+        <p>AI-powered prospect enrichment and Claygent workflows — scrape and qualify leads at scale.</p>
+        <a class="card-link" href="https://www.clay.com" target="_blank" rel="noopener">Visit Clay <span class="arrow">→</span></a>
+      </div>
+      <div class="card">
+        <div class="card-top"><h3>Clutch</h3><span class="tag">Trust</span></div>
+        <p>Third-party verified reviews that build buyer trust with high-intent business leads.</p>
+        <a class="card-link" href="https://clutch.co" target="_blank" rel="noopener">Visit Clutch <span class="arrow">→</span></a>
+      </div>
+      <div class="card locked"><div class="card-top"><h3>HubSpot Academy</h3><span class="tag">Free Course</span></div><p>Free certifications in inbound sales, CRM, and growth strategy.</p></div>
+      <div class="card locked"><div class="card-top"><h3>respond.io</h3><span class="tag">CRM / Chat</span></div><p>Unified messaging automation across WhatsApp, Instagram &amp; more.</p></div>
+      <div class="lock-overlay">
+        <div class="lock-text"><span class="lock-icon">🔒</span> <span><strong>4 more Business Dev resources</strong> are locked, including Zapier's AI prompt library.</span></div>
+        <a class="btn" href="https://paystack.shop/pay/bimmg7om4u" target="_blank" rel="noopener">Unlock all →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 SOCIAL MEDIA MARKETING -->
+  <section class="pillar">
+    <div class="pillar-head">
+      <span class="pillar-label">02 · Social Media Marketing</span>
+      <h2>Content, design &amp; automation</h2>
+      <p class="desc">2 of 6 resources unlocked.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-top"><h3>Canva Magic Studio</h3><span class="tag">Design</span></div>
+        <p>The most beginner-friendly AI design suite in 2026 — carousels, thumbnails, branded templates.</p>
+        <a class="card-link" href="https://www.canva.com" target="_blank" rel="noopener">Open Canva <span class="arrow">→</span></a>
+      </div>
+      <div class="card">
+        <div class="card-top"><h3>CapCut</h3><span class="tag">Video</span></div>
+        <p>Free short-form video editing with AI captions and templates.</p>
+        <a class="card-link" href="https://www.capcut.com" target="_blank" rel="noopener">Open CapCut <span class="arrow">→</span></a>
+      </div>
+      <div class="card locked"><div class="card-top"><h3>Buffer</h3><span class="tag">Scheduling</span></div><p>Free tier covers 10 scheduled posts per channel plus an AI assistant.</p></div>
+      <div class="card locked"><div class="card-top"><h3>Pictory AI</h3><span class="tag">Avatars</span></div><p>Avatar and voice-clone video generation with presenter layouts.</p></div>
+      <div class="lock-overlay">
+        <div class="lock-text"><span class="lock-icon">🔒</span> <span><strong>4 more Social Media resources</strong> are locked, including Creative Fabrica and Meta Blueprint.</span></div>
+        <a class="btn" href="https://paystack.shop/pay/bimmg7om4u" target="_blank" rel="noopener">Unlock all →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 SKILL ACQUISITION -->
+  <section class="pillar">
+    <div class="pillar-head">
+      <span class="pillar-label">03 · Home-Based Skill Acquisition</span>
+      <h2>Certifications &amp; training</h2>
+      <p class="desc">2 of 6 resources unlocked.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-top"><h3>Lean Six Sigma (Free)</h3><span class="tag">Certification</span></div>
+        <p>Free process-improvement registration — a ready template for JossyB's own courses.</p>
+        <a class="card-link" href="https://www.coursera.org/specializations/lean-six-sigma-green-belt" target="_blank" rel="noopener">Register <span class="arrow">→</span></a>
+      </div>
+      <div class="card">
+        <div class="card-top"><h3>LinkedIn Learning</h3><span class="tag">Skills</span></div>
+        <p>Persuasion, sales, and remote-work courses — strong source material for your tracks.</p>
+        <a class="card-link" href="https://www.linkedin.com/learning/" target="_blank" rel="noopener">Browse courses <span class="arrow">→</span></a>
+      </div>
+      <div class="card locked"><div class="card-top"><h3>Google Career Certificates</h3><span class="tag">Free / Paid</span></div><p>Digital marketing, data, and IT support certificates recognized globally.</p></div>
+      <div class="card locked"><div class="card-top"><h3>Skillshare</h3><span class="tag">Creative</span></div><p>Project-based classes across design, video, and freelancing.</p></div>
+      <div class="lock-overlay">
+        <div class="lock-text"><span class="lock-icon">🔒</span> <span><strong>4 more Skill Acquisition resources</strong> are locked, including Coursera and Udemy.</span></div>
+        <a class="btn" href="https://paystack.shop/pay/bimmg7om4u" target="_blank" rel="noopener">Unlock all →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 SIDE HUSTLE -->
+  <section class="pillar" style="border-bottom:none;">
+    <div class="pillar-head">
+      <span class="pillar-label">04 · Side Hustle &amp; Promotional Deals</span>
+      <h2>Extra income &amp; low-cost tools</h2>
+      <p class="desc">2 of 6 resources unlocked.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-top"><h3>Selar</h3><span class="tag">Nigerian</span></div>
+        <p>Digital product sales and affiliate commissions built for the Nigerian creator economy.</p>
+        <a class="card-link" href="https://selar.co" target="_blank" rel="noopener">Visit Selar <span class="arrow">→</span></a>
+      </div>
+      <div class="card">
+        <div class="card-top"><h3>Fiverr</h3><span class="tag">Marketplace</span></div>
+        <p>Sell packaged skills directly — a proven side-income channel.</p>
+        <a class="card-link" href="https://www.fiverr.com" target="_blank" rel="noopener">Visit Fiverr <span class="arrow">→</span></a>
+      </div>
+      <div class="card locked"><div class="card-top"><h3>Shopify</h3><span class="tag">$1 Trial</span></div><p>Low-cost entry point for side-hustle e-commerce with a promotional offer.</p></div>
+      <div class="card locked"><div class="card-top"><h3>Upwork</h3><span class="tag">Marketplace</span></div><p>Freelance client acquisition at scale.</p></div>
+      <div class="lock-overlay">
+        <div class="lock-text"><span class="lock-icon">🔒</span> <span><strong>4 more Side Hustle resources</strong> are locked, including Paystack setup guides and VirtualVocations.</span></div>
+        <a class="btn" href="https://paystack.shop/pay/bimmg7om4u" target="_blank" rel="noopener">Unlock all →</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="upgrade-block">
+    <div class="node-mark"><span></span><span></span><span></span><span></span></div>
+    <h3>Unlock the complete Resource Vault</h3>
+    <p>Upgrade to Premium for full access to all 28 resources across every pillar, plus every new resource added going forward.</p>
+    <div class="plan-compare">
+      <div class="plan">
+        <div class="plan-name">Growth Plan</div>
+        <div class="plan-price">₦5,000</div>
+        <ul>
+          <li>Core guide pages</li>
+          <li>Limited resource previews</li>
+          <li>Community access</li>
+        </ul>
+      </div>
+      <div class="plan highlight">
+        <div class="plan-name">Premium Plan</div>
+        <div class="plan-price">₦12,000</div>
+        <ul>
+          <li>Full Resource Vault — 28 tools</li>
+          <li>All four pillars unlocked</li>
+          <li>New resources added monthly</li>
+          <li>Priority support</li>
+        </ul>
+      </div>
+    </div>
+    <a class="btn large" href="https://paystack.shop/pay/bimmg7om4u" target="_blank" rel="noopener">Upgrade to Premium — ₦12,000 →</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="node-mark"><span></span><span></span><span></span><span></span></div>
+  <div>JossyB Technical Resources Nigeria Limited — Free Resource Preview</div>
+  <div style="margin-top:6px;">Already Premium? <a href="resources-premium.html">Go to full vault</a> · Questions? <a href="mailto:jossyb136@gmail.com">jossyb136@gmail.com</a></div>
+</footer>
+
+</body>
+</html>

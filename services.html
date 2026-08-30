@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services – JossyB Technical Resources</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Arial, sans-serif; color: #1a1a2e; background: #fff; }
+:root {
+  --primary: #0a2463;
+  --accent: #e63946;
+  --gold: #c9922a;
+  --light: #f8f9fa;
+  --text: #2d2d2d;
+  --muted: #6c757d;
+}
+nav {
+  background: var(--primary);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 75px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.nav-logo img { height: 50px; width: 50px; object-fit: contain; border-radius: 6px; background: #fff; padding: 3px; }
+.nav-logo-text .company { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 18px; line-height: 1.1; }
+.nav-logo-text .company .blue { color: #4a90d9; }
+.nav-logo-text .company .gold { color: #c9922a; }
+.nav-logo-text .tagline { font-size: 9px; color: var(--gold); letter-spacing: 0.5px; }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+.nav-cta { background: var(--accent); color: #fff; border: none; padding: 9px 22px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+.nav-cta:hover { opacity: 0.85; }
+footer { background: #050e1f; padding: 2rem; text-align: center; }
+.footer-logo-wrap { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 0.6rem; }
+.footer-logo-wrap img { height: 40px; width: 40px; object-fit: contain; background: #fff; border-radius: 5px; padding: 2px; }
+.footer-brand .fn { font-family: 'Arial Black', sans-serif; font-weight: 900; font-size: 16px; }
+.footer-brand .fn .blue { color: #4a90d9; }
+.footer-brand .fn .gold { color: #c9922a; }
+.footer-brand .ft { font-size: 9px; color: var(--gold); letter-spacing: 0.5px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 0.5rem; }
+@media (max-width: 640px) { .nav-links { display: none; } }
+
+.page-hero {
+  background: linear-gradient(135deg, #0a2463 0%, #1b4f72 100%);
+  padding: 60px 2rem;
+  text-align: center;
+  color: #fff;
+}
+.page-hero h1 { font-size: clamp(28px,5vw,52px); font-weight: 700; margin-bottom: 0.8rem; }
+.page-hero h1 span { color: #c9922a; }
+.page-hero p { font-size: 16px; color: rgba(255,255,255,0.78); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+.services-page { padding: 70px 2rem; max-width: 1100px; margin: 0 auto; }
+.service-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 80px;
+  padding-bottom: 80px;
+  border-bottom: 1px solid #eef0f4;
+}
+.service-block.reverse { direction: rtl; }
+.service-block.reverse > * { direction: ltr; }
+.service-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.service-visual {
+  background: linear-gradient(135deg, #0a2463, #1b4f72);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: #fff;
+}
+.service-visual .big-icon { font-size: 72px; margin-bottom: 1rem; display: block; }
+.service-visual h3 { font-size: 20px; font-weight: 600; color: #c9922a; margin-bottom: 0.5rem; }
+.service-visual p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+.service-content h2 { font-size: clamp(22px,3vw,32px); font-weight: 700; color: #0a2463; margin-bottom: 1rem; }
+.service-content p { font-size: 15px; color: #6c757d; line-height: 1.75; margin-bottom: 1.2rem; }
+.feature-list { list-style: none; margin-bottom: 1.5rem; }
+.feature-list li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0.7rem; font-size: 14px; color: #2d2d2d; }
+.feature-list li::before { content: "✓"; color: #c9922a; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.btn-service { background: #0a2463; color: #fff; border: none; padding: 12px 28px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.2s; }
+.btn-service:hover { background: #c9922a; transform: translateY(-2px); }
+.pricing-cta { background: #f8f9fa; padding: 60px 2rem; text-align: center; }
+.pricing-cta h2 { font-size: clamp(22px,3vw,36px); font-weight: 700; color: #0a2463; margin-bottom: 0.75rem; }
+.pricing-cta p { color: #6c757d; font-size: 16px; margin-bottom: 2rem; max-width: 460px; margin-left: auto; margin-right: auto; }
+.pricing-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary { background: #e63946; color: #fff; border: none; padding: 14px 32px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
+.btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+.btn-secondary { background: transparent; color: #0a2463; border: 2px solid #0a2463; padding: 14px 32px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s, color 0.2s; }
+.btn-secondary:hover { background: #0a2463; color: #fff; }
+@media (max-width:700px) {
+  .service-block, .service-block.reverse { grid-template-columns: 1fr; direction: ltr; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo" onclick="window.location.href='index.html'">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh/2wAIDAQABAAMBAP8A/8QAFQABAQAAAAAAAAAAAAAAAAAAAAX/2gAIAQEAAD8A/wD/2Q==" alt="JossyB Logo">
+    <div class="nav-logo-text">
+      <div class="company"><span class="blue">JOSS</span><span class="gold">Y</span><span class="blue">B</span></div>
+      <div class="tagline">Technical Resources Nigeria Limited</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="signup.html">Sign Up</a>
+    <a href="payment.html">Payment</a>
+  </div>
+  <button class="nav-cta" onclick="window.location.href='payment.html'">Get Started</button>
+</nav>
+
+<div class="page-hero">
+  <h1>Our <span>Services</span></h1>
+  <p>Everything you need to grow your business, build new skills, and earn more — available online, worldwide.</p>
+</div>
+
+<div class="services-page">
+
+  <div class="service-block" id="business">
+    <div class="service-visual">
+      <span class="big-icon">📈</span>
+      <h3>Business Development</h3>
+      <p>Strategic growth for ambitious individuals and organisations</p>
+    </div>
+    <div class="service-content">
+      <h2>Business Development</h2>
+      <p>We help you identify untapped opportunities, create winning strategies, and build systems that grow your business sustainably — whether you're just starting out or looking to scale.</p>
+      <ul class="feature-list">
+        <li>One-on-one business strategy sessions</li>
+        <li>Market research and opportunity mapping</li>
+        <li>Revenue growth and monetisation planning</li>
+        <li>Brand positioning and competitive analysis</li>
+        <li>Business plan development and review</li>
+      </ul>
+      <button class="btn-service" onclick="goToPayment('business')">Get Started →</button>
+    </div>
+  </div>
+
+  <div class="service-block reverse" id="social">
+    <div class="service-visual">
+      <span class="big-icon">📱</span>
+      <h3>Social Media Marketing</h3>
+      <p>Global visibility for your brand across all major platforms</p>
+    </div>
+    <div class="service-content">
+      <h2>Social Media Marketing</h2>
+      <p>Build a powerful online presence with expert-crafted content, targeted ad campaigns, and community management strategies that turn followers into paying customers.</p>
+      <ul class="feature-list">
+        <li>Content creation and scheduling</li>
+        <li>Facebook, Instagram, TikTok &amp; LinkedIn management</li>
+        <li>Paid advertising campaigns (Meta, Google)</li>
+        <li>Audience growth and engagement strategy</li>
+        <li>Analytics reporting and optimisation</li>
+      </ul>
+      <button class="btn-service" onclick="goToPayment('social')">Get Started →</button>
+    </div>
+  </div>
+
+  <div class="service-block" id="hustle">
+    <div class="service-visual">
+      <span class="big-icon">💼</span>
+      <h3>Side Hustle &amp; Promo Deals</h3>
+      <p>Verified income opportunities you can start from home today</p>
+    </div>
+    <div class="service-content">
+      <h2>Side Hustle &amp; Promo Deals</h2>
+      <p>Access a curated selection of legitimate side hustle opportunities and exclusive promotional deals. We vet every opportunity so you can start earning extra income with confidence.</p>
+      <ul class="feature-list">
+        <li>Verified remote and home-based opportunities</li>
+        <li>Exclusive partner promotional deals</li>
+        <li>Affiliate and referral programme access</li>
+        <li>Weekly updated deal listings</li>
+        <li>Support to help you get started quickly</li>
+      </ul>
+      <button class="btn-service" onclick="goToPayment('hustle')">Get Started →</button>
+    </div>
+  </div>
+
+  <div class="service-block reverse" id="skills">
+    <div class="service-visual">
+      <span class="big-icon">🎓</span>
+      <h3>Skill Acquisition</h3>
+      <p>Learn at your own pace from world-class instructors</p>
+    </div>
+    <div class="service-content">
+      <h2>Home-Based Skill Acquisition</h2>
+      <p>Gain in-demand, income-generating skills through structured, beginner-friendly programs. Learn from experienced instructors at a pace and rate that fits your lifestyle — all from home.</p>
+      <ul class="feature-list">
+        <li>Digital marketing and social media</li>
+        <li>Freelancing and remote work skills</li>
+        <li>E-commerce and online business setup</li>
+        <li>Graphic design and content creation</li>
+        <li>Personal finance and money management</li>
+      </ul>
+      <button class="btn-service" onclick="goToPayment('skills')">Enrol Now →</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="pricing-cta">
+  <h2>Ready to choose a service?</h2>
+  <p>Select any service above and proceed to checkout. Choose between our Starter (₦5,000) or Premium (₦12,000) plan to unlock full access.</p>
+  <div class="pricing-btns">
+    <button class="btn-primary" onclick="window.location.href='payment.html'">View Plans & Pricing</button>
+    <button class="btn-secondary" onclick="window.location.href='index.html'">Back Home</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo-wrap">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh/2wAIDAQABAAMBAP8A/8QAFQABAQAAAAAAAAAAAAAAAAAAAAX/2gAIAQEAAD8A/wD/2Q==" alt="JossyB Logo">
+    <div class="footer-brand">
+      <div class="fn"><span class="blue">JOSS</span><span class="gold">Y</span><span class="blue">B</span></div>
+      <div class="ft">Technical Resources Nigeria Limited</div>
+    </div>
+  </div>
+  <div class="footer-links" style="display:flex;justify-content:center;gap:2rem;margin:1rem 0;flex-wrap:wrap;">
+    <a href="index.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Home</a>
+    <a href="services.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Services</a>
+    <a href="signup.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Sign Up</a>
+    <a href="payment.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Payment</a>
+  </div>
+  <div class="footer-copy">© 2025 JossyB Technical Resources Nigeria Limited. All rights reserved.</div>
+</footer>
+
+<script>
+  function goToPayment(service) {
+    // Store the selected service in sessionStorage
+    sessionStorage.setItem('selectedService', service);
+    // Redirect to payment page
+    window.location.href = 'payment.html?service=' + service;
+  }
+</script>
+
+<script src="https://connect.agent.so/sdk/connect.js" async></script>
+<div data-agi-widget="1ea6ed43-95a8-4dca-b9cc-ee64d0de5308"></div>
+</body>
+</html>

@@ -123,6 +123,71 @@ section { padding: 70px 2rem; }
 .contact-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.75); }
 .contact-item strong { color: var(--gold); }
 @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } }
+
+/* Added: prevent horizontal scrolling and make header/hero responsive */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Header logo responsive */
+.nav-logo img {
+  width: 50px;        /* keeps intended size on desktop */
+  max-width: 100%;    /* prevents overflow on small screens */
+  height: auto;
+  display: block;
+}
+
+/* Make hero decorative blobs responsive so they don't push the page wide */
+.hero::before,
+.hero::after {
+  width: 30vw;
+  height: 30vw;
+  max-width: 420px;
+  max-height: 420px;
+  /* keep them positioned with viewport units instead of large negative pixels */
+  border-radius: 50%;
+  position: absolute;
+}
+
+/* position them with viewport units instead of large negative px */
+.hero::before {
+  top: -8vw;
+  right: -8vw;
+  left: auto;
+  bottom: auto;
+  background: rgba(201,146,42,0.1);
+}
+
+/* second blob */
+.hero::after {
+  left: -10vw;
+  bottom: -10vw;
+  right: auto;
+  top: auto;
+  background: rgba(230,57,70,0.07);
+}
+
+/* Make hero background/logo scale */
+.hero-logo-bg {
+  width: min(40vw, 200px);
+  height: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Safeguard for any fixed-width elements inside header/hero */
+nav, .hero, .hero * {
+  box-sizing: border-box;
+}
+
+/* Small-screen adjustments */
+@media (max-width: 640px) {
+  .nav-logo img { width: 40px; }
+  .hero { padding: 56px 1rem 48px; }
+  .hero::before, .hero::after { width: 40vw; height: 40vw; }
+}
 </style>
 </head>
 <body>
@@ -271,7 +336,6 @@ section { padding: 70px 2rem; }
     <a href="payment.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Payment</a>
   </div>
   <div class="footer-copy">© 2025 JossyB Technical Resources Nigeria Limited. All rights reserved. | Empowering Growth Across the Globe.</div>
-  <a href="https://ads.adlandpro.com/listing/secure-your-dream-job-and-acquire-in-demand-skills-with-job-linkup/" target="_blank"><img decoding="async" src="https://ads.adlandpro.com/wp-content/uploads/2026/03/adlandpro-featured.webp" width="270" alt="Adlandpro-badge"></a>
 </footer>
 <script>
 function handleSubmit(e) {

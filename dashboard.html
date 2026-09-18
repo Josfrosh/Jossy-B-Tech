@@ -208,30 +208,17 @@
     <p class="eyebrow">Grow with us</p>
     <h2 style="margin-bottom:18px;">Explore Services</h2>
     <div class="services-grid">
-      <a class="service-card" href="services.html#business"><span class="ic">📈</span><h3>Business Development</h3><p>Strategies to scale locally and internationally.</p></a>
-      <a class="service-card" href="services.html#social"><span class="ic">📱</span><h3>Social Media Marketing</h3><p>Campaigns and content that grow your brand.</p></a>
-      <a class="service-card" href="services.html#hustle"><span class="ic">💼</span><h3>Side Hustle & Promo Deals</h3><p>Verified opportunities to boost your income.</p></a>
-      <a class="service-card" href="services.html#skills"><span class="ic">🎓</span><h3>Skill Acquisition</h3><p>Learn income-generating skills at your pace.</p></a>
+      <a class="service-card" href="services.html#business"><span class="ic">📈</span><h3>Business Development</h3><p>Production-ready AI automation for business growth.</p></a>
+      <a class="service-card" href="services.html#jobs"><span class="ic">🔗</span><h3>Job Opportunity & Linkup</h3><p>Verified job openings and career connections.</p></a>
+      <a class="service-card" href="services.html#invest"><span class="ic">📊</span><h3>Investment Opportunity</h3><p>Vetted investment options — shares and more.</p></a>
+      <a class="service-card" href="services.html#skills"><span class="ic">🎓</span><h3>Skill Acquisition</h3><p>Skills, certificate and job linkup, at your pace.</p></a>
     </div>
   </section>
 
-  <section>
-    <p class="eyebrow">Keep learning</p>
-    <h2 style="margin-bottom:18px;">Guides & Skills Training</h2>
-    <div class="resource-list">
-      <a class="resource-row" href="resources.html#getting-started">
-        <span class="rtitle">Getting Started with JossyB</span>
-        <span class="rtag">Guide</span>
-      </a>
-      <a class="resource-row" href="resources.html#skills-training">
-        <span class="rtitle">Skills Training — Certificate Track</span>
-        <span class="rtag">Certificate</span>
-      </a>
-      <a class="resource-row" href="resources.html#referral-guide">
-        <span class="rtitle">How the Referral Program Works</span>
-        <span class="rtag">Guide</span>
-      </a>
-    </div>
+  <section id="myResourcesSection" style="display:none;">
+    <p class="eyebrow">Your resources</p>
+    <h2 style="margin-bottom:18px;">Unlocked for your plan</h2>
+    <div class="resource-list" id="myResourcesList"></div>
   </section>
 
 </main>
@@ -267,7 +254,19 @@
       return;
     }
 
+    await claimPendingPayment(session);
     loadDashboard();
+  }
+
+  async function claimPendingPayment(session) {
+    try {
+      await fetch(`${SUPABASE_URL}/functions/v1/claim-pending-payment`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${session.access_token}` },
+      });
+    } catch (e) {
+      console.warn('claim-pending-payment check failed:', e);
+    }
   }
 
   function setPathState(tier) {

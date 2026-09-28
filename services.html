@@ -112,9 +112,8 @@ footer { background: #050e1f; padding: 2rem; text-align: center; }
     <a href="index.html">Home</a>
     <a href="services.html" class="active">Services</a>
     <a href="signup.html">Sign Up</a>
-    <a href="payment.html">Payment</a>
   </div>
-  <button class="nav-cta" onclick="window.location.href='payment.html'">Get Started</button>
+  <button class="nav-cta" onclick="window.location.href='signup.html'">Get Started</button>
 </nav>
 
 <div class="page-hero">
@@ -132,7 +131,7 @@ footer { background: #050e1f; padding: 2rem; text-align: center; }
     </div>
     <div class="service-content">
       <h2>Business Development</h2>
-      <p>We design, build and deploy production-ready AI automation systems — from workflow automation to custom AI agents — that streamline operations, cut costs and accelerate sustainable growth for your business.</p>
+      <p>We design, build and deploy production-ready AI automation systems — from workflow automation to custom AI agents — that streamline operations, cut costs and accelerate sustainable growth.</p>
       <ul class="feature-list">
         <li>AI automation strategy and opportunity mapping</li>
         <li>Custom AI agent and workflow development</li>
@@ -140,7 +139,7 @@ footer { background: #050e1f; padding: 2rem; text-align: center; }
         <li>Integration with your existing tools and systems</li>
         <li>Ongoing support, monitoring and optimisation</li>
       </ul>
-      <button class="btn-service" onclick="window.location.href='https://paystack.shop/pay/j0ksmaeht'">Book a $50 Strategy Session →</button>
+      <button class="btn-service" onclick="window.location.href='signup.html'">Book a Strategy Session →</button>
     </div>
   </div>
 
@@ -160,7 +159,7 @@ footer { background: #050e1f; padding: 2rem; text-align: center; }
         <li>Direct linkup with hiring partners and recruiters</li>
         <li>Remote, hybrid and on-site opportunities</li>
       </ul>
-      <button class="btn-service" onclick="goToPayment('jobs')">Get Started →</button>
+      <button class="btn-service" onclick="window.location.href='signup.html'">Get Started →</button>
     </div>
   </div>
 
@@ -172,7 +171,7 @@ footer { background: #050e1f; padding: 2rem; text-align: center; }
     </div>
     <div class="service-content">
       <h2>Investment Opportunity</h2>
-      <p>Access a curated selection of vetted investment opportunities — including shares, funds and other income-generating options — so you can grow your money with confidence, wherever you're based.</p>
+      <p>Access a curated selection of vetted investment opportunities — including shares, funds and other income-generating options — so you can grow your money with confidence, wherever you are.</p>
       <ul class="feature-list">
         <li>Verified investment and shares opportunities</li>
         <li>Portfolio diversification guidance</li>
@@ -180,7 +179,7 @@ footer { background: #050e1f; padding: 2rem; text-align: center; }
         <li>Regularly updated opportunity listings</li>
         <li>Support to get started safely and confidently</li>
       </ul>
-      <button class="btn-service" onclick="goToPayment('invest')">Get Started →</button>
+      <button class="btn-service" onclick="window.location.href='signup.html'">Get Started →</button>
     </div>
   </div>
 
@@ -192,7 +191,7 @@ footer { background: #050e1f; padding: 2rem; text-align: center; }
     </div>
     <div class="service-content">
       <h2>Skill Acquisition</h2>
-      <p>Gain in-demand, income-generating skills through structured, beginner-friendly courses — and walk away with more than knowledge. Every programme combines practical skills training, a verifiable certificate on completion, and direct linkup to job opportunities, so your learning carries real credibility.</p>
+      <p>Gain in-demand, income-generating skills through structured, beginner-friendly courses — and walk away with more than knowledge. Every programme combines practical skills training, a verified certificate and direct job opportunities.</p>
       <ul class="feature-list">
         <li>Digital marketing and social media</li>
         <li>Freelancing and remote work skills</li>
@@ -201,7 +200,7 @@ footer { background: #050e1f; padding: 2rem; text-align: center; }
         <li>Certificate of completion on every course</li>
         <li>Direct job linkup after certification</li>
       </ul>
-      <button class="btn-service" onclick="goToPayment('skills')">Enrol Now →</button>
+      <button class="btn-service" onclick="window.location.href='signup.html'">Enrol Now →</button>
     </div>
   </div>
 
@@ -209,9 +208,9 @@ footer { background: #050e1f; padding: 2rem; text-align: center; }
 
 <div class="pricing-cta">
   <h2>Ready to choose a service?</h2>
-  <p>Select any service above and proceed to checkout. Choose between our Starter (₦5,000) or Premium (₦12,000) plan to unlock full access.</p>
+  <p>Select any service above and get started with the right plan for your goals.</p>
   <div class="pricing-btns">
-    <button class="btn-primary" onclick="window.location.href='payment.html'">View Plans & Pricing</button>
+    <button class="btn-primary" onclick="window.location.href='signup.html'">Get Started</button>
     <button class="btn-secondary" onclick="window.location.href='index.html'">Back Home</button>
   </div>
 </div>
@@ -228,19 +227,9 @@ footer { background: #050e1f; padding: 2rem; text-align: center; }
     <a href="index.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Home</a>
     <a href="services.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Services</a>
     <a href="signup.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Sign Up</a>
-    <a href="payment.html" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;">Payment</a>
   </div>
   <div class="footer-copy">© 2025 JossyB Technical Resources Nigeria Limited. All rights reserved.</div>
 </footer>
-
-<script>
-  function goToPayment(service) {
-    // Store the selected service in sessionStorage
-    sessionStorage.setItem('selectedService', service);
-    // Redirect to payment page
-    window.location.href = 'payment.html?service=' + service;
-  }
-</script>
 
 <script src="https://connect.agent.so/sdk/connect.js" async></script>
 <div data-agi-widget="1ea6ed43-95a8-4dca-b9cc-ee64d0de5308"></div>

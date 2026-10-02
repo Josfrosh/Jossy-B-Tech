@@ -228,13 +228,13 @@
   const SUPABASE_URL = 'https://ghsnlxqaztuovxlairvn.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_4hkjbAEhrx9kApuq7GWKPw_a5kh3RZp';
 
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const dashboardAuthClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   const TIER_ORDER = ['free', 'growth', 'premium'];
 
   async function initAuth() {
     try {
-      const { data: redirectData, error: redirectErr } = await supabase.auth.getSessionFromUrl();
+      const { data: redirectData, error: redirectErr } = await dashboardAuthClient.auth.getSessionFromUrl();
       if (redirectErr) console.warn('OAuth parse error:', redirectErr);
       if (redirectData?.session) {
         history.replaceState({}, document.title, window.location.pathname);
@@ -243,7 +243,7 @@
       console.warn('Error parsing redirect:', e);
     }
 
-    const { data: { session }, error } = await supabase.auth.getSession();
+    const { data: { session }, error } = await dashboardAuthClient.auth.getSession();
     
     if (error) console.warn('Session error:', error);
     
@@ -305,7 +305,7 @@
   }
 
   async function loadDashboard() {
-    const { data: { user }, error: userErr } = await supabase.auth.getUser();
+    const { data: { user }, error: userErr } = await dashboardAuthClient.auth.getUser();
 
     if (userErr || !user) {
       window.location.href = 'login.html';
@@ -329,7 +329,7 @@
     let isActivePaid = false;
     
     try {
-      const { data, error } = await supabase
+      const { data, error } = await dashboardAuthClient
         .from('profiles')
         .select('membership_tier, referral_code, referral_count, first_name, subscription_status, subscription_end_date')
         .eq('id', user.id)
@@ -389,7 +389,7 @@
   });
 
   document.getElementById('signOutBtn').addEventListener('click', async () => {
-    await supabase.auth.signOut();
+    await dashboardAuthClient.auth.signOut();
     window.location.href = 'login.html';
   });
 

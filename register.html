@@ -362,7 +362,7 @@
       const password = passwordInput.value;
       const referralCode = referralInput.value.trim() || null;
 
-      const { data, error } = await supabase.auth.signUp({
+      const { data, error } = await window.compayAuthClient.auth.signUp({
         email,
         password,
       });
@@ -381,7 +381,7 @@
       // If email confirmation is disabled, Supabase may return an active session
       if (data.session) {
         // Email confirmation disabled: sign out immediately, then redirect to login
-        await supabase.auth.signOut();
+        await window.compayAuthClient.auth.signOut();
       }
 
       // Save referral code if provided
@@ -410,7 +410,7 @@
     const referralCode = referralInput.value.trim();
 
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
+      const { error } = await window.compayAuthClient.auth.signInWithOAuth({
         provider: 'google',
         options: {
           redirectTo: redirectUrl,

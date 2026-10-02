@@ -8,7 +8,7 @@ const SUPABASE_ANON_KEY = 'sb_publishable_4hkjbAEhrx9kApuq7GWKPw_a5kh3RZp';
 const DASHBOARD_REDIRECT_URL = 'https://compay.pro/dashboard.html';
 
 // Initialize Supabase client
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+window.compayAuthClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 /**
  * Get the full absolute URL for OAuth redirects
@@ -71,7 +71,7 @@ async function saveReferralCodeToProfile(userId, referralCode) {
   
   try {
     // Check if profile exists, create if not
-    const { data: existingProfile } = await supabase
+    const { data: existingProfile } = await window.compayAuthClient
       .from('profiles')
       .select('id')
       .eq('id', userId)
@@ -79,7 +79,7 @@ async function saveReferralCodeToProfile(userId, referralCode) {
     
     if (!existingProfile) {
       // Create new profile with referral info
-      await supabase
+      await window.compayAuthClient
         .from('profiles')
         .insert([{ 
           id: userId, 
@@ -88,7 +88,7 @@ async function saveReferralCodeToProfile(userId, referralCode) {
         }]);
     } else {
       // Update existing profile
-      await supabase
+      await window.compayAuthClient
         .from('profiles')
         .update({ referred_by: referralCode })
         .eq('id', userId);
@@ -104,7 +104,7 @@ async function saveReferralCodeToProfile(userId, referralCode) {
  */
 async function getActiveSession() {
   try {
-    const { data: { session }, error } = await supabase.auth.getSession();
+    const { data: { session }, error } = await window.compayAuthClient.auth.getSession();
     if (error) {
       console.warn('Session check error:', error);
       return null;
@@ -121,7 +121,7 @@ async function getActiveSession() {
  * Useful for syncing UI across tabs or handling logouts
  */
 function onAuthStateChange(callback) {
-  return supabase.auth.onAuthStateChange((event, session) => {
+  return window.compayAuthClient.auth.onAuthStateChange((event, session) => {
     callback(event, session);
   });
 }

@@ -206,10 +206,10 @@
     <p class="eyebrow">Grow with us</p>
     <h2 style="margin-bottom:18px;">Explore Services</h2>
     <div class="services-grid">
-      <a class="service-card" href="services.html#business"><span class="ic">📈</span><h3>Business Development</h3><p>Production-ready AI automation for business growth.</p></a>
-      <a class="service-card" href="services.html#jobs"><span class="ic">🔗</span><h3>Job Opportunity & Linkup</h3><p>Verified job openings and career connections.</p></a>
-      <a class="service-card" href="services.html#invest"><span class="ic">📊</span><h3>Investment Opportunity</h3><p>Vetted investment options — shares and more.</p></a>
-      <a class="service-card" href="services.html#skills"><span class="ic">🎓</span><h3>Skill Acquisition</h3><p>Skills, certificate and job linkup, at your pace.</p></a>
+      <a class="service-card" href="https://paystack.shop/pay/j0ksmaeht"><span class="ic">📈</span><h3>Business Development</h3><p>Production-ready AI automation for business growth. $50 session + Premium access for 90 days.</p></a>
+      <a class="service-card" href="https://paystack.shop/pay/bimmg7om4u"><span class="ic">🔗</span><h3>Job Opportunity & Linkup</h3><p>Verified job openings and career connections. Starter access ₦5,000 for 30 days.</p></a>
+      <a class="service-card" href="https://paystack.shop/pay/bimmg7om4u"><span class="ic">📊</span><h3>Investment Opportunity</h3><p>Vetted investment options — shares and more. Starter access ₦5,000 for 30 days.</p></a>
+      <a class="service-card" href="https://paystack.shop/pay/7jsodh2jvy"><span class="ic">🎓</span><h3>Skill Acquisition</h3><p>Skills, certificate and job linkup, at your pace. Premium access ₦12,000 for 90 days.</p></a>
     </div>
   </section>
 
@@ -331,31 +331,26 @@
     try {
       const { data, error } = await dashboardAuthClient
         .from('profiles')
-        .select('membership_tier, referral_code, referral_count, first_name, subscription_status, subscription_end_date')
+        .select('plan, referral_code, referral_count, full_name, subscription_status, subscription_end_date, plan_expires_at')
         .eq('id', user.id)
         .single();
       
       if (!error && data) {
         profile = data;
-        tier = (data.membership_tier || 'free').toLowerCase();
-        
-        if (data.subscription_status === 'active') {
-          isActivePaid = true;
-        }
-        
-        if (data.subscription_end_date) {
-          const endDate = new Date(data.subscription_end_date);
-          if (endDate > new Date()) {
-            isActivePaid = true;
-          }
-        }
+        const rawPlan = (data.plan || 'free').toLowerCase();
+        tier = rawPlan === 'starter' ? 'growth' : rawPlan;
+        if (!TIER_ORDER.includes(tier)) tier = 'free';
+        const expiresAt = data.subscription_end_date || data.plan_expires_at;
+        const hasFutureExpiry = !expiresAt || new Date(expiresAt).getTime() > Date.now();
+        isActivePaid = tier !== 'free' && data.subscription_status === 'active' && hasFutureExpiry;
+        if (!hasFutureExpiry) tier = 'free';
       }
     } catch (e) {
       console.warn('No profiles row found or error occurred:', e);
       tier = 'free';
     }
 
-    if (profile?.first_name) document.getElementById('userFirstName').textContent = profile.first_name;
+    if (profile?.full_name) document.getElementById('userFirstName').textContent = profile.full_name.trim().split(/\s+/)[0];
 
     const tierDisplay = tier.charAt(0).toUpperCase() + tier.slice(1);
     document.getElementById('statTier').textContent = tierDisplay;
@@ -369,7 +364,7 @@
     }
 
     const referralCode = profile?.referral_code || fallbackReferralCode(user.id);
-    const referralLink = `https://compay.pro/signup.html?ref=${referralCode}`;
+    const referralLink = `https://compay.pro/register.html?ref=${referralCode}`;
     document.getElementById('referralLink').textContent = referralLink;
     document.getElementById('refCode').textContent = referralCode || '—';
 

@@ -1,0 +1,5 @@
+[functions.paystack-webhook]
+verify_jwt = false
+
+[functions.claim-pending-payment]
+verify_jwt = true

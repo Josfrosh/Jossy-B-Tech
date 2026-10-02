@@ -13,7 +13,7 @@
   );
   const originalSubmitMarkup = submitButton?.innerHTML;
   const originalGoogleMarkup = googleButton?.innerHTML;
-  const authClient = typeof supabase === 'undefined' ? null : supabase;
+  const authClient = window.compayAuthClient || null;
 
   function showStatus(message, kind = 'error') {
     if (!status) return;

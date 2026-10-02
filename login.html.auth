@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In – JossyB</title>
+  <style>
+    :root {
+      --navy-950: #070f22;
+      --navy-900: #0b1e3d;
+      --navy-800: #142850;
+      --gold-500: #c9a227;
+      --gold-400: #e0c15a;
+      --cream-100: #f5f1e8;
+      --ink-300: rgba(245, 241, 232, 0.66);
+      --ink-500: rgba(245, 241, 232, 0.42);
+      --success: #10b981;
+      --error: #ef4444;
+      --line: rgba(245, 241, 232, 0.12);
+      --radius: 14px;
+      --font-display: 'Fraunces', serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(1100px 500px at 85% -10%, rgba(201, 162, 39, 0.14), transparent 60%),
+                  var(--navy-950);
+      color: var(--cream-100);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      width: 100%;
+      max-width: 420px;
+    }
+    .card {
+      background: var(--navy-900);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 40px 32px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0.02em;
+      color: var(--cream-100);
+    }
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: linear-gradient(145deg, var(--gold-400), var(--gold-500));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy-950);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin: 0 0 10px;
+    }
+    .subtitle {
+      color: var(--ink-300);
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+    }
+    .alert {
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .alert.success {
+      display: block;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #86efac;
+    }
+    .alert.error {
+      display: block;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-500);
+      margin-bottom: 6px;
+    }
+    input[type="email"],
+    input[type="password"] {
+      background: var(--navy-800);
+      border: 1px solid var(--line);
+      width: 100%;
+      color: var(--cream-100);
+      border-radius: 10px;
+      outline: none;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.95rem;
+      transition: border-color 0.15s;
+    }
+    input:focus {
+      border-color: var(--gold-400);
+    }
+    input::placeholder {
+      color: var(--ink-500);
+    }
+    .forgot-password {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+    .forgot-password a {
+      color: var(--gold-400);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .forgot-password a:hover {
+      opacity: 0.8;
+    }
+    button[type="submit"] {
+      background: linear-gradient(145deg, var(--gold-400), var(--gold-500));
+      color: var(--navy-950);
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 24px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    button[type="submit"]:hover {
+      transform: translateY(-1px);
+    }
+    button[type="submit"]:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 0;
+      color: var(--ink-500);
+      font-size: 0.85rem;
+    }
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+    .oauth-button {
+      background: var(--navy-800);
+      border: 1px solid var(--line);
+      color: var(--cream-100);
+      width: 100%;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.15s;
+      font-family: var(--font-body);
+    }
+    .oauth-button:hover {
+      border-color: var(--gold-400);
+      color: var(--gold-400);
+    }
+    .footer-link {
+      text-align: center;
+      margin-top: 20px;
+      color: var(--ink-300);
+      font-size: 0.9rem;
+    }
+    .footer-link a {
+      color: var(--gold-400);
+      text-decoration: none;
+    }
+    .footer-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+  <div class="card">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">JB</span>
+      <span>JOSSYB</span>
+    </a>
+    
+    <h1>Log In</h1>
+    <p class="subtitle">Welcome back</p>
+
+    <div class="alert success" id="successAlert"></div>
+    <div class="alert error" id="errorAlert"></div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="you@example.com" autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="Enter your password" autocomplete="current-password">
+      </div>
+
+      <div class="forgot-password">
+        <a href="reset-password.html">Forgot password?</a>
+      </div>
+
+      <button type="submit" id="submitBtn">Log In</button>
+    </form>
+
+    <div class="divider">OR</div>
+
+    <button class="oauth-button" id="googleBtn" type="button">Continue with Google</button>
+
+    <div class="footer-link">
+      Don't have an account? <a href="register.html">Create one</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="auth.js"></script>
+<script>
+  // Redirect if already logged in
+  (async () => {
+    await redirectIfLoggedIn();
+  })();
+
+  const form = document.getElementById('loginForm');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const successAlert = document.getElementById('successAlert');
+  const errorAlert = document.getElementById('errorAlert');
+  const submitBtn = document.getElementById('submitBtn');
+  const googleBtn = document.getElementById('googleBtn');
+
+  // Check for registration success flag
+  function checkRegistrationSuccess() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('registered') === '1') {
+      successAlert.textContent = '✓ Account created successfully! Please log in.';
+      successAlert.style.display = 'block';
+      // Clean up URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }
+  checkRegistrationSuccess();
+
+  // Show success
+  function showSuccess(message) {
+    successAlert.textContent = message;
+    successAlert.style.display = 'block';
+    errorAlert.style.display = 'none';
+  }
+
+  // Show error
+  function showError(message) {
+    errorAlert.textContent = '✗ ' + message;
+    errorAlert.style.display = 'block';
+    successAlert.style.display = 'none';
+  }
+
+  // Clear alerts
+  function clearAlerts() {
+    successAlert.style.display = 'none';
+    errorAlert.style.display = 'none';
+  }
+
+  // Handle login
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearAlerts();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Logging in...';
+
+    try {
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        // Provide specific error messages
+        if (error.message.includes('Invalid login credentials')) {
+          showError('Invalid email or password. Please try again.');
+        } else if (error.message.includes('Email not confirmed')) {
+          showError('Your email is not confirmed. Please check your email for a confirmation link.');
+        } else if (error.message.includes('User already registered')) {
+          showError('This email is already registered.');
+        } else {
+          showError(error.message || 'Login failed. Please try again.');
+        }
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Log In';
+        return;
+      }
+
+      if (data.session && data.user) {
+        showSuccess('Login successful! Redirecting to dashboard...');
+        // Redirect after a short delay
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 500);
+      } else {
+        showError('Login failed. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Log In';
+      }
+    } catch (err) {
+      showError('An unexpected error occurred. Please try again.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Log In';
+    }
+  });
+
+  // Google OAuth
+  googleBtn.addEventListener('click', async () => {
+    clearAlerts();
+    googleBtn.disabled = true;
+    googleBtn.textContent = 'Redirecting...';
+
+    const redirectUrl = getOAuthRedirectUrl('dashboard.html');
+
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: redirectUrl,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
+        },
+      });
+
+      if (error) {
+        showError('Google login failed. Please try again.');
+        googleBtn.disabled = false;
+        googleBtn.textContent = 'Continue with Google';
+      }
+    } catch (err) {
+      showError('An error occurred. Please try again.');
+      googleBtn.disabled = false;
+      googleBtn.textContent = 'Continue with Google';
+    }
+  });
+
+  // Listen for auth state changes to handle OAuth callback
+  onAuthStateChange((event, session) => {
+    if (event === 'SIGNED_IN' && session) {
+      window.location.href = 'dashboard.html';
+    } else if (event === 'SIGNED_OUT') {
+      clearAlerts();
+    }
+  });
+</script>
+</body>
+</html>

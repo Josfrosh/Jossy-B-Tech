@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Resource Preview | JossyB Resource Vault</title>
+<meta name="description" content="A free preview of official business, job-search, investment-education and skills resources curated by JossyB. Check each provider’s current terms.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://compay.pro/resources-free.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Resource Preview | JossyB Resource Vault">
+<meta property="og:description" content="A free preview of official business, job-search, investment-education and skills resources curated by JossyB. Check each provider’s current terms.">
+<meta property="og:url" content="https://compay.pro/resources-free.html">
+<meta property="og:site_name" content="JossyB Resource Vault">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Free Resource Preview | JossyB Resource Vault">
+<meta name="twitter:description" content="A free preview of official business, job-search, investment-education and skills resources curated by JossyB. Check each provider’s current terms.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#070f22;
+    --navy-900:#0b1c3a;
+    --navy-800:#122747;
+    --navy-700:#1a3459;
+    --gold:#c9a227;
+    --gold-bright:#e9c765;
+    --cream:#f4efe2;
+    --muted:#93a0bd;
+    --line: rgba(201,162,39,0.22);
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--navy-950);
+    color: var(--cream);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  header.top{
+    position:sticky; top:0; z-index:20;
+    background: rgba(7,15,34,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-name{font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;}
+  .brand-name b{color:var(--gold-bright); font-weight:700;}
+  .tier-tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--cream); background:var(--navy-700); border:1px solid var(--line);
+    padding:4px 10px; border-radius:100px; font-weight:500;
+  }
+  .top-btn{
+    background:var(--gold); color:var(--navy-950); text-decoration:none; font-weight:700;
+    font-size:0.82rem; padding:10px 20px; border-radius:100px; white-space:nowrap;
+  }
+  .top-btn:hover{background:var(--gold-bright);}
+
+  .node-mark{display:inline-flex; align-items:center; gap:5px;}
+  .node-mark span{width:7px; height:7px; border-radius:50%; background:var(--gold);}
+  .node-mark span:nth-child(2){background:var(--gold-bright);}
+  .node-mark span:nth-child(3){background:var(--gold);}
+  .node-mark span:nth-child(4){background:var(--gold-bright);}
+
+  .hero{padding:88px 0 56px; position:relative; overflow:hidden;}
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background: radial-gradient(600px 300px at 85% -10%, rgba(201,162,39,0.14), transparent 70%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:0.74rem; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--gold-bright); margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  h1{
+    font-family:'Fraunces', serif; font-weight:600; font-size:clamp(2.1rem, 4.2vw, 3.4rem);
+    line-height:1.1; margin:0 0 20px; max-width:15ch;
+  }
+  h1 em{font-style:italic; color:var(--gold-bright); font-weight:400;}
+  .hero-sub{font-size:1.05rem; color:var(--muted); max-width:56ch; margin:0 0 30px;}
+  .hero-stats{display:flex; gap:40px; flex-wrap:wrap;}
+  .stat b{display:block; font-family:'Fraunces', serif; font-size:1.9rem; color:var(--gold-bright); font-weight:600;}
+  .stat span{font-size:0.8rem; color:var(--muted);}
+
+  .pillar{padding:64px 0; border-bottom:1px solid var(--line);}
+  .pillar-head{margin-bottom:34px;}
+  .pillar-label{
+    font-family:'JetBrains Mono', monospace; color:var(--gold); font-size:0.78rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px; display:block;
+  }
+  .pillar h2{font-family:'Fraunces', serif; font-weight:600; font-size:1.8rem; margin:0 0 8px;}
+  .pillar p.desc{color:var(--muted); font-size:0.92rem; margin:0; max-width:52ch;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:18px;}
+  .card{
+    background: linear-gradient(165deg, var(--navy-800), var(--navy-900));
+    border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px; display:flex; flex-direction:column; gap:14px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover{transform:translateY(-3px); border-color:var(--gold);}
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .card h3{font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; margin:0;}
+  .card p{font-size:0.88rem; color:var(--muted); margin:0; flex-grow:1;}
+  .tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.64rem; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--navy-950); background:var(--gold); padding:3px 8px;
+    border-radius:100px; white-space:nowrap;
+  }
+  .card-link{
+    display:inline-flex; align-items:center; gap:6px; text-decoration:none;
+    font-size:0.84rem; font-weight:600; color:var(--gold-bright); margin-top:auto; padding-top:6px;
+    border-top:1px dashed var(--line);
+  }
+  .card-link:hover{color:var(--cream);}
+  .card-link .arrow{transition:transform 0.2s;}
+  .card-link:hover .arrow{transform:translateX(3px);}
+
+  /* ---- Locked cards ---- */
+  .card.locked{
+    position:relative; filter:blur(3.5px) grayscale(0.4); opacity:0.55; pointer-events:none;
+    user-select:none;
+  }
+  .lock-overlay{
+    grid-column:1/-1; margin-top:-4px;
+    border:1px dashed var(--gold); border-radius:var(--radius);
+    background: rgba(201,162,39,0.06);
+    padding:22px 26px; display:flex; align-items:center; justify-content:space-between;
+    gap:18px; flex-wrap:wrap;
+  }
+  .lock-overlay .lock-text{display:flex; align-items:center; gap:12px; font-size:0.9rem; color:var(--cream);}
+  .lock-icon{
+    width:34px; height:34px; border-radius:50%; background:var(--gold); color:var(--navy-950);
+    display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0;
+  }
+  .lock-overlay strong{color:var(--gold-bright);}
+
+  .btn{
+    display:inline-block; background:var(--gold); color:var(--navy-950); text-decoration:none;
+    font-weight:700; font-size:0.86rem; padding:12px 22px; border-radius:100px;
+    white-space:nowrap; transition: background 0.2s;
+  }
+  .btn:hover{background:var(--gold-bright);}
+  .btn.large{padding:16px 30px; font-size:0.95rem;}
+
+  /* ---- Big upgrade CTA ---- */
+  .upgrade-block{
+    margin:70px 0 0; padding:56px 44px; border-radius:22px; text-align:center;
+    background: radial-gradient(700px 300px at 50% -20%, rgba(201,162,39,0.22), transparent 70%), linear-gradient(150deg, var(--navy-800), var(--navy-700));
+    border:1px solid var(--gold);
+  }
+  .upgrade-block .node-mark{justify-content:center; margin-bottom:18px;}
+  .upgrade-block h3{font-family:'Fraunces', serif; font-size:2rem; margin:0 0 14px; font-weight:600;}
+  .upgrade-block p{color:var(--muted); max-width:52ch; margin:0 auto 30px; font-size:0.98rem;}
+  .plan-compare{
+    display:flex; gap:20px; justify-content:center; flex-wrap:wrap; margin-bottom:34px;
+  }
+  .plan{
+    background:var(--navy-900); border:1px solid var(--line); border-radius:14px;
+    padding:22px 26px; width:230px; text-align:left;
+  }
+  .plan.highlight{border-color:var(--gold); background:linear-gradient(160deg, var(--navy-800), var(--navy-900));}
+  .plan .plan-name{font-family:'JetBrains Mono', monospace; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-bright);}
+  .plan .plan-price{font-family:'Fraunces', serif; font-size:1.6rem; font-weight:600; margin:8px 0 12px;}
+  .plan ul{margin:0; padding:0 0 0 18px; font-size:0.82rem; color:var(--muted);}
+  .plan li{margin-bottom:6px;}
+
+  footer{padding:56px 0 40px; text-align:center; color:var(--muted); font-size:0.82rem;}
+  footer .node-mark{justify-content:center; margin-bottom:14px;}
+  footer a{color:var(--gold-bright); text-decoration:none;}
+
+  @media (max-width:640px){
+    .top-inner{padding:14px 20px;}
+    .wrap{padding:0 20px;}
+    .upgrade-block{padding:40px 22px;}
+  }
+
+  .notice,.access-status{border:1px solid var(--line);border-radius:var(--radius);background:rgba(201,162,39,0.06);padding:18px 22px;color:var(--muted);font-size:0.88rem;}
+  .notice strong{color:var(--cream);}
+  .plan .btn{display:block;text-align:center;white-space:normal;margin-top:16px;}
+  .plan-note{color:var(--muted);font-size:0.86rem;margin:20px auto 0;max-width:70ch;}
+  .access-status{max-width:720px;margin:26px auto;text-align:center;}
+  [hidden]{display:none !important;}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="top-inner">
+  <a class="brand" href="index.html" style="text-decoration:none;color:inherit"><span class="node-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="brand-name">Jossy<b>B</b> Resource Vault</span><span class="tier-tag">Free Preview</span></a>
+  <a class="top-btn" href="#plans">See access plans</a>
+</div></header>
+<section class="hero"><div class="wrap">
+  <div class="eyebrow"><span class="node-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span> Free member preview</div>
+  <h1>Useful links to support your <em>next step.</em></h1>
+  <p class="hero-sub">Explore a free sample of official platforms and learning resources across business development, jobs and linkup, investment education, and skill acquisition. JossyB curates the directory; each provider independently sets its own terms.</p>
+  <div class="hero-stats"><div class="stat"><b>8</b><span>Links open in this preview</span></div><div class="stat"><b>16</b><span>Links in the full directory</span></div><div class="stat"><b>4</b><span>Service areas</span></div></div>
+</div></section>
+<main class="wrap">
+  <p class="notice"><strong>Before you use a link:</strong> These third-party resources are independent of JossyB. Fees, eligibility and availability can change. Job listings do not guarantee employment. Investment links are educational and are not financial advice or recommendations.</p>
+  <section class="pillar" id="business"><div class="pillar-head"><span class="pillar-label">01 · Business Development</span><h2>Visibility, customer communication and practical business support</h2><p class="desc">2 of 4 links open in the free preview. The remaining two are included with Premium access.</p></div><div class="grid"><article class="card"><div class="card-top"><h3>Google Business Profile</h3><span class="tag">Free · Eligible businesses</span></div><p>Manage an eligible business profile on Google Search and Maps. Verification and in-person customer contact requirements apply; Google Ads is a separate paid service.</p><a class="card-link" href="https://business.google.com/add" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card"><div class="card-top"><h3>WhatsApp Business</h3><span class="tag">Free app · Paid options</span></div><p>Use a business profile, product catalog and messaging tools. The app is free to download, while some features and Business Platform messaging can incur charges.</p><a class="card-link" href="https://whatsappbusiness.com/products/business-app/" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card locked" aria-label="Locked resource preview"><div class="card-top"><h3>HubSpot Academy — Inbound Sales</h3><span class="tag">Free course</span></div><p>Available in the Premium resource directory.</p></article><article class="card locked" aria-label="Locked resource preview"><div class="card-top"><h3>SMEDAN Programs</h3><span class="tag">Program directory</span></div><p>Available in the Premium resource directory.</p></article><div class="lock-overlay"><div class="lock-text"><span class="lock-icon" aria-hidden="true">🔒</span><span><strong>2 more Business Development resources</strong> are included with Premium access.</span></div><a class="btn" href="https://paystack.shop/pay/7jsodh2jvy" target="_blank" rel="noopener noreferrer">View Premium checkout →</a></div></div></section>
+<section class="pillar" id="jobs"><div class="pillar-head"><span class="pillar-label">02 · Job Opportunity &amp; Linkup</span><h2>Find openings and prepare to apply</h2><p class="desc">2 of 4 links open in the free preview. The remaining two are included with Growth access.</p></div><div class="grid"><article class="card"><div class="card-top"><h3>Jobberman Nigeria</h3><span class="tag">Jobseekers · Free</span></div><p>Search Nigerian vacancies, build a profile and access career resources. Jobseeker access is free; do not pay a recruiter to apply, and verify each employer.</p><a class="card-link" href="https://www.jobberman.com/" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card"><div class="card-top"><h3>LinkedIn Jobs Nigeria</h3><span class="tag">Free search · Optional paid plan</span></div><p>Search Nigeria-based listings and connect with professionals. Basic search is free; some features are paid, and application rules are set by each employer.</p><a class="card-link" href="https://ng.linkedin.com/jobs/jobs-in-nigeria/" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card locked" aria-label="Locked resource preview"><div class="card-top"><h3>MyJobMag Nigeria</h3><span class="tag">Jobseekers · Free</span></div><p>Available in the Growth resource directory.</p></article><article class="card locked" aria-label="Locked resource preview"><div class="card-top"><h3>Remote.co — International Jobs</h3><span class="tag">Paid membership</span></div><p>Available in the Growth resource directory.</p></article><div class="lock-overlay"><div class="lock-text"><span class="lock-icon" aria-hidden="true">🔒</span><span><strong>2 more Job Opportunity &amp; Linkup resources</strong> are included with Growth access.</span></div><a class="btn" href="https://paystack.shop/pay/bimmg7om4u" target="_blank" rel="noopener noreferrer">View Growth checkout →</a></div></div></section>
+<section class="pillar" id="investing"><div class="pillar-head"><span class="pillar-label">03 · Investment Education</span><h2>Learn the basics and verify before acting</h2><p class="desc">2 of 4 links open in the free preview. The remaining two are included with Growth access.</p></div><div class="grid"><article class="card"><div class="card-top"><h3>SEC Nigeria — Find a Registered Operator</h3><span class="tag">Regulator lookup</span></div><p>Search the official register for a Nigerian capital-market operator and its listed scope/status. Registration is not a guarantee of returns or a substitute for due diligence.</p><a class="card-link" href="https://sec.gov.ng/for-investors/find-a-registered-operator/" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card"><div class="card-top"><h3>NGX — Becoming an Investor</h3><span class="tag">Market guide</span></div><p>Read NGX’s overview of the investor onboarding route. Trading requires a registered dealer/stockbroker and the applicable KYC process; this is not a recommendation to trade.</p><a class="card-link" href="https://ngxgroup.com/exchange/trade/becoming-an-investor/" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card locked" aria-label="Locked resource preview"><div class="card-top"><h3>Investor.gov — Introduction to Investing</h3><span class="tag">U.S. SEC education</span></div><p>Available in the Growth resource directory.</p></article><article class="card locked" aria-label="Locked resource preview"><div class="card-top"><h3>NDIC — Deposit Insurance FAQs</h3><span class="tag">Depositor education</span></div><p>Available in the Growth resource directory.</p></article><div class="lock-overlay"><div class="lock-text"><span class="lock-icon" aria-hidden="true">🔒</span><span><strong>2 more Investment Education resources</strong> are included with Growth access.</span></div><a class="btn" href="https://paystack.shop/pay/bimmg7om4u" target="_blank" rel="noopener noreferrer">View Growth checkout →</a></div></div></section>
+<section class="pillar" id="skills"><div class="pillar-head"><span class="pillar-label">04 · Skill Acquisition</span><h2>Build practical skills at your own pace</h2><p class="desc">2 of 4 links open in the free preview. The remaining two are included with Premium access.</p></div><div class="grid"><article class="card"><div class="card-top"><h3>Google Skillshop</h3><span class="tag">Free online training</span></div><p>Self-paced training for Google Ads, Analytics and other Google products. Certification requirements vary by learning track.</p><a class="card-link" href="https://skillshop.withgoogle.com/" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card"><div class="card-top"><h3>Microsoft Learn</h3><span class="tag">Free learning paths</span></div><p>Explore interactive modules and guided learning paths. Microsoft certification exams or credentials may have separate fees.</p><a class="card-link" href="https://learn.microsoft.com/en-us/training/" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card locked" aria-label="Locked resource preview"><div class="card-top"><h3>freeCodeCamp</h3><span class="tag">Free coding curriculum</span></div><p>Available in the Premium resource directory.</p></article><article class="card locked" aria-label="Locked resource preview"><div class="card-top"><h3>IBM SkillsBuild</h3><span class="tag">Free learning</span></div><p>Available in the Premium resource directory.</p></article><div class="lock-overlay"><div class="lock-text"><span class="lock-icon" aria-hidden="true">🔒</span><span><strong>2 more Skill Acquisition resources</strong> are included with Premium access.</span></div><a class="btn" href="https://paystack.shop/pay/7jsodh2jvy" target="_blank" rel="noopener noreferrer">View Premium checkout →</a></div></div></section>
+  <section class="upgrade-block" id="plans">
+    <div class="node-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <h3>Choose the access that fits your goal</h3>
+    <p>Your JossyB membership unlocks the directory page for its active term. It does not pay for or guarantee access to third-party products, courses, certificates, jobs, or investment results.</p>
+    <div class="plan-compare">
+      <div class="plan"><div class="plan-name">Growth · 30 days</div><div class="plan-price">₦5,000</div><ul><li>All 4 job and linkup resources</li><li>All 4 investment education resources</li><li>8 resources across 2 service areas</li></ul><a class="btn" href="https://paystack.shop/pay/bimmg7om4u" target="_blank" rel="noopener noreferrer">View Growth checkout →</a></div>
+      <div class="plan highlight"><div class="plan-name">Premium · 90 days</div><div class="plan-price">₦12,000</div><ul><li>All 16 curated resource links</li><li>All 4 service areas</li><li>90-day Premium resource access</li></ul><a class="btn" href="https://paystack.shop/pay/7jsodh2jvy" target="_blank" rel="noopener noreferrer">View Premium checkout →</a></div>
+    </div>
+    <p class="plan-note">The Business Development checkout also includes Premium resource access for 90 days; review the checkout terms before paying. <a href="https://paystack.shop/pay/j0ksmaeht" target="_blank" rel="noopener noreferrer">View Business Development checkout</a>.</p>
+  </section>
+</main>
+<footer><div class="node-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div>JossyB Technical Resources Nigeria Limited · Resource directory</div><div style="margin-top:6px">Already a member? <a href="dashboard.html">Open your dashboard</a> · Questions? <a href="mailto:jossyb136@gmail.com">jossyb136@gmail.com</a></div></footer>
+</body>
+</html>

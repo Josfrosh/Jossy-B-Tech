@@ -127,6 +127,7 @@
     .resource-row:hover{background:var(--navy-800);}
     .resource-row .rtitle{font-weight:500; font-size:0.95rem;}
     .resource-row .rtag{font-family:var(--font-mono); font-size:0.7rem; color:var(--success); border:1px solid rgba(62,155,111,0.4); padding:3px 9px; border-radius:999px;}
+    .resources-hint{color:var(--ink-300);font-size:0.92rem;margin:0 0 16px;}
 
     footer{text-align:center; padding:30px; color:var(--ink-500); font-size:0.82rem; border-top:1px solid var(--line);}
     @media (max-width:640px){
@@ -206,16 +207,17 @@
     <p class="eyebrow">Grow with us</p>
     <h2 style="margin-bottom:18px;">Explore Services</h2>
     <div class="services-grid">
-      <a class="service-card" href="https://paystack.shop/pay/j0ksmaeht"><span class="ic">📈</span><h3>Business Development</h3><p>Production-ready AI automation for business growth. $50 session + Premium access for 90 days.</p></a>
-      <a class="service-card" href="https://paystack.shop/pay/bimmg7om4u"><span class="ic">🔗</span><h3>Job Opportunity & Linkup</h3><p>Verified job openings and career connections. Starter access ₦5,000 for 30 days.</p></a>
-      <a class="service-card" href="https://paystack.shop/pay/bimmg7om4u"><span class="ic">📊</span><h3>Investment Opportunity</h3><p>Vetted investment options — shares and more. Starter access ₦5,000 for 30 days.</p></a>
-      <a class="service-card" href="https://paystack.shop/pay/7jsodh2jvy"><span class="ic">🎓</span><h3>Skill Acquisition</h3><p>Skills, certificate and job linkup, at your pace. Premium access ₦12,000 for 90 days.</p></a>
+      <a class="service-card" href="https://paystack.shop/pay/j0ksmaeht"><span class="ic">📈</span><h3>Business Development</h3><p>Business development session with Premium resource access for 90 days. Review the checkout for current terms.</p></a>
+      <a class="service-card" href="https://paystack.shop/pay/bimmg7om4u"><span class="ic">🔗</span><h3>Job Opportunity & Linkup</h3><p>Job-search and career resources. Growth access ₦5,000 for 30 days.</p></a>
+      <a class="service-card" href="https://paystack.shop/pay/bimmg7om4u"><span class="ic">📊</span><h3>Investment Education</h3><p>Investor education and official verification links, not investment recommendations. Growth access ₦5,000 for 30 days.</p></a>
+      <a class="service-card" href="https://paystack.shop/pay/7jsodh2jvy"><span class="ic">🎓</span><h3>Skill Acquisition</h3><p>Courses and training resources to build skills at your own pace. Premium access ₦12,000 for 90 days.</p></a>
     </div>
   </section>
 
   <section id="myResourcesSection" style="display:none;">
     <p class="eyebrow">Your resources</p>
     <h2 style="margin-bottom:18px;">Unlocked for your plan</h2>
+    <p class="resources-hint" id="resourcesHint"></p>
     <div class="resource-list" id="myResourcesList"></div>
   </section>
 
@@ -304,6 +306,46 @@
     return userId ? userId.replace(/-/g, '').slice(0, 8).toUpperCase() : null;
   }
 
+  function renderResourceAccess(tier) {
+    const section = document.getElementById('myResourcesSection');
+    const list = document.getElementById('myResourcesList');
+    const hint = document.getElementById('resourcesHint');
+    const destinations = {
+      free: {
+        href: 'resources-free.html',
+        title: 'Open the free resource preview',
+        tag: 'Preview',
+        hint: 'Explore 8 public preview links. Paid directory access appears after a successful payment is verified and your active plan is saved.'
+      },
+      growth: {
+        href: 'resources-growth.html',
+        title: 'Open Growth resources',
+        tag: 'Growth active',
+        hint: 'Your active Growth plan opens the job-search and investment-education sections.'
+      },
+      premium: {
+        href: 'resources-premium.html',
+        title: 'Open the full Premium directory',
+        tag: 'Premium active',
+        hint: 'Your active Premium plan opens all four service areas. Third-party providers may have separate fees and terms.'
+      }
+    };
+    const destination = destinations[tier] || destinations.free;
+    const row = document.createElement('a');
+    row.className = 'resource-row';
+    row.href = destination.href;
+    const title = document.createElement('span');
+    title.className = 'rtitle';
+    title.textContent = destination.title;
+    const tag = document.createElement('span');
+    tag.className = 'rtag';
+    tag.textContent = destination.tag;
+    row.append(title, tag);
+    list.replaceChildren(row);
+    hint.textContent = destination.hint;
+    section.style.display = 'block';
+  }
+
   async function loadDashboard() {
     const { data: { user }, error: userErr } = await dashboardAuthClient.auth.getUser();
 
@@ -343,7 +385,7 @@
         const expiresAt = data.subscription_end_date || data.plan_expires_at;
         const hasFutureExpiry = !expiresAt || new Date(expiresAt).getTime() > Date.now();
         isActivePaid = tier !== 'free' && data.subscription_status === 'active' && hasFutureExpiry;
-        if (!hasFutureExpiry) tier = 'free';
+        if (!isActivePaid) tier = 'free';
       }
     } catch (e) {
       console.warn('No profiles row found or error occurred:', e);
@@ -356,6 +398,7 @@
     document.getElementById('statTier').textContent = tierDisplay;
     setPathState(TIER_ORDER.includes(tier) ? tier : 'free');
     setTierBadge(tier);
+    renderResourceAccess(tier);
 
     if (isActivePaid) {
       const statTierEl = document.getElementById('statTier');

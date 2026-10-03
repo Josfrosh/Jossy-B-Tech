@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growth Resource Directory | JossyB</title>
+<meta name="description" content="Member resource directory from JossyB with third-party business, job-search, investment-education and skills resources. Provider terms and fees apply.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#070f22;
+    --navy-900:#0b1c3a;
+    --navy-800:#122747;
+    --navy-700:#1a3459;
+    --gold:#c9a227;
+    --gold-bright:#e9c765;
+    --cream:#f4efe2;
+    --muted:#93a0bd;
+    --line: rgba(201,162,39,0.22);
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--navy-950);
+    color: var(--cream);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---- Header ---- */
+  header.top{
+    position:sticky; top:0; z-index:20;
+    background: rgba(7,15,34,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-name{font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; letter-spacing:0.01em;}
+  .brand-name b{color:var(--gold-bright); font-weight:700;}
+  .tier-tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--navy-950); background:var(--gold-bright);
+    padding:4px 10px; border-radius:100px; font-weight:500;
+  }
+  nav.top-links{display:flex; gap:26px; font-size:0.88rem; color:var(--muted);}
+  nav.top-links a{text-decoration:none;}
+  nav.top-links a:hover{color:var(--gold-bright);}
+
+  /* ---- Four-node mark ---- */
+  .node-mark{display:inline-flex; align-items:center; gap:5px;}
+  .node-mark span{width:7px; height:7px; border-radius:50%; background:var(--gold);}
+  .node-mark span:nth-child(2){background:var(--gold-bright);}
+  .node-mark span:nth-child(3){background:var(--gold);}
+  .node-mark span:nth-child(4){background:var(--gold-bright);}
+
+  /* ---- Hero ---- */
+  .hero{padding:88px 0 64px; position:relative; overflow:hidden;}
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(600px 300px at 85% -10%, rgba(201,162,39,0.14), transparent 70%),
+      radial-gradient(500px 260px at -5% 20%, rgba(201,162,39,0.08), transparent 70%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:0.74rem; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--gold-bright); margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  h1{
+    font-family:'Fraunces', serif; font-weight:600; font-size:clamp(2.2rem, 4.4vw, 3.6rem);
+    line-height:1.08; margin:0 0 20px; max-width:14ch;
+  }
+  h1 em{font-style:italic; color:var(--gold-bright); font-weight:400;}
+  .hero-sub{font-size:1.08rem; color:var(--muted); max-width:56ch; margin:0 0 36px;}
+  .hero-stats{display:flex; gap:40px; flex-wrap:wrap;}
+  .stat b{display:block; font-family:'Fraunces', serif; font-size:1.9rem; color:var(--gold-bright); font-weight:600;}
+  .stat span{font-size:0.8rem; color:var(--muted); letter-spacing:0.02em;}
+
+  /* ---- Pillar nav rail ---- */
+  .rail{
+    display:flex; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    margin-top:56px; overflow-x:auto;
+  }
+  .rail a{
+    flex:1; min-width:180px; text-align:center; padding:16px 10px; text-decoration:none;
+    font-size:0.82rem; letter-spacing:0.03em; color:var(--muted); border-right:1px solid var(--line);
+    transition: color 0.2s, background 0.2s;
+  }
+  .rail a:last-child{border-right:none;}
+  .rail a:hover{color:var(--gold-bright); background:rgba(201,162,39,0.06);}
+  .rail .num{font-family:'JetBrains Mono', monospace; color:var(--gold); margin-right:6px;}
+
+  /* ---- Pillar sections ---- */
+  .pillar{padding:76px 0; border-bottom:1px solid var(--line);}
+  .pillar:last-of-type{border-bottom:none;}
+  .pillar-head{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:24px;
+    margin-bottom:42px; flex-wrap:wrap;
+  }
+  .pillar-label{
+    font-family:'JetBrains Mono', monospace; color:var(--gold); font-size:0.78rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px; display:block;
+  }
+  .pillar h2{font-family:'Fraunces', serif; font-weight:600; font-size:2rem; margin:0;}
+  .pillar-desc{color:var(--muted); font-size:0.95rem; max-width:42ch; text-align:right;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:18px;}
+  .card{
+    background: linear-gradient(165deg, var(--navy-800), var(--navy-900));
+    border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px; display:flex; flex-direction:column; gap:14px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover{transform:translateY(-3px); border-color:var(--gold);}
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .card h3{font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; margin:0;}
+  .card p{font-size:0.88rem; color:var(--muted); margin:0; flex-grow:1;}
+  .tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.64rem; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--navy-950); background:var(--gold); padding:3px 8px;
+    border-radius:100px; white-space:nowrap;
+  }
+  .card-link{
+    display:inline-flex; align-items:center; gap:6px; text-decoration:none;
+    font-size:0.84rem; font-weight:600; color:var(--gold-bright); margin-top:auto; padding-top:6px;
+    border-top:1px dashed var(--line);
+  }
+  .card-link:hover{color:var(--cream);}
+  .card-link .arrow{transition:transform 0.2s;}
+  .card-link:hover .arrow{transform:translateX(3px);}
+
+  /* ---- CTA strip ---- */
+  .cta-strip{
+    margin:70px 0 0; padding:44px; border-radius:20px;
+    background: linear-gradient(120deg, var(--navy-800), var(--navy-700));
+    border:1px solid var(--gold); display:flex; align-items:center; justify-content:space-between;
+    gap:24px; flex-wrap:wrap;
+  }
+  .cta-strip h3{font-family:'Fraunces', serif; margin:0 0 6px; font-size:1.4rem;}
+  .cta-strip p{margin:0; color:var(--muted); font-size:0.92rem;}
+  .btn{
+    display:inline-block; background:var(--gold); color:var(--navy-950); text-decoration:none;
+    font-weight:700; font-size:0.9rem; padding:14px 26px; border-radius:100px;
+    white-space:nowrap; transition: background 0.2s;
+  }
+  .btn:hover{background:var(--gold-bright);}
+
+  footer{padding:56px 0 40px; text-align:center; color:var(--muted); font-size:0.82rem;}
+  footer .node-mark{justify-content:center; margin-bottom:14px;}
+  footer a{color:var(--gold-bright); text-decoration:none;}
+
+  @media (max-width:640px){
+    .top-inner{padding:14px 20px;}
+    nav.top-links{display:none;}
+    .wrap{padding:0 20px;}
+    .pillar-desc{text-align:left;}
+  }
+
+  .notice,.access-status{border:1px solid var(--line);border-radius:var(--radius);background:rgba(201,162,39,0.06);padding:18px 22px;color:var(--muted);font-size:0.88rem;}
+  .notice strong{color:var(--cream);}
+  .plan .btn{display:block;text-align:center;white-space:normal;margin-top:16px;}
+  .plan-note{color:var(--muted);font-size:0.86rem;margin:20px auto 0;max-width:70ch;}
+  .access-status{max-width:720px;margin:26px auto;text-align:center;}
+  [hidden]{display:none !important;}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="top-inner">
+  <a class="brand" href="dashboard.html" style="text-decoration:none;color:inherit"><span class="node-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="brand-name">Jossy<b>B</b> Resource Vault</span><span class="tier-tag">Growth</span></a>
+  <nav class="top-links"><a href="#jobs">Job Opportunity &amp; Linkup</a><a href="#investing">Investment Education</a><a href="dashboard.html">Dashboard</a></nav>
+</div></header>
+<div class="wrap"><p class="access-status" id="accessStatus" role="status" aria-live="polite">Checking your active membership…</p></div>
+<div id="protectedContent" hidden>
+<section class="hero"><div class="wrap">
+  <div class="eyebrow"><span class="node-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>Growth member access</div>
+  <h1>Job search and investment education resources</h1>
+  <p class="hero-sub">Your active Growth membership opens the job and linkup and investment-education sections below. The directory links to independent third-party resources; verify current eligibility, fees, and provider terms.</p>
+  <div class="hero-stats"><div class="stat"><b>8</b><span>Resources on this page</span></div><div class="stat"><b>2</b><span>Service areas</span></div><div class="stat"><b>External</b><span>Provider terms apply</span></div></div>
+</div><div class="rail wrap" style="padding:0"><a href="#jobs"><span class="num">01</span>Job Opportunity &amp; Linkup</a><a href="#investing"><span class="num">02</span>Investment Education</a></div></section>
+<main class="wrap">
+  <p class="notice"><strong>Use these links carefully:</strong> JossyB provides a directory only. Providers control their products, fees and rules. Verify current terms. Job outcomes are not promised. Investment content is educational, not personalized financial advice; investments can lose value.</p>
+  <section class="pillar" id="jobs"><div class="pillar-head"><div><span class="pillar-label">01 · Job Opportunity &amp; Linkup</span><h2>Find openings and prepare to apply</h2></div><p class="pillar-desc">Job boards can help with discovery, but employers set the requirements and no listing guarantees employment.</p></div><div class="grid"><article class="card"><div class="card-top"><h3>Jobberman Nigeria</h3><span class="tag">Jobseekers · Free</span></div><p>Search Nigerian vacancies, build a profile and access career resources. Jobseeker access is free; do not pay a recruiter to apply, and verify each employer.</p><a class="card-link" href="https://www.jobberman.com/" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card"><div class="card-top"><h3>LinkedIn Jobs Nigeria</h3><span class="tag">Free search · Optional paid plan</span></div><p>Search Nigeria-based listings and connect with professionals. Basic search is free; some features are paid, and application rules are set by each employer.</p><a class="card-link" href="https://ng.linkedin.com/jobs/jobs-in-nigeria/" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card"><div class="card-top"><h3>MyJobMag Nigeria</h3><span class="tag">Jobseekers · Free</span></div><p>Browse Nigerian vacancies, career information and jobseeker CV tools. Check each employer and listing carefully; employment is not guaranteed.</p><a class="card-link" href="https://www.myjobmag.com/" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card"><div class="card-top"><h3>Remote.co — International Jobs</h3><span class="tag">Paid membership</span></div><p>Browse international remote-work listings. Remote.co advertises paid, auto-renewing membership; each employer may restrict countries or work authorization, so check the current price and listing terms first.</p><a class="card-link" href="https://remote.co/remote-jobs/international" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article></div></section>
+<section class="pillar" id="investing"><div class="pillar-head"><div><span class="pillar-label">02 · Investment Education</span><h2>Learn the basics and verify before acting</h2></div><p class="pillar-desc">Start with regulators and primary educational sources. These links are for learning and checks, not investment recommendations.</p></div><div class="grid"><article class="card"><div class="card-top"><h3>SEC Nigeria — Find a Registered Operator</h3><span class="tag">Regulator lookup</span></div><p>Search the official register for a Nigerian capital-market operator and its listed scope/status. Registration is not a guarantee of returns or a substitute for due diligence.</p><a class="card-link" href="https://sec.gov.ng/for-investors/find-a-registered-operator/" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card"><div class="card-top"><h3>NGX — Becoming an Investor</h3><span class="tag">Market guide</span></div><p>Read NGX’s overview of the investor onboarding route. Trading requires a registered dealer/stockbroker and the applicable KYC process; this is not a recommendation to trade.</p><a class="card-link" href="https://ngxgroup.com/exchange/trade/becoming-an-investor/" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card"><div class="card-top"><h3>Investor.gov — Introduction to Investing</h3><span class="tag">U.S. SEC education</span></div><p>A plain-language guide to investment goals, risk, time horizons and diversification. It is U.S.-specific education, not Nigerian legal, tax or personal investment advice.</p><a class="card-link" href="https://www.investor.gov/introduction-investing" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article><article class="card"><div class="card-top"><h3>NDIC — Deposit Insurance FAQs</h3><span class="tag">Depositor education</span></div><p>Learn which deposits may be covered and what exclusions apply. Limits and rules can change; deposit insurance does not cover shares, funds or cryptoassets.</p><a class="card-link" href="https://ndichelpdesk.zohodesk.com/portal/en/kb/articles/faqs-and-facts-about-deposit-insurance-in-nigeria" target="_blank" rel="noopener noreferrer">Visit official resource <span class="arrow" aria-hidden="true">→</span></a></article></div></section><div class="cta-strip"><div><h3>Need all four service areas?</h3><p>Premium access includes the full 16-link JossyB directory for its active term.</p></div><a class="btn" href="https://paystack.shop/pay/7jsodh2jvy" target="_blank" rel="noopener noreferrer">View Premium checkout</a></div>
+</main>
+<footer><div class="node-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div>JossyB Technical Resources Nigeria Limited · Member resource directory</div><div style="margin-top:6px">Questions? <a href="mailto:jossyb136@gmail.com">jossyb136@gmail.com</a></div></footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function verifyResourceAccess() {
+  const status = document.getElementById('accessStatus');
+  try {
+    const client = window.supabase.createClient('https://ghsnlxqaztuovxlairvn.supabase.co', 'sb_publishable_4hkjbAEhrx9kApuq7GWKPw_a5kh3RZp');
+    const { data: { session }, error: sessionError } = await client.auth.getSession();
+    if (sessionError) throw sessionError;
+    if (!session || !session.user) { window.location.replace('login.html'); return; }
+    const { data: profile, error } = await client.from('profiles')
+      .select('plan, subscription_status, subscription_end_date, plan_expires_at')
+      .eq('id', session.user.id).maybeSingle();
+    if (error) throw error;
+    const rawPlan = String(profile && profile.plan || 'free').toLowerCase();
+    let tier = rawPlan === 'starter' ? 'growth' : rawPlan;
+    const expiry = profile && (profile.subscription_end_date || profile.plan_expires_at);
+    const expiryMs = expiry ? new Date(expiry).getTime() : Infinity;
+    const active = Boolean(profile && profile.subscription_status === 'active' && expiryMs > Date.now());
+    if (!active) tier = 'free';
+    const required = 'growth';
+    if (required === 'growth' && active && tier === 'premium') {
+      window.location.replace('resources-premium.html'); return;
+    }
+    if (!active || (required === 'premium' && tier !== 'premium') || (required === 'growth' && tier !== 'growth')) {
+      window.location.replace('resources-free.html'); return;
+    }
+    document.getElementById('protectedContent').hidden = false;
+    status.remove();
+  } catch (error) {
+    console.error('Resource membership verification failed:', error);
+    status.textContent = 'We could not verify your membership right now. Please return to your dashboard and try again.';
+  }
+})();
+</script>
+</body>
+</html>

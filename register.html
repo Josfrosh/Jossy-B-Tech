@@ -393,7 +393,8 @@
       clearReferralCode();
 
       // Redirect to login with registered flag
-      window.location.href = 'login.html?registered=1';
+      const nextPath = typeof getPostLoginPath === 'function' ? getPostLoginPath('') : '';
+      window.location.href = 'login.html?registered=1' + (nextPath ? '&next=' + encodeURIComponent(nextPath) : '');
     } catch (err) {
       showError('An unexpected error occurred. Please try again.');
       submitBtn.disabled = false;
@@ -406,7 +407,8 @@
     googleBtn.disabled = true;
     googleBtn.textContent = 'Redirecting...';
 
-    const redirectUrl = getOAuthRedirectUrl('dashboard.html');
+    const redirectPath = typeof getPostLoginPath === 'function' ? getPostLoginPath('dashboard.html') : 'dashboard.html';
+    const redirectUrl = getOAuthRedirectUrl(redirectPath);
     const referralCode = referralInput.value.trim();
 
     try {
@@ -433,6 +435,9 @@
       googleBtn.textContent = 'Continue with Google';
     }
   });
+</script>
+<script>
+(() => { const next = typeof getPostLoginPath === 'function' ? getPostLoginPath('') : ''; if (!next) return; document.querySelectorAll('a[href^="login.html"]').forEach((a) => { a.href = 'login.html?next=' + encodeURIComponent(next); }); })();
 </script>
 </body>
 </html>

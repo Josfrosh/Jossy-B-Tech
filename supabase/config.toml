@@ -3,3 +3,6 @@ verify_jwt = false
 
 [functions.claim-pending-payment]
 verify_jwt = true
+
+[functions.create-service-checkout]
+verify_jwt = true

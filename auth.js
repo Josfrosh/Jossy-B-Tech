@@ -130,10 +130,31 @@ function onAuthStateChange(callback) {
  * Redirect logged-in users away from public pages
  * Call this on index.html, login.html, register.html
  */
+function getPostLoginPath(fallback = 'dashboard.html') {
+  const raw = new URLSearchParams(window.location.search).get('next') || '';
+  if (!raw) return fallback;
+  try {
+    const url = new URL(raw, window.location.href);
+    if (url.origin !== window.location.origin) return fallback;
+    const prefix = window.location.pathname.replace(/[^/]*$/, '');
+    const service = url.searchParams.get('service') || '';
+    if (!['jobs', 'investing', 'skills', 'premium'].includes(service)) return fallback;
+    if (url.pathname === prefix + 'service-checkout.html') {
+      return 'service-checkout.html?service=' + encodeURIComponent(service);
+    }
+    if (url.pathname === prefix + 'payment-return.html') {
+      const reference = url.searchParams.get('reference') || url.searchParams.get('trxref') || '';
+      if (!/^[A-Za-z0-9.=-]{1,100}$/.test(reference)) return fallback;
+      return 'payment-return.html?service=' + encodeURIComponent(service) + '&reference=' + encodeURIComponent(reference);
+    }
+    return fallback;
+  } catch { return fallback; }
+}
+
 async function redirectIfLoggedIn() {
   const session = await getActiveSession();
   if (session && session.user) {
-    window.location.href = 'dashboard.html';
+    window.location.href = getPostLoginPath();
   }
 }
 

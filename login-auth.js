@@ -88,7 +88,7 @@
         }
         if (data?.session && data?.user) {
           redirected = true;
-          window.location.replace('dashboard.html');
+          window.location.replace(typeof getPostLoginPath === 'function' ? getPostLoginPath() : 'dashboard.html');
           return;
         }
         showStatus('Sign-in did not complete. Please try again.');
@@ -112,8 +112,8 @@
       googleButton.textContent = 'Connecting to Google…';
       try {
         const redirectTo = typeof getOAuthRedirectUrl === 'function'
-          ? getOAuthRedirectUrl('dashboard.html')
-          : new URL('dashboard.html', window.location.href).href;
+          ? getOAuthRedirectUrl(typeof getPostLoginPath === 'function' ? getPostLoginPath() : 'dashboard.html')
+          : new URL(typeof getPostLoginPath === 'function' ? getPostLoginPath() : 'dashboard.html', window.location.href).href;
         const { error } = await authClient.auth.signInWithOAuth({
           provider: 'google',
           options: {
@@ -139,3 +139,5 @@
     });
   }
 })();
+
+(() => { const next = typeof getPostLoginPath === 'function' ? getPostLoginPath('') : ''; if (!next) return; document.querySelectorAll('a[href^="register.html"]').forEach((a) => { a.href = 'register.html?next=' + encodeURIComponent(next); }); })();

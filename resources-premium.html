@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Premium Full Access Resource Directory | JossyB</title>
+<meta content="Premium access to JossyB’s four service resource libraries, including job, business, skills and Nigerian listed-company investor-relations sources." name="description"/>
+<meta content="noindex,nofollow" name="robots"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --navy-950:#070f22;
+    --navy-900:#0b1c3a;
+    --navy-800:#122747;
+    --navy-700:#1a3459;
+    --gold:#c9a227;
+    --gold-bright:#e9c765;
+    --cream:#f4efe2;
+    --muted:#93a0bd;
+    --line: rgba(201,162,39,0.22);
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--navy-950);
+    color: var(--cream);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---- Header ---- */
+  header.top{
+    position:sticky; top:0; z-index:20;
+    background: rgba(7,15,34,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .top-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-name{font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; letter-spacing:0.01em;}
+  .brand-name b{color:var(--gold-bright); font-weight:700;}
+  .tier-tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.68rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--navy-950); background:var(--gold-bright);
+    padding:4px 10px; border-radius:100px; font-weight:500;
+  }
+  nav.top-links{display:flex; gap:26px; font-size:0.88rem; color:var(--muted);}
+  nav.top-links a{text-decoration:none;}
+  nav.top-links a:hover{color:var(--gold-bright);}
+
+  /* ---- Four-node mark ---- */
+  .node-mark{display:inline-flex; align-items:center; gap:5px;}
+  .node-mark span{width:7px; height:7px; border-radius:50%; background:var(--gold);}
+  .node-mark span:nth-child(2){background:var(--gold-bright);}
+  .node-mark span:nth-child(3){background:var(--gold);}
+  .node-mark span:nth-child(4){background:var(--gold-bright);}
+
+  /* ---- Hero ---- */
+  .hero{padding:88px 0 64px; position:relative; overflow:hidden;}
+  .hero::before{
+    content:""; position:absolute; inset:0;
+    background:
+      radial-gradient(600px 300px at 85% -10%, rgba(201,162,39,0.14), transparent 70%),
+      radial-gradient(500px 260px at -5% 20%, rgba(201,162,39,0.08), transparent 70%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:0.74rem; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--gold-bright); margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  h1{
+    font-family:'Fraunces', serif; font-weight:600; font-size:clamp(2.2rem, 4.4vw, 3.6rem);
+    line-height:1.08; margin:0 0 20px; max-width:14ch;
+  }
+  h1 em{font-style:italic; color:var(--gold-bright); font-weight:400;}
+  .hero-sub{font-size:1.08rem; color:var(--muted); max-width:56ch; margin:0 0 36px;}
+  .hero-stats{display:flex; gap:40px; flex-wrap:wrap;}
+  .stat b{display:block; font-family:'Fraunces', serif; font-size:1.9rem; color:var(--gold-bright); font-weight:600;}
+  .stat span{font-size:0.8rem; color:var(--muted); letter-spacing:0.02em;}
+
+  /* ---- Pillar nav rail ---- */
+  .rail{
+    display:flex; gap:0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    margin-top:56px; overflow-x:auto;
+  }
+  .rail a{
+    flex:1; min-width:180px; text-align:center; padding:16px 10px; text-decoration:none;
+    font-size:0.82rem; letter-spacing:0.03em; color:var(--muted); border-right:1px solid var(--line);
+    transition: color 0.2s, background 0.2s;
+  }
+  .rail a:last-child{border-right:none;}
+  .rail a:hover{color:var(--gold-bright); background:rgba(201,162,39,0.06);}
+  .rail .num{font-family:'JetBrains Mono', monospace; color:var(--gold); margin-right:6px;}
+
+  /* ---- Pillar sections ---- */
+  .pillar{padding:76px 0; border-bottom:1px solid var(--line);}
+  .pillar:last-of-type{border-bottom:none;}
+  .pillar-head{
+    display:flex; align-items:flex-end; justify-content:space-between; gap:24px;
+    margin-bottom:42px; flex-wrap:wrap;
+  }
+  .pillar-label{
+    font-family:'JetBrains Mono', monospace; color:var(--gold); font-size:0.78rem;
+    letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px; display:block;
+  }
+  .pillar h2{font-family:'Fraunces', serif; font-weight:600; font-size:2rem; margin:0;}
+  .pillar-desc{color:var(--muted); font-size:0.95rem; max-width:42ch; text-align:right;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:18px;}
+  .card{
+    background: linear-gradient(165deg, var(--navy-800), var(--navy-900));
+    border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px; display:flex; flex-direction:column; gap:14px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover{transform:translateY(-3px); border-color:var(--gold);}
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .card h3{font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; margin:0;}
+  .card p{font-size:0.88rem; color:var(--muted); margin:0; flex-grow:1;}
+  .tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.64rem; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--navy-950); background:var(--gold); padding:3px 8px;
+    border-radius:100px; white-space:nowrap;
+  }
+  .card-link{
+    display:inline-flex; align-items:center; gap:6px; text-decoration:none;
+    font-size:0.84rem; font-weight:600; color:var(--gold-bright); margin-top:auto; padding-top:6px;
+    border-top:1px dashed var(--line);
+  }
+  .card-link:hover{color:var(--cream);}
+  .card-link .arrow{transition:transform 0.2s;}
+  .card-link:hover .arrow{transform:translateX(3px);}
+
+  /* ---- CTA strip ---- */
+  .cta-strip{
+    margin:70px 0 0; padding:44px; border-radius:20px;
+    background: linear-gradient(120deg, var(--navy-800), var(--navy-700));
+    border:1px solid var(--gold); display:flex; align-items:center; justify-content:space-between;
+    gap:24px; flex-wrap:wrap;
+  }
+  .cta-strip h3{font-family:'Fraunces', serif; margin:0 0 6px; font-size:1.4rem;}
+  .cta-strip p{margin:0; color:var(--muted); font-size:0.92rem;}
+  .btn{
+    display:inline-block; background:var(--gold); color:var(--navy-950); text-decoration:none;
+    font-weight:700; font-size:0.9rem; padding:14px 26px; border-radius:100px;
+    white-space:nowrap; transition: background 0.2s;
+  }
+  .btn:hover{background:var(--gold-bright);}
+
+  footer{padding:56px 0 40px; text-align:center; color:var(--muted); font-size:0.82rem;}
+  footer .node-mark{justify-content:center; margin-bottom:14px;}
+  footer a{color:var(--gold-bright); text-decoration:none;}
+
+  @media (max-width:640px){
+    .top-inner{padding:14px 20px;}
+    nav.top-links{display:none;}
+    .wrap{padding:0 20px;}
+    .pillar-desc{text-align:left;}
+  }
+
+  .notice,.access-status{border:1px solid var(--line);border-radius:var(--radius);background:rgba(201,162,39,0.06);padding:18px 22px;color:var(--muted);font-size:0.88rem;}
+  .notice strong{color:var(--cream);}
+  .plan .btn{display:block;text-align:center;white-space:normal;margin-top:16px;}
+  .plan-note{color:var(--muted);font-size:0.86rem;margin:20px auto 0;max-width:70ch;}
+  .access-status{max-width:720px;margin:26px auto;text-align:center;}
+  [hidden]{display:none !important;}
+</style>
+</head>
+<body data-required-service="premium">
+<header class="top"><div class="top-inner">
+<a class="brand" href="dashboard.html" style="text-decoration:none;color:inherit"><span aria-hidden="true" class="node-mark"><span></span><span></span><span></span><span></span></span><span class="brand-name">Jossy<b>B</b> Resource Vault</span><span class="tier-tag">Premium</span></a>
+<nav class="top-links"><a href="#business">Business</a><a href="#jobs">Jobs &amp; Linkup</a><a href="#investing">Investing</a><a href="#skills">Skills</a><a href="dashboard.html">Dashboard</a></nav>
+</div></header>
+<div class="wrap"><p aria-live="polite" class="access-status" id="accessStatus" role="status">Checking your active membership…</p></div>
+<div hidden="" id="protectedContent">
+<section class="hero"><div class="wrap">
+<div class="eyebrow"><span aria-hidden="true" class="node-mark"><span></span><span></span><span></span><span></span></span>Premium member access</div>
+<h1>One purchase. Every service library.</h1>
+<p class="hero-sub">Premium members can open all four JossyB resource libraries: business development, job opportunity and linkup, Nigerian company investment research, and skill acquisition. Third-party terms and fees apply.</p>
+<div class="hero-stats"><div class="stat"><b>18</b><span>Curated links</span></div><div class="stat"><b>4</b><span>Service libraries</span></div><div class="stat"><b>External</b><span>Provider terms apply</span></div></div>
+</div><div class="rail wrap" style="padding:0"><a href="#business"><span class="num">01</span>Business Development</a><a href="#jobs"><span class="num">02</span>Job Opportunity &amp; Linkup</a><a href="#investing"><span class="num">03</span>Investment Education</a><a href="#skills"><span class="num">04</span>Skill Acquisition</a></div></section>
+<main class="wrap">
+<p class="notice"><strong>Use these links carefully:</strong> JossyB provides a directory only. Providers control their products, fees and rules. Verify current terms. Job outcomes are not promised. Investment content is educational, not personalized financial advice; investments can lose value.</p>
+<section class="pillar" id="business"><div class="pillar-head"><div><span class="pillar-label">01 · Business Development</span><h2>Visibility, customer communication and practical business support</h2></div><p class="pillar-desc">Official tools, sales learning and Nigerian MSME program information. Each provider sets its own eligibility and terms.</p></div><div class="grid"><article class="card"><div class="card-top"><h3>Google Business Profile</h3><span class="tag">Free · Eligible businesses</span></div><p>Manage an eligible business profile on Google Search and Maps. Verification and in-person customer contact requirements apply; Google Ads is a separate paid service.</p><a class="card-link" href="https://business.google.com/add" rel="noopener noreferrer" target="_blank">Visit official resource <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>WhatsApp Business</h3><span class="tag">Free app · Paid options</span></div><p>Use a business profile, product catalog and messaging tools. The app is free to download, while some features and Business Platform messaging can incur charges.</p><a class="card-link" href="https://whatsappbusiness.com/products/business-app/" rel="noopener noreferrer" target="_blank">Visit official resource <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>HubSpot Academy — Inbound Sales</h3><span class="tag">Free course</span></div><p>Self-paced lessons on buyer research, personalized outreach, discovery conversations and sales presentations. A HubSpot account and course/exam completion are required for certification.</p><a class="card-link" href="https://academy.hubspot.com/courses/inbound-sales" rel="noopener noreferrer" target="_blank">Visit official resource <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>SMEDAN Programs</h3><span class="tag">Program directory</span></div><p>Explore Nigerian MSME programs, including business skills and digital training. Eligibility, fees, intake dates and availability vary by program.</p><a class="card-link" href="https://smedan.gov.ng/our-programs/" rel="noopener noreferrer" target="_blank">Visit official resource <span aria-hidden="true" class="arrow">→</span></a></article></div></section>
+<section class="pillar" id="jobs"><div class="pillar-head"><div><span class="pillar-label">02 · Job Opportunity &amp; Linkup</span><h2>Find openings and prepare to apply</h2></div><p class="pillar-desc">Job boards can help with discovery, but employers set the requirements and no listing guarantees employment.</p></div><div class="grid"><article class="card"><div class="card-top"><h3>Jobberman Nigeria</h3><span class="tag">Jobseekers · Free</span></div><p>Search Nigerian vacancies, build a profile and access career resources. Jobseeker access is free; do not pay a recruiter to apply, and verify each employer.</p><a class="card-link" href="https://www.jobberman.com/" rel="noopener noreferrer" target="_blank">Visit official resource <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>LinkedIn Jobs Nigeria</h3><span class="tag">Free search · Optional paid plan</span></div><p>Search Nigeria-based listings and connect with professionals. Basic search is free; some features are paid, and application rules are set by each employer.</p><a class="card-link" href="https://ng.linkedin.com/jobs/jobs-in-nigeria/" rel="noopener noreferrer" target="_blank">Visit official resource <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>MyJobMag Nigeria</h3><span class="tag">Jobseekers · Free</span></div><p>Browse Nigerian vacancies, career information and jobseeker CV tools. Check each employer and listing carefully; employment is not guaranteed.</p><a class="card-link" href="https://www.myjobmag.com/" rel="noopener noreferrer" target="_blank">Visit official resource <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>Remote.co — International Jobs</h3><span class="tag">Remote job listings</span></div><p>Browse international remote-work listings. Remote.co advertises paid, auto-renewing membership; each employer may restrict countries or work authorization, so check the current price and listing terms first.</p><a class="card-link" href="https://remote.co/remote-jobs/international" rel="noopener noreferrer" target="_blank">Visit official resource <span aria-hidden="true" class="arrow">→</span></a></article></div></section>
+<section class="pillar" id="investing"><div class="pillar-head"><div><span class="pillar-label">03 · Investment Education</span><h2>Research Nigerian listed companies from their own reports</h2></div><p class="pillar-desc">These are issuer-published investor-relations starting points—not rankings, recommendations, or independent research. Company materials can be selective; compare them with regulatory disclosures and consider your own risk tolerance.</p></div><div class="grid"><article class="card"><div class="card-top"><h3>Dangote Cement Plc</h3><span class="tag">NGX: DANGCEM</span></div><p>Use Dangote Cement Plc’s investor-relations page for company-published reports, results and shareholder disclosures. These issuer materials describe the company; they are not independent analysis or a recommendation.</p><a class="card-link" href="https://cement.dangote.com/investor-relations/" rel="noopener noreferrer" target="_blank">Open official investor relations <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>MTN Nigeria Communications Plc</h3><span class="tag">NGX: MTNN</span></div><p>Use MTN Nigeria’s investor section to locate annual reports, financial reporting, results presentations and shareholder information. Verify the latest issuer documents and dates.</p><a class="card-link" href="https://www.mtn.ng/investors/" rel="noopener noreferrer" target="_blank">Open official investor relations <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>Wema Bank Plc</h3><span class="tag">NGX: WEMABANK</span></div><p>Wema Bank’s investor-relations section links annual reports, financial information, governance and shareholder materials. Compare dated filings and read the risk disclosures.</p><a class="card-link" href="https://wemabank.com/investor-relations-2" rel="noopener noreferrer" target="_blank">Open official investor relations <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>BUA Cement Plc</h3><span class="tag">NGX: BUACEMENT</span></div><p>BUA Cement’s official financial-reports page is a starting point for annual and interim company reports. Treat issuer statements as company-published material, not independent investment advice.</p><a class="card-link" href="https://www.buacement.com/financialreport" rel="noopener noreferrer" target="_blank">Open official investor relations <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>Guaranty Trust Holding Company Plc</h3><span class="tag">NGX: GTCO</span></div><p>GTCO’s investor-relations area links annual reports, financial resources, results and shareholder information. Review the specific report date and scope before drawing conclusions.</p><a class="card-link" href="https://www.gtcoplc.com/investor-relations" rel="noopener noreferrer" target="_blank">Open official investor relations <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>Nigeria SEC — Find a Registered Operator</h3><span class="tag">Investor-safety check</span></div><p>Before using a broker or other capital-market operator, check the SEC Nigeria register and the operator’s listed scope/status. Registration is a basic verification step, not a guarantee of returns or a regulator endorsement of a particular investment.</p><a class="card-link" href="https://sec.gov.ng/for-investors/find-a-registered-operator/" rel="noopener noreferrer" target="_blank">Visit SEC Nigeria register <span aria-hidden="true" class="arrow">→</span></a></article></div></section>
+<section class="pillar" id="skills"><div class="pillar-head"><div><span class="pillar-label">04 · Skill Acquisition</span><h2>Build practical skills at your own pace</h2></div><p class="pillar-desc">Official learning platforms and project-based curricula. Course access, certificates and exam fees depend on the provider.</p></div><div class="grid"><article class="card"><div class="card-top"><h3>Google Skillshop</h3><span class="tag">Free online training</span></div><p>Self-paced training for Google Ads, Analytics and other Google products. Certification requirements vary by learning track.</p><a class="card-link" href="https://skillshop.withgoogle.com/" rel="noopener noreferrer" target="_blank">Visit official resource <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>Microsoft Learn</h3><span class="tag">Free learning paths</span></div><p>Explore interactive modules and guided learning paths. Microsoft certification exams or credentials may have separate fees.</p><a class="card-link" href="https://learn.microsoft.com/en-us/training/" rel="noopener noreferrer" target="_blank">Visit official resource <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>freeCodeCamp</h3><span class="tag">Free coding curriculum</span></div><p>Work through coding lessons and project-based certifications. Sign in to save progress; certification requirements apply.</p><a class="card-link" href="https://www.freecodecamp.org/learn/" rel="noopener noreferrer" target="_blank">Visit official resource <span aria-hidden="true" class="arrow">→</span></a></article><article class="card"><div class="card-top"><h3>IBM SkillsBuild</h3><span class="tag">Free learning</span></div><p>Explore IBM learning in areas such as AI, cybersecurity and data. The program is described as free, with pathways that vary by learner group.</p><a class="card-link" href="https://skillsbuild.org/" rel="noopener noreferrer" target="_blank">Visit official resource <span aria-hidden="true" class="arrow">→</span></a></article></div></section><div class="cta-strip"><div><h3>Back to your member dashboard</h3><p>Your JossyB access is based on the active plan recorded after payment verification. Third-party products may have separate fees.</p></div><a class="btn" href="dashboard.html">Open dashboard</a></div>
+</main>
+<footer><div aria-hidden="true" class="node-mark"><span></span><span></span><span></span><span></span></div><div>JossyB Technical Resources Nigeria Limited · Member resource directory</div><div style="margin-top:6px">Questions? <a href="mailto:jossyb136@gmail.com">jossyb136@gmail.com</a></div></footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="service-access.js"></script><script src="resource-gate.js"></script></body>
+</html>

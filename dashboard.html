@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard – JossyB Technical Resources</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard – JossyB Technical Resources</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<style>
     :root{
       --navy-950:#070f22;
       --navy-900:#0b1e3d;
@@ -127,6 +128,7 @@
     .resource-row:hover{background:var(--navy-800);}
     .resource-row .rtitle{font-weight:500; font-size:0.95rem;}
     .resource-row .rtag{font-family:var(--font-mono); font-size:0.7rem; color:var(--success); border:1px solid rgba(62,155,111,0.4); padding:3px 9px; border-radius:999px;}
+    .resources-hint{color:var(--ink-300);font-size:0.92rem;margin:0 0 16px;}
 
     footer{text-align:center; padding:30px; color:var(--ink-500); font-size:0.82rem; border-top:1px solid var(--line);}
     @media (max-width:640px){
@@ -135,173 +137,105 @@
       .path-stop{width:80px; font-size:0.8rem;}
     }
   </style>
-<meta name="robots" content="noindex,nofollow"></head>
+<meta content="noindex,nofollow" name="robots"/></head>
 <body>
-
 <nav class="topnav">
-  <a href="index.html" class="brand"><span class="brand-mark">JB</span> JOSSYB</a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="services.html">Services</a>
-    <a href="dashboard.html">Dashboard</a>
-  </div>
-  <div class="nav-right">
-    <span id="userChip">Loading…</span>
-    <button id="signOutBtn">Sign out</button>
-  </div>
+<a class="brand" href="index.html"><span class="brand-mark">JB</span> JOSSYB</a>
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="services.html">Services</a>
+<a href="dashboard.html">Dashboard</a>
+</div>
+<div class="nav-right">
+<span id="userChip">Loading…</span>
+<button id="signOutBtn">Sign out</button>
+</div>
 </nav>
-
 <main>
-
-  <section class="welcome">
-    <div>
-      <p class="eyebrow">Dashboard</p>
-      <h1>Welcome back, <span id="userFirstName">there</span></h1>
-      <p class="sub">Here's where your growth with JossyB stands today.</p>
-    </div>
-    <div class="stat-cards">
-      <div class="stat-card">
-        <span class="stat-label">Membership</span>
-        <span class="stat-value" id="statTier">Free</span>
-        <span class="badge badge-free" id="tierBadge">Free Plan</span>
-      </div>
-      <div class="stat-card"><span class="stat-label">Referrals</span><span class="stat-value" id="statReferrals">0</span></div>
-      <div class="stat-card"><span class="stat-label">Member since</span><span class="stat-value" id="statSince">—</span></div>
-    </div>
-  </section>
-
-  <section class="card-panel">
-    <h2>Your Growth Path</h2>
-    <p class="hint">Every member starts free. Upgrade to unlock more of what JossyB offers.</p>
-    <div class="path-track">
-      <div class="path-line-bg"></div>
-      <div class="path-line-fill" id="pathFill"></div>
-      <div class="path-stop" data-tier="free" style="left:10%">
-        <div class="dot">🌱</div><div class="label">Free</div>
-      </div>
-      <div class="path-stop" data-tier="growth" style="left:50%">
-        <div class="dot">📈</div><div class="label">Growth</div>
-      </div>
-      <div class="path-stop" data-tier="premium" style="left:90%">
-        <div class="dot">🏆</div><div class="label">Premium</div>
-      </div>
-    </div>
-    <a href="services.html" class="upgrade-btn" id="upgradeBtn">Upgrade to Growth →</a>
-  </section>
-
-  <section class="card-panel">
-    <h2>Your Referral Link</h2>
-    <p class="hint">Share this link — new members who join through it are tracked to your account.</p>
-    <div class="referral-box">
-      <code id="referralLink">Loading your link…</code>
-      <button id="copyReferralBtn">Copy</button>
-    </div>
-    <div class="referral-stats">
-      <div><span class="num" id="refSignups">0</span><span class="lbl">Signups</span></div>
-      <div><span class="num" id="refCode">—</span><span class="lbl">Your code</span></div>
-    </div>
-  </section>
-
-  <section>
-    <p class="eyebrow">Grow with us</p>
-    <h2 style="margin-bottom:18px;">Explore Services</h2>
-    <div class="services-grid">
-      <a class="service-card" href="https://paystack.shop/pay/j0ksmaeht"><span class="ic">📈</span><h3>Business Development</h3><p>Production-ready AI automation for business growth. $50 session + Premium access for 90 days.</p></a>
-      <a class="service-card" href="https://paystack.shop/pay/bimmg7om4u"><span class="ic">🔗</span><h3>Job Opportunity & Linkup</h3><p>Verified job openings and career connections. Starter access ₦5,000 for 30 days.</p></a>
-      <a class="service-card" href="https://paystack.shop/pay/bimmg7om4u"><span class="ic">📊</span><h3>Investment Opportunity</h3><p>Vetted investment options — shares and more. Starter access ₦5,000 for 30 days.</p></a>
-      <a class="service-card" href="https://paystack.shop/pay/7jsodh2jvy"><span class="ic">🎓</span><h3>Skill Acquisition</h3><p>Skills, certificate and job linkup, at your pace. Premium access ₦12,000 for 90 days.</p></a>
-    </div>
-  </section>
-
-  <section id="myResourcesSection" style="display:none;">
-    <p class="eyebrow">Your resources</p>
-    <h2 style="margin-bottom:18px;">Unlocked for your plan</h2>
-    <div class="resource-list" id="myResourcesList"></div>
-  </section>
-
+<section class="welcome">
+<div>
+<p class="eyebrow">Dashboard</p>
+<h1>Welcome back, <span id="userFirstName">there</span></h1>
+<p class="sub">Review your active service access and resources.</p>
+</div>
+<div class="stat-cards">
+<div class="stat-card">
+<span class="stat-label">Membership</span>
+<span class="stat-value" id="statTier">Free</span>
+<span class="badge badge-free" id="tierBadge">Free Plan</span>
+</div>
+<div class="stat-card"><span class="stat-label">Referrals</span><span class="stat-value" id="statReferrals">0</span></div>
+<div class="stat-card"><span class="stat-label">Member since</span><span class="stat-value" id="statSince">—</span></div>
+</div>
+</section>
+<section class="card-panel">
+<h2>Your Referral Link</h2>
+<p class="hint">Share this link — new members who join through it are tracked to your account.</p>
+<div class="referral-box">
+<code id="referralLink">Loading your link…</code>
+<button id="copyReferralBtn">Copy</button>
+</div>
+<div class="referral-stats">
+<div><span class="num" id="refSignups">0</span><span class="lbl">Signups</span></div>
+<div><span class="num" id="refCode">—</span><span class="lbl">Your code</span></div>
+</div>
+</section>
+<section>
+<p class="eyebrow">Grow with us</p>
+<h2 style="margin-bottom:18px;">Explore Services</h2>
+<div class="services-grid"><a class="service-card" href="https://paystack.shop/pay/j0ksmaeht" rel="noopener noreferrer" target="_blank"><span class="ic">📈</span><h3>Business Development</h3><p>Book the one-on-one session. Booking is handled separately from the resource-page flow.</p></a><a class="service-card" href="service-checkout.html?service=jobs"><span class="ic">🔗</span><h3>Job Opportunity &amp; Linkup</h3><p>₦5,000 · 30 days. Opens the Job resources after verified payment.</p></a><a class="service-card" href="service-checkout.html?service=investing"><span class="ic">📊</span><h3>Investment Education</h3><p>₦5,000 · 30 days. Opens Nigerian listed-company research after verified payment.</p></a><a class="service-card" href="service-checkout.html?service=skills"><span class="ic">🎓</span><h3>Skill Acquisition</h3><p>₦12,000 · 90 days. Opens the Skills library after verified payment.</p></a><a class="service-card" href="service-checkout.html?service=premium"><span class="ic">🏆</span><h3>Premium Full Access</h3><p>₦12,000 · 90 days. One purchase opens every service library.</p></a></div>
+</section>
+<section id="myResourcesSection" style="display:none;">
+<p class="eyebrow">Your resources</p>
+<h2 style="margin-bottom:18px;">Your active resource libraries</h2>
+<p class="resources-hint" id="resourcesHint"></p>
+<div class="resource-list" id="myResourcesList"></div>
+</section>
 </main>
-
 <footer>© 2025 JossyB Technical Resources Nigeria Limited. Empowering Growth Across the Globe.</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="service-access.js"></script>
 <script>
   const SUPABASE_URL = 'https://ghsnlxqaztuovxlairvn.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_4hkjbAEhrx9kApuq7GWKPw_a5kh3RZp';
 
   const dashboardAuthClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  const TIER_ORDER = ['free', 'growth', 'premium'];
-
-  async function initAuth() {
-    try {
-      const { data: redirectData, error: redirectErr } = await dashboardAuthClient.auth.getSessionFromUrl();
-      if (redirectErr) console.warn('OAuth parse error:', redirectErr);
-      if (redirectData?.session) {
-        history.replaceState({}, document.title, window.location.pathname);
-      }
-    } catch (e) {
-      console.warn('Error parsing redirect:', e);
-    }
-
-    const { data: { session }, error } = await dashboardAuthClient.auth.getSession();
-    
-    if (error) console.warn('Session error:', error);
-    
-    if (!session || !session.user) {
-      window.location.href = 'login.html';
-      return;
-    }
-
-    await claimPendingPayment(session);
-    loadDashboard();
-  }
-
-  async function claimPendingPayment(session) {
-    try {
-      await fetch(`${SUPABASE_URL}/functions/v1/claim-pending-payment`, {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${session.access_token}` },
-      });
-    } catch (e) {
-      console.warn('claim-pending-payment check failed:', e);
-    }
-  }
-
-  function setPathState(tier) {
-    const idx = Math.max(0, TIER_ORDER.indexOf(tier));
-    const fillPct = [6, 50, 90][idx];
-    document.getElementById('pathFill').style.width = fillPct + '%';
-    document.querySelectorAll('.path-stop').forEach((el, i) => {
-      el.classList.remove('achieved', 'current');
-      if (i < idx) el.classList.add('achieved');
-      if (i === idx) el.classList.add('current');
-    });
-    const upgradeBtn = document.getElementById('upgradeBtn');
-    if (idx === 0) {
-      upgradeBtn.textContent = 'Upgrade to Growth →';
-      upgradeBtn.classList.remove('disabled');
-    } else if (idx === 1) {
-      upgradeBtn.textContent = 'Upgrade to Premium →';
-      upgradeBtn.classList.remove('disabled');
-    } else {
-      upgradeBtn.textContent = 'You\'re on Premium 🏆';
-      upgradeBtn.classList.add('disabled');
-    }
-  }
-
-  function setTierBadge(tier) {
-    const badge = document.getElementById('tierBadge');
-    if (tier === 'premium' || tier === 'growth') {
-      badge.className = 'badge badge-premium';
-      badge.textContent = tier.charAt(0).toUpperCase() + tier.slice(1) + ' Plan ✓';
-    } else {
-      badge.className = 'badge badge-free';
-      badge.textContent = 'Free Plan';
-    }
-  }
+  const SERVICE_PAGES = { jobs: 'resources-jobs.html', investing: 'resources-investing.html', skills: 'resources-skills.html' };
+  const SERVICE_LABELS = { jobs: 'Job Opportunity & Linkup', investing: 'Investment Education', skills: 'Skill Acquisition' };
 
   function fallbackReferralCode(userId) {
     return userId ? userId.replace(/-/g, '').slice(0, 8).toUpperCase() : null;
+  }
+
+  function renderResourceAccess(access) {
+    const section = document.getElementById('myResourcesSection');
+    const list = document.getElementById('myResourcesList');
+    const hint = document.getElementById('resourcesHint');
+    list.replaceChildren();
+    if (access.premium) {
+      const row = document.createElement('a'); row.className = 'resource-row'; row.href = 'resources-premium.html';
+      const title = document.createElement('span'); title.className = 'rtitle'; title.textContent = 'Open every resource library';
+      const tag = document.createElement('span'); tag.className = 'rtag'; tag.textContent = 'Premium Full Access';
+      row.append(title, tag); list.append(row);
+      hint.textContent = 'Your verified Premium purchase opens Business Development, Jobs & Linkup, Investment Education, and Skill Acquisition resources.';
+    } else {
+      const active = Object.keys(SERVICE_PAGES).filter((key) => access.services.has(key));
+      for (const key of active) {
+        const row = document.createElement('a'); row.className = 'resource-row'; row.href = SERVICE_PAGES[key];
+        const title = document.createElement('span'); title.className = 'rtitle'; title.textContent = 'Open ' + SERVICE_LABELS[key] + ' resources';
+        const tag = document.createElement('span'); tag.className = 'rtag'; tag.textContent = 'Active';
+        row.append(title, tag); list.append(row);
+      }
+      if (active.length) hint.textContent = 'Each successful service purchase unlocks its matching resource library. Premium Full Access unlocks everything.';
+      else {
+        const row = document.createElement('a'); row.className = 'resource-row'; row.href = 'resources-free.html';
+        const title = document.createElement('span'); title.className = 'rtitle'; title.textContent = 'Open the free resource preview';
+        const tag = document.createElement('span'); tag.className = 'rtag'; tag.textContent = 'Preview';
+        row.append(title, tag); list.append(row);
+        hint.textContent = 'Paid service access appears here only after Paystack’s signed success webhook confirms the payment.';
+      }
+    }
+    section.style.display = 'block';
   }
 
   async function loadDashboard() {
@@ -325,43 +259,32 @@
       : '—';
 
     let profile = null;
-    let tier = 'free';
-    let isActivePaid = false;
-    
+    let access = { services: new Set(), premium: false };
     try {
       const { data, error } = await dashboardAuthClient
         .from('profiles')
-        .select('plan, referral_code, referral_count, full_name, subscription_status, subscription_end_date, plan_expires_at')
+        .select('referral_code, referral_count, full_name')
         .eq('id', user.id)
-        .single();
-      
-      if (!error && data) {
-        profile = data;
-        const rawPlan = (data.plan || 'free').toLowerCase();
-        tier = rawPlan === 'starter' ? 'growth' : rawPlan;
-        if (!TIER_ORDER.includes(tier)) tier = 'free';
-        const expiresAt = data.subscription_end_date || data.plan_expires_at;
-        const hasFutureExpiry = !expiresAt || new Date(expiresAt).getTime() > Date.now();
-        isActivePaid = tier !== 'free' && data.subscription_status === 'active' && hasFutureExpiry;
-        if (!hasFutureExpiry) tier = 'free';
-      }
+        .maybeSingle();
+      if (!error) profile = data;
+      access = await window.JossyResourceAccess.readForSession(dashboardAuthClient, { user });
     } catch (e) {
-      console.warn('No profiles row found or error occurred:', e);
-      tier = 'free';
+      console.warn('Could not load service entitlements:', e);
     }
 
     if (profile?.full_name) document.getElementById('userFirstName').textContent = profile.full_name.trim().split(/\s+/)[0];
-
-    const tierDisplay = tier.charAt(0).toUpperCase() + tier.slice(1);
-    document.getElementById('statTier').textContent = tierDisplay;
-    setPathState(TIER_ORDER.includes(tier) ? tier : 'free');
-    setTierBadge(tier);
-
-    if (isActivePaid) {
-      const statTierEl = document.getElementById('statTier');
-      statTierEl.classList.add('premium');
-      statTierEl.textContent = '🏆 ' + tierDisplay;
+    const statTierEl = document.getElementById('statTier');
+    const badge = document.getElementById('tierBadge');
+    if (access.premium) {
+      statTierEl.textContent = 'Premium Full Access'; statTierEl.classList.add('premium');
+      badge.className = 'badge badge-premium'; badge.textContent = 'All service libraries active';
+    } else {
+      const active = Object.keys(SERVICE_PAGES).filter((key) => access.services.has(key));
+      statTierEl.textContent = active.length ? active.length + ' service' + (active.length===1?'':'s') : 'Free';
+      badge.className = active.length ? 'badge badge-premium' : 'badge badge-free';
+      badge.textContent = active.length ? 'Service access active' : 'Free preview';
     }
+    renderResourceAccess(access);
 
     const referralCode = profile?.referral_code || fallbackReferralCode(user.id);
     const referralLink = `https://compay.pro/register.html?ref=${referralCode}`;
@@ -390,8 +313,7 @@
 
   initAuth();
 </script>
-
-<script src="https://connect.agent.so/sdk/connect.js" async></script>
+<script async="" src="https://connect.agent.so/sdk/connect.js"></script>
 <div data-agi-widget="1ea6ed43-95a8-4dca-b9cc-ee64d0de5308"></div>
 </body>
 </html>

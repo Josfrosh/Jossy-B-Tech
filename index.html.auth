@@ -190,6 +190,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+  <!-- Cookie-less tracking snippet (added) -->
+  <script>
+  (function(){
+    var k = 'jb_v', v = localStorage.getItem(k);
+    if (!v) { v = Math.random().toString(36).slice(2); localStorage.setItem(k, v); }
+    var u = new URLSearchParams(location.search);
+    fetch('https://jossybmarketingagent.lovable.app/api/public/track', {
+      method: 'POST',
+      keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        path: location.pathname,
+        referrer: document.referrer,
+        utm_source: u.get('utm_source') || '',
+        visitor: v
+      })
+    }).catch(function(){});
+  })();
+  </script>
+
 </head>
 <body>
 
@@ -239,6 +260,29 @@
     <h3>Skill Acquisition</h3>
     <p>Learn new skills, get certified, and connect with job opportunities</p>
   </div>
+</section>
+
+<!-- Survey section (added) -->
+<section style="display: flex; justify-content: center; padding: 40px 20px;">
+  <form action="https://jossybmarketingagent.lovable.app/api/public/subscribe" method="POST" style="display:grid;gap:12px;width:100%;max-width:440px;background:#141c24;color:#f3f4f6;padding:24px;border-radius:12px;border:1px solid #2a3746;font-family:sans-serif">
+    <strong style="font-size:1.1rem;color:#f2c94c">Which digital solution do you need most?</strong>
+    <p style="font-size:0.85rem;color:#9ca3af;margin:0 0 8px">Tell us what you're working toward and receive our free guide.</p>
+    
+    <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="radio" name="need" value="Help getting a job"> Help getting a job</label>
+    <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="radio" name="need" value="Learning a new skill to earn"> Learning a new skill to earn</label>
+    <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="radio" name="need" value="Automating my business"> Automating my business</label>
+    <label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="radio" name="need" value="A website or app"> A website or app</label>
+    
+    <textarea name="note" rows="3" maxlength="1000" placeholder="Or tell us in your own words what you need..." style="padding:10px;border-radius:6px;border:1px solid #374151;background:#0b1118;color:#fff;resize:vertical"></textarea>
+    
+    <input type="hidden" name="list_id" value="8f10d8af-0519-4a47-9ab0-315d58c4a2a5">
+    <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+    
+    <input type="text" name="first_name" placeholder="Your name" style="padding:10px;border-radius:6px;border:1px solid #374151;background:#0b1118;color:#fff">
+    <input type="email" name="email" placeholder="Email address for guide delivery" required style="padding:10px;border-radius:6px;border:1px solid #374151;background:#0b1118;color:#fff">
+    
+    <button type="submit" style="padding:12px;background:#f2c94c;color:#111;border:0;border-radius:6px;font-weight:700;cursor:pointer">Send my answer</button>
+  </form>
 </section>
 
 <footer>

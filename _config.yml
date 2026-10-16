@@ -4,3 +4,6 @@ description: JossyB helps individuals and businesses build, automate and earn wi
 baseurl: ""
 url: https://compay.pro
 markdown: kramdown
+
+plugins:
+  - jekyll-redirect-from
